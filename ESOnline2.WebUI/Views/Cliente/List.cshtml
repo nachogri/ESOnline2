@@ -1,0 +1,15 @@
+﻿<div ng-controller='ctlCliente'>
+    <p>
+        <input id="txtBusqueda" type="search" class="form-control center-block" ng-model="nombreBusqueda" ng-keypress="searchByName($event,nombreBusqueda)" placeholder="Buscar por nombre del cliente.."/>
+     </p>
+    <div class="panel panel-primary">        
+        <div class="panel-heading">
+            <h2 class="list-group-item-heading">Clientes
+                <a class="list-group-item-heading pull-right" href="/Cliente/New/">+</a>
+            </h2>            
+        </div>                    
+        <div class="list-group" ng-repeat="itemCliente in clientes">                                    
+            <a class="list-group-item" href="/Cliente/Edit/{{itemCliente.ID}}">{{itemCliente.Nombre+ ' ' +itemCliente.Apellido  }}</a>                                              
+        </div>                
+    </div>        
+</div>

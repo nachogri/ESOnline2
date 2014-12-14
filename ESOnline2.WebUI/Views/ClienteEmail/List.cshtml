@@ -1,0 +1,14 @@
+﻿<div class="list-group"   ng-controller='ctlEmail as emailCtrl'>
+            <p>Emails:</p>       
+            <div >            
+                <div ng-repeat="email in cliente.Emails">
+                    <input type="email" ng-model="email.Casilla" class="form-control"   /> 
+                    <select ng-model="email.Tipo" class="form-control" ng-options="tipoEmail for tipoEmail in TiposEmail" ng-selected="Email.Tipo"></select>                        
+                    <button type="button" ng-click="removeEmail(cliente, $index)" class="btn btn-danger btn-xs">x</button>
+                </div>     
+            </div>   
+             <p></p>
+            <input name="txtNuevaCasillaEmail" type="email" ng-model="NuevaCasillaEmail" class="form-control" required/> 
+            <select name="ddlNuevaTipoEmail" ng-model="NuevoTipoEmail" class="form-control" ng-options="tipoEmail for tipoEmail in TiposEmail" required></select>        
+            <button type="button" ng-click="addEmail(cliente)" class="btn btn-success btn-xs">+</button>
+        </div>

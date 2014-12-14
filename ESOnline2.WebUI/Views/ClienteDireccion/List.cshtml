@@ -1,0 +1,13 @@
+﻿ <div class="list-group" ng-controller="ctlDireccion as direccionCtrl">
+        <p>Direcciones:</p>       
+        <div>            
+            <div ng-repeat="direccion in cliente.Direcciones">
+                <select ng-model="direccion.Tipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo"></select> 
+                <input type="text" ng-model="direccion.Descripcion" />
+                <button type="button" ng-click="removeDireccion(cliente,$index)" class="btn btn-danger btn-xs">x</button>
+            </div>     
+        </div>          
+        <select ng-model="NuevoTipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo" required></select>
+        <input type="text" ng-model="NuevaDescripcion" required/>
+        <button type="button"  ng-click="addDireccion(cliente)" class="btn btn-success btn-xs">+</button>
+    </div>
