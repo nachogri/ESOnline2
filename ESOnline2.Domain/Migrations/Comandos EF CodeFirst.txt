@@ -1,3 +1,4 @@
 ﻿Enable-Migrations -EnableAutomaticMigrations -Force
 
+Update-Database -SourceMigration 201411251559378_InitialCreate
 Update-Database -SourceMigration 201411251504445_TiposTables2Enums.cs
