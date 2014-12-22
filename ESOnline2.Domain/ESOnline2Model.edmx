@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ESOnlineDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ESOnlineDBModelStoreContainer">
+    <EntitySet Name="C__MigrationHistory" EntityType="ESOnlineDBModel.Store.C__MigrationHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clientes" EntityType="ESOnlineDBModel.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Direcciones" EntityType="ESOnlineDBModel.Store.Direcciones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Emails" EntityType="ESOnlineDBModel.Store.Emails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Telefonos" EntityType="ESOnlineDBModel.Store.Telefonos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Webs" EntityType="ESOnlineDBModel.Store.Webs" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Direcciones" EntitySet="Direcciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Emails_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Emails" EntitySet="Emails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Telefonos" EntitySet="Telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Webs_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Webs" EntitySet="Webs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Apellido" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="CUIL" Type="nvarchar" Nullable="true" MaxLength="13" />
+    <Property Name="CUIT" Type="nvarchar" Nullable="true" MaxLength="13" />
+    <Property Name="Notas" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Imagen" Type="varbinary" Nullable="true" MaxLength="4000" />
+    <Property Name="Favorito" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Casilla" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Telefonos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Numero" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Webs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Direcciones" Type="ESOnlineDBModel.Store.Direcciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Direcciones">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Emails" Type="ESOnlineDBModel.Store.Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Emails">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Telefonos" Type="ESOnlineDBModel.Store.Telefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Telefonos">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Webs" Type="ESOnlineDBModel.Store.Webs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Webs">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ESOnlineDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CUIL" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="CUIT" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Notas" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="Binary" MaxLength="4000" FixedLength="false" />
+          <Property Name="Favorito" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Direcciones" />
+          <NavigationProperty Name="Emails" Relationship="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Emails" />
+          <NavigationProperty Name="Telefonos" Relationship="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Telefonos" />
+          <NavigationProperty Name="Webs" Relationship="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Webs" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" FromRole="Direcciones" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Casilla" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID" FromRole="Emails" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Telefono">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" FromRole="Telefonos" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Web">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID" FromRole="Webs" ToRole="Clientes" />
+        </EntityType>
+        <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Direcciones" Type="ESOnlineDBModel.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Emails" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Telefonos" Type="Self.Telefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Webs" Type="Self.Web" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Webs">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ESOnlineDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Direcciones" EntityType="ESOnlineDBModel.Direccion" />
+          <EntitySet Name="Emails" EntityType="Self.Email" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefono" />
+          <EntitySet Name="Webs" EntityType="Self.Web" />
+          <AssociationSet Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Webs" EntitySet="Webs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ESOnlineDBModelStoreContainer" CdmEntityContainer="ESOnlineDBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.C__MigrationHistory)">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Cliente)">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="CUIL" ColumnName="CUIL" />
+          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Favorito" ColumnName="Favorito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direcciones">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Direccion)">
+        <MappingFragment StoreEntitySet="Direcciones">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Email)">
+        <MappingFragment StoreEntitySet="Emails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Casilla" ColumnName="Casilla" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telefonos">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Telefono)">
+        <MappingFragment StoreEntitySet="Telefonos">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Webs">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Web)">
+        <MappingFragment StoreEntitySet="Webs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

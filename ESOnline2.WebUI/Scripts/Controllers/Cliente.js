@@ -24,15 +24,22 @@ angular.module('mdlControllers')
         };
 
         $scope.getAllClientes = function () {
-            svcESONlineUI.clientes.getAll().success(function (data) {
-                $scope.clientes = data;
-            });
+            svcESONlineUI.clientes.getAll()
+                .success(function (data) {
+                    $scope.clientes = data;
+                })
+                .error(function (err) {
+                    svcNotifications.alert("Ha ocurrido un error:" + err);
+                });
         };
 
         $scope.getCliente = function () {
             svcESONlineUI.clientes.get(svcUtils.getObjectId())
-            .success(function (data) {
-                $scope.cliente = data;
+                .success(function (data) {
+                    $scope.cliente = data;
+            })
+                .error(function (err) {
+                    svcNotifications.alert(err.Message || err.message);
             });
         };                   
 
@@ -42,12 +49,15 @@ angular.module('mdlControllers')
                     $scope.load();
                 }
                 else {
-                    svcESONlineUI.clientes.getByNombre($scope.nombreBusqueda).success(function (data) {
+                    svcESONlineUI.clientes.getByNombre($scope.nombreBusqueda)
+                   .success(function (data) {
                         $scope.clientes = data;
-                    });
+                   })
+                   .error(function (err) {
+                        svcNotifications.alert(err.Message || err.message);
+                    });                   
                 }
             }
-
         };
 
         $scope.save = function () {

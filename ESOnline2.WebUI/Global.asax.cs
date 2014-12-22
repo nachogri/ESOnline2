@@ -25,7 +25,7 @@ namespace ESOnline2.WebUI
 
             //ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());          
 
-            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<ESOnline2.Domain.Concrete.ESOnline2DbContext>());
+           // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<ESOnline2.Domain.ESOnlineDBEntities>());
         }
      
     }

@@ -5,7 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using ESOnline2.Domain.Abstract;
 using ESOnline2.Domain.Concrete;
-using ESOnline2.Domain.Entities;
+using ESOnline2.Domain;
 
 namespace ESOnline2.WebUI.Controllers
 {

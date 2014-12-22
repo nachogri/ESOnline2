@@ -4,16 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using ESOnline2.Domain.Abstract;
-using ESOnline2.Domain.Entities;
+using ESOnline2.Domain;
 
 namespace ESOnline2.Domain.Concrete
 {
     public class EFClienteRepository: IClienteRepository
     {
-        private ESOnline2DbContext context = new ESOnline2DbContext();
-        
-        private List<Cliente> _Clientes;
-        
+        private ESOnlineDBEntities context = new ESOnlineDBEntities();
+               
         public EFClienteRepository()
         {
             //_Clientes = new List<Cliente>(){
@@ -76,7 +74,6 @@ namespace ESOnline2.Domain.Concrete
             //        };                   
         }
 
-
         public IEnumerable<Cliente> GetAll()
         {
             return context.Clientes.AsEnumerable();
@@ -132,70 +129,7 @@ namespace ESOnline2.Domain.Concrete
                 dbentry.Direcciones = cliente.Direcciones;
                 dbentry.Emails = cliente.Emails;
                 dbentry.Telefonos = cliente.Telefonos;
-                dbentry.Webs = cliente.Webs;
-                
-
-                //foreach (Direccion direccion in cliente.Direcciones)
-                //{
-                //    if (direccion.ID != default(int))
-                //    {
-                //        Direccion dbentryDireccion = context.Direcciones.Find(direccion.ID);
-                //        dbentryDireccion.Descripcion = direccion.Descripcion;
-                //        dbentryDireccion.Tipo = direccion.Tipo;
-                //    }
-                //    else
-                //        if (dbentry.Direcciones != null)
-                //            dbentry.Direcciones.Add(direccion);
-                //        else
-                //        {
-                //            dbentry.Direcciones = new List<Direccion>();
-                //            dbentry.Direcciones.Add(direccion);
-                //        }
-                //}
-
-
-                //foreach (Email email in cliente.Emails)
-                //{
-                //    if (email.ID != default(int))
-                //    {
-                //        Email dbentryEmail = context.Emails.Find(email.ID);
-                //        dbentryEmail.Casilla = email.Casilla;
-                //        dbentryEmail.Tipo = email.Tipo;
-                //    }
-                //    else
-                //        if (dbentry.Emails != null)
-                //            dbentry.Emails.Add(email);
-                //        else
-                //        {
-                //            dbentry.Emails = new List<Email>();
-                //            dbentry.Emails.Add(email);
-                //        }
-                //}
-
-                //foreach (Telefono Telefono in cliente.Telefonos)
-                //{
-                //    if (Telefono.ID != default(int))
-                //    {
-                //        Telefono dbentryTelefono = context.Telefonos.Find(Telefono.ID);
-                //        dbentryTelefono.Numero = Telefono.Numero;
-                //        dbentryTelefono.Tipo = Telefono.Tipo;
-                //    }
-                //    else
-                //        dbentry.Telefonos.Add(Telefono);
-                //}
-
-
-                //foreach (Web Web in cliente.Webs)
-                //{
-                //    if (Web.ID != default(int))
-                //    {
-                //        Web dbentryWeb = context.Webs.Find(Web.ID);
-                //        dbentryWeb.URL = Web.URL;
-                //        dbentryWeb.Tipo = Web.Tipo;
-                //    }
-                //    else
-                //        dbentry.Webs.Add(Web);
-                //}
+                dbentry.Webs = cliente.Webs;               
             }
 
 
