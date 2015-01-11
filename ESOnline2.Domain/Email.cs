@@ -19,6 +19,6 @@ namespace ESOnline2.Domain
         public string Casilla { get; set; }
         public int Cliente_ID { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
+        public virtual Cliente Cliente { internal get; set; }
     }
 }

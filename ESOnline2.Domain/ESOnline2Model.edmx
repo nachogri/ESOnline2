@@ -55,6 +55,7 @@
   <EntityType Name="Direcciones">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
@@ -64,6 +65,7 @@
   <EntityType Name="Emails">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
@@ -73,6 +75,7 @@
   <EntityType Name="Telefonos">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
@@ -82,6 +85,7 @@
   <EntityType Name="Webs">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
@@ -178,42 +182,46 @@
         <EntityType Name="Direccion">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="Cliente_ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" FromRole="Direcciones" ToRole="Clientes" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" FromRole="Direcciones" ToRole="Clientes" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Email">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="Cliente_ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Casilla" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID" FromRole="Emails" ToRole="Clientes" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID" FromRole="Emails" ToRole="Clientes" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Telefono">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="Cliente_ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" FromRole="Telefonos" ToRole="Clientes" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" FromRole="Telefonos" ToRole="Clientes" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Web">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="Cliente_ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cliente_ID" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID" FromRole="Webs" ToRole="Clientes" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID" FromRole="Webs" ToRole="Clientes" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" >
@@ -329,9 +337,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Direccion)">
         <MappingFragment StoreEntitySet="Direcciones">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -339,9 +347,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Email)">
         <MappingFragment StoreEntitySet="Emails">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="Casilla" ColumnName="Casilla" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -349,9 +357,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Telefono)">
         <MappingFragment StoreEntitySet="Telefonos">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="Numero" ColumnName="Numero" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -359,9 +367,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.Web)">
         <MappingFragment StoreEntitySet="Webs">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="URL" ColumnName="URL" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

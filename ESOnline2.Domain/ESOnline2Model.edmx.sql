@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/21/2014 23:16:52
+-- Date Created: 01/08/2015 15:19:36
 -- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
@@ -131,28 +131,28 @@ ADD CONSTRAINT [PK_Clientes]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Direcciones'
+-- Creating primary key on [ID], [Cliente_ID] in table 'Direcciones'
 ALTER TABLE [dbo].[Direcciones]
 ADD CONSTRAINT [PK_Direcciones]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [Cliente_ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Emails'
+-- Creating primary key on [ID], [Cliente_ID] in table 'Emails'
 ALTER TABLE [dbo].[Emails]
 ADD CONSTRAINT [PK_Emails]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [Cliente_ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Telefonos'
+-- Creating primary key on [ID], [Cliente_ID] in table 'Telefonos'
 ALTER TABLE [dbo].[Telefonos]
 ADD CONSTRAINT [PK_Telefonos]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [Cliente_ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Webs'
+-- Creating primary key on [ID], [Cliente_ID] in table 'Webs'
 ALTER TABLE [dbo].[Webs]
 ADD CONSTRAINT [PK_Webs]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [Cliente_ID] ASC);
 GO
 
 -- --------------------------------------------------
