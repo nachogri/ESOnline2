@@ -8,8 +8,7 @@ angular.module('mdlControllers').directive('clienteDirecciones', function () {
 });
 
 angular.module('mdlControllers')
-.controller('ctlDireccion', function ($scope, svcESONlineUI) {
-  
+.controller('ctlDireccion', function ($scope, svcESONlineUI, svcBrowser) {
 
     svcESONlineUI.tiposDireccion.getAll()
             .success(function (data) {
@@ -17,16 +16,16 @@ angular.module('mdlControllers')
             });
 
     $scope.addDireccion = function (cliente) {
-       
+
         var newDireccion = {};
         newDireccion.ID = 0;
         newDireccion.Tipo = $scope.NuevoTipo;
         newDireccion.Descripcion = $scope.NuevaDescripcion;
-        
+
         if (cliente.Direcciones == null) {
             cliente.Direcciones = [];
         }
-     
+
         cliente.Direcciones.push(newDireccion);
 
         $scope.NuevoTipo = "";
@@ -35,5 +34,9 @@ angular.module('mdlControllers')
 
     $scope.removeDireccion = function (cliente, index) {
         cliente.Direcciones.splice(index, 1);
+    };
+
+    $scope.findDireccionInMap = function (direccion) {
+        svcBrowser.openNewTab('https://www.google.com/maps/place/' + direccion);
     }
 })

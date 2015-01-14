@@ -60,20 +60,24 @@ namespace ESOnline2.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 cliente = clienteRepo.Add(cliente);
-
-                return Json(new { Status = "Successful" },JsonRequestBehavior.AllowGet);
+                return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
             }
             else
-                return Json(new { Status = "Error" }, JsonRequestBehavior.AllowGet);
+                return JsonErrorResponse(JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult UpdateCliente(Cliente cliente)
-        {            
-            if (!clienteRepo.Update(cliente))
-                return Json(new { Status = "Not found" }, JsonRequestBehavior.AllowGet);
+        {
+            if (ModelState.IsValid)
+            {
+                if (!clienteRepo.Update(cliente))
+                    return Json(new { Status = "Not found" }, JsonRequestBehavior.AllowGet);
+                else
+                    return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
+            }
             else
-                return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
+                return JsonErrorResponse(JsonRequestBehavior.AllowGet);
         }
 
         [HttpDelete]
@@ -81,12 +85,43 @@ namespace ESOnline2.WebUI.Controllers
         {
             Cliente cliente = clienteRepo.Get(id);
             if (cliente == null)
-             return Json(new { Status = "Not found" },JsonRequestBehavior.AllowGet); 
+                 return Json(new { Status = "Not found" },JsonRequestBehavior.AllowGet); 
             else
             {
                 clienteRepo.Remove(id);
                 return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        protected JsonResult JsonErrorResponse(JsonRequestBehavior jsonRequestBehaviour)
+        {
+            
+            var errorList = new List<JsonValidationError>();
+            foreach (var key in ModelState.Keys)
+            {
+                ModelState modelState = null;
+                if (ModelState.TryGetValue(key, out modelState))
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        errorList.Add(new JsonValidationError()
+                        {
+                            Key = key,
+                            Message = error.ErrorMessage
+                        });
+                    }
+                }
+            }
+
+            var response = new JsonResponse()
+            {
+                Type = "Validation",
+                Message = "These are the errors from the validation",
+                Errors = errorList
+            };
+
+            Response.StatusCode = 400;
+            return Json(response, jsonRequestBehaviour);
         }
     }
 }

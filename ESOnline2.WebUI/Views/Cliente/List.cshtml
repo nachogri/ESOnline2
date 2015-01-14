@@ -9,7 +9,8 @@
             </h2>            
         </div>                    
         <div class="list-group" ng-repeat="itemCliente in clientes">                                    
-            <a class="list-group-item" href="/Cliente/Edit/{{itemCliente.ID}}">{{itemCliente.Nombre+ ' ' +itemCliente.Apellido  }}</a>                                              
+            <a class="list-group-item" href="/Cliente/Edit/{{itemCliente.ID}}">{{itemCliente.Nombre+ ' ' +(itemCliente.Apellido||'')  }}</a>
+                                                          
         </div>                
     </div>        
 </div>

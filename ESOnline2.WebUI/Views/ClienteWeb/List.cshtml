@@ -1,14 +1,14 @@
 ﻿<div class="list-group" ng-controller='ctlWeb as webCtrl'>
-            <p>Webs:</p>       
-            <div >            
-                <div ng-repeat="web in cliente.Webs">
-                    <input type="text" ng-model="web.URL" class="form-control"/> 
-                    <select ng-model="web.Tipo" class="form-control" ng-options="tipoWeb for tipoWeb in TiposWeb" ng-selected="web.Tipo"></select>                        
-                    <button type="button" ng-click="removeWeb(cliente, $index)" class="btn btn-danger btn-xs">x</button>
-                </div>     
-            </div>   
-             <p></p>
-            <input name="txtNuevaUrlWeb" type="text" ng-model="NuevaURLWeb" class="form-control" required/> 
-            <select name="ddlNuevaTipoWeb" ng-model="NuevoTipoWeb" class="form-control" ng-options="tipoWeb for tipoWeb in TiposWeb" required></select>        
-            <button type="button" ng-click="addWeb(cliente)" class="btn btn-success btn-xs">+</button>
-        </div>
+    <p>Webs:</p>       
+    <div >            
+        <div ng-repeat="web in cliente.Webs">           
+            <select ng-model="web.Tipo" class="form-control" ng-options="tipoWeb for tipoWeb in TiposWeb" ng-selected="web.Tipo"></select>                        
+            <input type="text" ng-model="web.URL" class="form-control" /> 
+            <button type="button" ng-click="removeWeb(cliente, $index)" class="btn btn-xs">x</button>
+        </div>     
+    </div>   
+    <p></p>
+    <select name="ddlNuevaTipoWeb" ng-model="NuevoTipoWeb" class="form-control" ng-options="tipoWeb for tipoWeb in TiposWeb"></select>        
+    <input name="txtNuevaUrlWeb" type="text" ng-model="NuevaURLWeb" class="form-control" />     
+    <button ng-disabled="NuevaURLWeb=='' || NuevaURLWeb==undefined || NuevoTipoWeb==undefined" type="button" ng-click="addWeb(cliente)" class="btn btn-success btn-xs">+</button>
+</div>

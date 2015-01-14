@@ -194,6 +194,8 @@
     <Compile Include="Controllers\ClienteWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ClienteTelefonoController.cs" />
+    <Compile Include="Controllers\JsonResponse.cs" />
+    <Compile Include="Controllers\JsonValidationError.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

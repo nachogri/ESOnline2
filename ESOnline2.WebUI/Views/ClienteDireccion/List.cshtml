@@ -1,13 +1,15 @@
-﻿ <div class="list-group" ng-controller="ctlDireccion as direccionCtrl">
-        <p>Direcciones:</p>       
-        <div>            
-            <div ng-repeat="direccion in cliente.Direcciones">
-                <select ng-model="direccion.Tipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo"></select> 
-                <input type="text" ng-model="direccion.Descripcion" />
-                <button type="button" ng-click="removeDireccion(cliente,$index)" class="btn btn-danger btn-xs">x</button>
-            </div>     
-        </div>          
-        <select ng-model="NuevoTipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo" required></select>
-        <input type="text" ng-model="NuevaDescripcion" required/>
-        <button type="button"  ng-click="addDireccion(cliente)" class="btn btn-success btn-xs">+</button>
+﻿<div class="list-group" ng-controller="ctlDireccion as direccionCtrl">
+    <p>Direcciones:</p>
+    <div>
+        <div ng-repeat="direccion in cliente.Direcciones">
+            <select ng-model="direccion.Tipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo"></select>
+            <input type="text" class="form-control " ng-model="direccion.Descripcion" />
+            <button type="button" ng-click="removeDireccion(cliente,$index)" class="btn btn-xs">x</button>
+            <button type="button" ng-click="findDireccionInMap(direccion.Descripcion)" class="btn btn-xs ">Ubicar</button>
+        </div>
     </div>
+    <select ng-model="NuevoTipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo"></select>
+    <input type="text" ng-model="NuevaDescripcion" class="form-control col-lg" placeholder=" calle nombre altura, localidad, provincia" />
+    <button type="button" ng-disabled="NuevaDescripcion=='' || NuevaDescripcion==undefined || NuevoTipo==undefined" ng-click="addDireccion(cliente)" class="btn btn-success btn-xs">+</button>
+    <button ng-disabled="NuevaDescripcion=='' || NuevaDescripcion==undefined || NuevoTipo==undefined" type="button" ng-click="findDireccionInMap(NuevaDescripcion)" class="btn btn-xs ">Ubicar</button>
+</div>
