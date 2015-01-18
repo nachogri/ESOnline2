@@ -13,6 +13,7 @@ angular.module('mdlControllers')
     svcESONlineUI.tiposWeb.getAll()
             .success(function (data) {
                 $scope.TiposWeb = data;
+                $scope.NuevoTipoWeb = $scope.TiposWeb[0];
             });
 
     $scope.addWeb = function (cliente) {
@@ -27,7 +28,7 @@ angular.module('mdlControllers')
         cliente.Webs.push(newWeb);
 
         $scope.NuevaURLWeb = "";
-        $scope.NuevoTipoWeb = "";
+        $scope.NuevoTipoWeb = $scope.TiposWeb[0];
     };
 
     $scope.removeWeb = function (cliente, index) {

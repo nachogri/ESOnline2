@@ -12,6 +12,7 @@ angular.module('mdlControllers').controller('ctlTelefono', function ($scope, svc
     svcESONlineUI.tiposTelefono.getAll()
             .success(function (data) {
                 $scope.TiposTelefono = data;
+                $scope.NuevoTipoTelefono = $scope.TiposTelefono[0];
             });
 
     $scope.addTelefono = function (cliente) {
@@ -25,7 +26,7 @@ angular.module('mdlControllers').controller('ctlTelefono', function ($scope, svc
         cliente.Telefonos.push(newTelefono);
 
         $scope.NuevoNumeroTelefono = "";
-        $scope.NuevoTipoTelefono = "";
+        $scope.NuevoTipoTelefono = $scope.TiposTelefono[0];
     };
 
     $scope.removeTelefono = function (cliente, index) {

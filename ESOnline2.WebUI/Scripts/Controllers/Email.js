@@ -12,7 +12,8 @@ angular.module('mdlControllers')
 
     svcESONlineUI.tiposEmail.getAll()
             .success(function (data) {
-               $scope.TiposEmail = data;
+                $scope.TiposEmail = data;
+                $scope.NuevoTipoEmail = $scope.TiposEmail[0];
             });
 
     $scope.addEmail = function (cliente) {               
@@ -27,7 +28,7 @@ angular.module('mdlControllers')
         cliente.Emails.push(newEmail);
 
         $scope.NuevaCasillaEmail = "";
-        $scope.NuevoTipoEmail = "";
+        $scope.NuevoTipoEmail = $scope.TiposEmail[0];
     };
 
     $scope.removeEmail = function (cliente,index) {

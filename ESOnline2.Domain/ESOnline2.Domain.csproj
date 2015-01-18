@@ -81,9 +81,12 @@
     <Compile Include="Email.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Direccion.cs" />
     <Compile Include="Entities\GuestResponse.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\Telefono.cs" />
     <Compile Include="Entities\TipoDireccion.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +99,7 @@
     <Compile Include="Entities\TipoWeb.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\Web.cs" />
     <Compile Include="ESOnline2Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

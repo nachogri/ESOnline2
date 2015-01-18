@@ -12,7 +12,8 @@ angular.module('mdlControllers')
 
     svcESONlineUI.tiposDireccion.getAll()
             .success(function (data) {
-                $scope.TiposDireccion = data;
+                $scope.TiposDireccion = data;               
+                $scope.NuevoTipo = $scope.TiposDireccion[0];
             });
 
     $scope.addDireccion = function (cliente) {
@@ -28,7 +29,7 @@ angular.module('mdlControllers')
 
         cliente.Direcciones.push(newDireccion);
 
-        $scope.NuevoTipo = "";
+        $scope.NuevoTipo = $scope.TiposDireccion[0];
         $scope.NuevaDescripcion = "";
     };
 
