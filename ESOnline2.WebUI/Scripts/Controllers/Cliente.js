@@ -10,7 +10,10 @@ angular.module('mdlControllers')
         $scope.cliente.Webs = [];
         $scope.clientes = [];
         $scope.nombreBusqueda = "";
-        $scope.ErrorList = "";       
+        $scope.ErrorList = "";
+        $scope.sizePagina = 10;
+        $scope.paginaActual = 1;
+        $scope.paginas = [];
 
         $scope.load = function () {
             switch (svcUtils.getAction()) {
@@ -28,6 +31,8 @@ angular.module('mdlControllers')
             svcESONlineUI.clientes.getAll()
                 .success(function (data) {
                     $scope.clientes = data;
+                   
+                    CalcularPaginas();
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -117,6 +122,27 @@ angular.module('mdlControllers')
                 svcNotifications.alert('Error',$scope.errors.pageError);
             }            
         };       
+      
+        $scope.CambiarSizePagina = function (data) {
+            $scope.sizePagina = data;
+            CalcularPaginas();
+        }
+
+        $scope.CambiarPagina = function (data) {
+            $scope.paginaActual= data;
+        }
+
+        function CalcularPaginas() {            
+            $scope.paginas = [];
+            $scope.paginas[0] = 1;
+            for (var i = 2; i < ($scope.clientes.length / $scope.sizePagina) + 1 ; i++) {
+                $scope.paginas[i - 1] = i;
+            }
+            $scope.paginaActual = 1;
+        }
+
+
 
         $scope.load();
+
 })

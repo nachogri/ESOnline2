@@ -3036,8 +3036,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #2a6496;
-  text-decoration: underline;
+  color: #2a6496;  
   background-color: transparent;
 }
 .btn-link[disabled]:hover,
@@ -6211,3 +6210,4 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+

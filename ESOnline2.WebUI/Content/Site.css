@@ -6,10 +6,9 @@
 
 body {
     background-color: #fff;
-    border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif !important;
     margin: 0;
     padding: 0;
 }
@@ -27,9 +26,7 @@ a {
         color: #333;
     }
 
-    a:hover {
-        background-color: #c7d1d6;
-    }
+
 
 header, footer, hgroup,
 nav, section {
@@ -104,27 +101,25 @@ h5, h6 {
     padding-bottom: 35px;
 }
 
-    .main-content {
-        background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
-    }
+.main-content {        
+    padding-left: 10px;
+    padding-top: 30px;
+}
 
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
-    }
+.featured + .main-content {
+    background: url("../Images/heroAccent.png") no-repeat;
+}
 
 header .content-wrapper {
-    padding-top: 20px; 
+    
 }
 
 footer {
-    clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
+    color: #e2e2e2;
+    background-color: #333;    
+    height: 100px;    
+    text-align:center;
 }
-
 
 /* site title
 ----------------------------------------------------------*/
@@ -207,29 +202,6 @@ ul#menu {
 
 /* page elements
 ----------------------------------------------------------*/
-/* featured */
-.featured {
-    background-color: #fff;
-}
-
-    .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        color: #3e5667;
-        padding: 20px 40px 30px 40px;
-    }
-
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
-
-        .featured p {
-            font-size: 1.1em;
-        }
 
 /* page titles */
 hgroup.title {
@@ -764,7 +736,8 @@ tr.pager td {
     height: 28px; 
     margin: 5px;
     padding: 0px;      		
-	border: 0 none;	
+	border: 0 none;
+    transition:all ease-in 150ms;	
 }
 
 
@@ -778,4 +751,9 @@ tr.pager td {
     margin: 5px;
     padding: 0px;      		
 	border: 0 none;	
+    transition:all ease-in 150ms;	
+}
+
+.direcciones{
+    width:400px !important;
 }

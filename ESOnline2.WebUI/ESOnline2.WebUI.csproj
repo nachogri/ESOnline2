@@ -267,6 +267,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ESLogo.jpg" />
     <Content Include="Scripts\Controllers\Cliente.js" />
     <Content Include="Scripts\Controllers\Direccion.js" />
     <Content Include="Scripts\Controllers\Email.js" />

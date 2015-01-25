@@ -25,33 +25,33 @@ namespace ESOnline2.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id) 
+        public ActionResult Edit(int id)
         {
-            return View(id);                
+            return View(id);
         }
-        
+
         [HttpGet]
         public ActionResult New()
         {
             return View();
         }
-      
-        [HttpGet]                    
+
+        [HttpGet]
         public JsonResult GetAllClientes()
         {
-            return Json(clienteRepo.GetAll(),JsonRequestBehavior.AllowGet);
+            return Json(clienteRepo.GetAll(), JsonRequestBehavior.AllowGet);
         }
-      
+
         [HttpGet]
         public JsonResult GetCliente(int id)
         {
-            return Json(clienteRepo.Get(id),JsonRequestBehavior.AllowGet);
+            return Json(clienteRepo.Get(id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetClientesByNombre(string id)
         {
-            return Json(clienteRepo.GetAll().Where(c => c.Nombre.ToLower().Contains(id.ToLower()) || c.Apellido.ToLower().Contains(id.ToLower())),JsonRequestBehavior.AllowGet);
+            return Json(clienteRepo.GetAll().Where(c => c.Nombre.ToLower().Contains(id.ToLower()) || (c.Apellido!=null && c.Apellido.ToLower().Contains(id.ToLower()))), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -85,7 +85,7 @@ namespace ESOnline2.WebUI.Controllers
         {
             Cliente cliente = clienteRepo.Get(id);
             if (cliente == null)
-                 return Json(new { Status = "Not found" },JsonRequestBehavior.AllowGet); 
+                return Json(new { Status = "Not found" }, JsonRequestBehavior.AllowGet);
             else
             {
                 clienteRepo.Remove(id);
@@ -95,7 +95,7 @@ namespace ESOnline2.WebUI.Controllers
 
         protected JsonResult JsonErrorResponse(JsonRequestBehavior jsonRequestBehaviour)
         {
-            
+
             var errorList = new List<JsonValidationError>();
             foreach (var key in ModelState.Keys)
             {
