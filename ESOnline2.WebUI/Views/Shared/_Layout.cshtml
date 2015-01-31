@@ -3,13 +3,13 @@
     <head>
         <base href="~/" />
         <meta charset="utf-8" />
-        <title>@ViewBag.Title</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>ESOnline</title>
+        <link href="~/Images/ESLogo.jpg" rel="shortcut icon" type="image/x-icon" />
+        @*<link type="text/javascript" href="~/Views/Pagination/Control.cshtml" rel="tag" />*@
         <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css") 
-                        
+        @Styles.Render("~/Content/css")                   
     </head>
-    <body ng-controller="ctlMenu" >
+    <body ng-controller="ctlMenu" >                              
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
@@ -41,6 +41,6 @@
         </footer>
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/libs")
-        @Scripts.Render("~/bundles/custom")  
+        @Scripts.Render("~/bundles/custom")          
     </body>
 </html>

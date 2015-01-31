@@ -1,5 +1,6 @@
 ﻿'use strict';
 
 angular.module('mdlControllers', []);
-var app = angular.module('mdlESOnlineApp', ['ngRoute', 'mdlControllers']);
+angular.module('mdlESOPagination', []);
+var app = angular.module('mdlESOnlineApp', ['ngRoute', 'mdlControllers', 'mdlESOPagination']);
 

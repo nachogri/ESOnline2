@@ -1,0 +1,41 @@
+﻿<div class="navbar-collapse collapse">
+    <div class="float-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" ng-show="!paginator.isLastPage()" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="paginator.nextPage()">Siguiente</a>
+            </li>
+        </ul>
+    </div>
+    <div class="float-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" ng-show="!paginator.isFirstPage() && 'disabled'" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="paginator.previousPage()">Anterior</a>
+            </li>
+        </ul>
+    </div>
+    <div class="float-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Pagina {{paginator.page + 1}} de {{paginator.pageCount()}} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="i in [] | forLoop:0:paginator.pageCount()">
+                        <button type="button" ng-class="selected" class="btn btn-link" ng-click="paginator.setPage(i)">{{i + 1}}</button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="float-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Mostrar <span class="caret"></span></a>
+                <ul class="dropdown-menu" ng-model="rowsPerPage" role="menu">
+                    <li><button type="button" class="btn btn-link" ng-click="paginator.setRowsPerPage(5)">5 Clientes</button></li>
+                    <li><button type="button" class="btn btn-link" ng-click="paginator.setRowsPerPage(10)">10 Clientes</button></li>
+                    <li><button type="button" class="btn btn-link" ng-click="paginator.setRowsPerPage(20)">20 Clientes</button></li>
+                    <li><button type="button" class="btn btn-link" ng-click="paginator.setRowsPerPage(50)">50 Clientes</button></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
