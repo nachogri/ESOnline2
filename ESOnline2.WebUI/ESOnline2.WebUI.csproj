@@ -352,6 +352,7 @@
     <Content Include="Scripts\Services\Browser.js" />
     <Content Include="Scripts\Services\ESOnlineUI.js" />
     <Content Include="Scripts\Services\Notifications.js" />
+    <Content Include="Scripts\Services\Pagination.js" />
     <Content Include="Scripts\Services\Utils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -129,7 +129,11 @@ angular.module('mdlControllers')
         }
 
         $scope.CambiarPagina = function (data) {
-            $scope.paginaActual= data;
+            if (data > $scope.paginaActual && $scope.paginaActual < ($scope.paginas.length-1))
+                $scope.paginaActual = data;
+
+            if (data < $scope.paginaActual && $scope.paginaActual > 0)
+                $scope.paginaActual = data;
         }
 
         function CalcularPaginas() {            
@@ -138,11 +142,17 @@ angular.module('mdlControllers')
             for (var i = 2; i < ($scope.clientes.length / $scope.sizePagina) + 1 ; i++) {
                 $scope.paginas[i - 1] = i;
             }
-            $scope.paginaActual = 1;
+            $scope.paginaActual = 0;
         }
-
-
 
         $scope.load();
 
-})
+    })
+
+angular.module('mdlControllers')
+    .filter('offset', function () {
+        return function (input, start) {
+            start = parseInt(start, 10);
+            return input.slice(start);
+        };
+    });

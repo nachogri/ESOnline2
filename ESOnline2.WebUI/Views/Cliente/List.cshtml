@@ -7,18 +7,32 @@
             <h2 class="list-group-item-heading">Clientes
                 <a class="list-group-item-heading pull-right" href="/Cliente/New/">+</a>
             </h2>            
-        </div>                    
-        <div class="list-group" ng-repeat="itemCliente in clientes | orderBy:'Nombre' | limitTo: sizePagina * paginaActual | limitTo: sizePagina * paginaActual < clientes.length ? -sizePagina : sizePagina - (sizePagina * paginaActual - clientes.length)">
+        </div>                            
+        <div class="list-group" ng-repeat="itemCliente in clientes | orderBy:'Nombre' | offset: sizePagina*paginaActual | limitTo: sizePagina">
             <a class="list-group-item" href="/Cliente/Edit/{{itemCliente.ID}}">{{itemCliente.Nombre+ ' ' +(itemCliente.Apellido||'')  }}</a>
         </div>        
             <div class="navbar-collapse collapse">
                 <div class="float-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="CambiarPagina(paginaActual+1)">Siguiente</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="float-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="CambiarPagina(paginaActual-1)">Anterior</a>                            
+                        </li>
+                    </ul>
+                </div>               
+                <div class="float-right">
                     <ul class="nav navbar-nav">                        
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Pagina {{paginaActual}} / {{paginas.length}} <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Pagina {{paginaActual+1}} / {{paginas.length}} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li ng-repeat="pagina in paginas">
-                                    <button type="button" ng-class="selected" class="btn btn-link" ng-click="CambiarPagina($index+1)">{{pagina}}</button>
+                                    <button type="button" ng-class="selected" class="btn btn-link" ng-click="CambiarPagina($index)">{{$index+1}}</button>
                                 </li>                        
                             </ul>
                         </li>                                                
@@ -38,5 +52,5 @@
                     </ul>
                 </div>                
             </div>                              
-    </div>        
+    </div>
 </div>
