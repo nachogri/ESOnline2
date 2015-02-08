@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="419c171ffdc24c598355422c064b3ce1" Name="Diagram1">
-        <EntityTypeShape EntityType="ESOnlineDBModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.Cliente" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.Direccion" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.Email" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.Telefono" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.Web" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
+      <Diagram DiagramId="419c171ffdc24c598355422c064b3ce1" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="ESOnlineDBModel.C__MigrationHistory" Width="1.5" PointX="3.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Cliente" Width="1.5" PointX="5.125" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Direccion" Width="1.5" PointX="0.875" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Email" Width="1.5" PointX="0.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Telefono" Width="1.5" PointX="0.875" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Web" Width="1.5" PointX="0.875" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" ManuallyRouted="false" >
+        </AssociationConnector>
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Emails_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Webs_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
