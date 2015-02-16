@@ -272,6 +272,7 @@
     <Content Include="Scripts\Controllers\Cliente.js" />
     <Content Include="Scripts\Controllers\Direccion.js" />
     <Content Include="Scripts\Controllers\Email.js" />
+    <Content Include="Scripts\Controllers\TabNavigator.js" />
     <Content Include="Scripts\Modules\ESOPagination.js" />
     <Content Include="Scripts\Controllers\Menu.js" />
     <Content Include="Scripts\Controllers\Telefono.js" />
