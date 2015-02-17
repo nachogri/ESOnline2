@@ -68,10 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IClienteRepository.cs" />
+    <Compile Include="Abstract\IProductoRepository.cs" />
     <Compile Include="Cliente.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Concrete\EFClienteRepository.cs" />
+    <Compile Include="Concrete\EFProductoRepository.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
@@ -86,6 +88,7 @@
     <Compile Include="Entities\GuestResponse.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\Producto.cs" />
     <Compile Include="Entities\Telefono.cs" />
     <Compile Include="Entities\TipoDireccion.cs">
       <SubType>Code</SubType>
@@ -114,6 +117,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ESOnline2Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Producto.cs">
+      <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Telefono.cs">
@@ -145,6 +151,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ESOnline2DataRestoreV1.sql" />
     <Content Include="ESOnline2Model.edmx.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -31,5 +31,6 @@ namespace ESOnline2.Domain
         public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Telefono> Telefonos { get; set; }
         public virtual DbSet<Web> Webs { get; set; }
+        public virtual DbSet<Producto> Productos { get; set; }
     }
 }

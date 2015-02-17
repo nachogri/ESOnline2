@@ -14,64 +14,7 @@ namespace ESOnline2.Domain.Concrete
                
         public EFClienteRepository()
         {
-            //_Clientes = new List<Cliente>(){
-            //            new Cliente{ID=1,
-            //                        Nombre="Nacho",
-            //                        Apellido="Gri",
-            //                        Telefonos=new List<Telefono>()
-            //                                {
-            //                                 new Telefono{ID=1,Numero="42563343",Tipo=TipoTelefono.Casa.ToString()},
-            //                                 new Telefono{ID=2,Numero="154651324",Tipo=TipoTelefono.Trabajo.ToString()}
-            //                                },
-            //                        Emails=new List<Email>()
-            //                                {
-            //                                    new Email{ID=1,Casilla="nachogri@gmail.com",Tipo=TipoEmail.Personal.ToString()}
-            //                                },
-            //                                CUIL="20-31135385-4",
-            //                                CUIT="-",
-            //                        Direcciones=new List<Direccion>()
-            //                                {
-            //                                    new Direccion{ID=1, Tipo=TipoDireccion.Sucursal.ToString(), Descripcion="1320 N Veitch st unit 320, Arlington Virginia 22201 , contacto: Supervisor Marcelo , horarios:L a V 9am a 18pm "}
-            //                                },
-            //                        Webs=new List<Web>()
-            //                                {
-            //                                    new Web{ID=1,Tipo=TipoWeb.Personal.ToString(),URL="www.google.com"}
-            //                                },
-            //                        Favorito=false
-            //                        },
-            //            new Cliente{ID=2,
-            //                        Nombre="Melisa",
-            //                        Apellido="Ongaro",
-            //                        Telefonos=new List<Telefono>()
-            //                                {
-            //                                 new Telefono{ID=3,Numero="42576807",Tipo=TipoTelefono.Casa.ToString()},
-            //                                 new Telefono{ID=4,Numero="115465783",Tipo=TipoTelefono.Trabajo.ToString()}
-            //                                },
-            //                        Emails=new List<Email>()
-            //                                {
-            //                                    new Email{ID=2,Casilla="mel.ongaro@gmail.com",Tipo=TipoEmail.Personal.ToString()}
-            //                                },
-            //                        CUIL="-",
-            //                        CUIT="-",
-            //                        Favorito=true
-            //                        },
-            //            new Cliente{ID=3,
-            //                        Nombre="Franco",
-            //                        Apellido="Gri",
-            //                        Direcciones=new List<Direccion>()
-            //                                {
-            //                                    new Direccion{ID=1, Tipo=TipoDireccion.Unica.ToString(),Descripcion="calle 150 N1954, Berazategui, Buenos Aires, CP 1884"}
-            //                                },
-            //                        Emails=new List<Email>()
-            //                                {
-            //                                    new Email{ID=3,Casilla="francourielgri@gmail.com",Tipo=TipoEmail.Trabajo.ToString()}
-            //                                },
-            //                        Webs=new List<Web>()
-            //                                {
-            //                                    new Web{ID=2,Tipo=TipoWeb.Personal.ToString(),URL="www.youtube.com"}
-            //                                }
-            //                        }
-            //        };                   
+                             
         }
 
         public IEnumerable<Cliente> GetAll()

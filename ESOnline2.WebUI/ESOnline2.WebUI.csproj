@@ -197,6 +197,7 @@
     <Compile Include="Controllers\JsonResponse.cs" />
     <Compile Include="Controllers\JsonValidationError.cs" />
     <Compile Include="Controllers\PaginationController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +273,7 @@
     <Content Include="Scripts\Controllers\Cliente.js" />
     <Content Include="Scripts\Controllers\Direccion.js" />
     <Content Include="Scripts\Controllers\Email.js" />
+    <Content Include="Scripts\Controllers\Producto.js" />
     <Content Include="Scripts\Controllers\TabNavigator.js" />
     <Content Include="Scripts\Modules\ESOPagination.js" />
     <Content Include="Scripts\Controllers\Menu.js" />
@@ -319,6 +321,9 @@
     <Content Include="Scripts\lib\angular-animate.min.js.map" />
     <Content Include="Scripts\lib\angular.min.js.map" />
     <None Include="Views\Pagination\Control.cshtml" />
+    <Content Include="Views\Producto\New.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Producto\List.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

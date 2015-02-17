@@ -1,0 +1,29 @@
+﻿<form name="frmNew" class="form-horizontal" ng-controller='ctlProducto as productoCtrl' novalidate>        
+    <div class="well">
+        <div class="alert alert-danger" ng-show="errors.formErrors">
+            <span ng-repeat="error in errors.formErrors"><strong>o</strong> {{error}}<br /></span>
+        </div>                
+        <div class="form-group">
+            <span class="col-sm-2">Nombre:</span>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" ng-model="producto.Nombre" placeholder="Ingrese el nombre" />                
+            </div>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <span class="col-sm-2">Vencimiento:</span>
+            <div class="col-sm-3">
+                <select class="form-control" ng-model="producto.Vencimiento">
+                    <option value="6">6 Meses</option>
+                    <option value="12">12 Meses</option>
+                    <option value="18">18 Meses</option>
+                    <option value="24">24 Meses</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-lg btn-default" href="/Producto/List">Volver</a>
+        <button class="btn btn-lg btn-primary" ng-click="save()">Guardar</button>
+    </div>
+</form>

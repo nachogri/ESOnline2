@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="419c171ffdc24c598355422c064b3ce1" Name="Diagram1" ZoomLevel="97">
+      <Diagram DiagramId="419c171ffdc24c598355422c064b3ce1" Name="Diagram1" ZoomLevel="97" DisplayType="true">
         <EntityTypeShape EntityType="ESOnlineDBModel.C__MigrationHistory" Width="1.5" PointX="3.625" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ESOnlineDBModel.Cliente" Width="1.5" PointX="5.125" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ESOnlineDBModel.Direccion" Width="1.5" PointX="0.875" PointY="1.625" IsExpanded="true" />
@@ -16,6 +16,7 @@
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Emails_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Webs_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Producto" Width="2" PointX="8.375" PointY="2.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

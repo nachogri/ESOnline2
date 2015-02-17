@@ -46,6 +46,29 @@
 	            getAll: function () {
 	                return $http.get('ClienteWeb/GetAllTiposWeb');
 	            }
+	        },
+
+            productos: {	            
+	            getAll: function () {
+	                return $http.get('/Producto/GetAllProductos');
+	            },
+	            get: function (id) {
+	                return $http.get('/Producto/GetProducto/' + id);
+	            },
+	            getByNombre: function (id) {
+	                return $http.get('/Producto/GetProductosByNombre/' + id);
+	            },
+	            create:
+                    function (data) {
+                        return $http.post('/Producto/CreateProducto', data);
+                    },
+	            update:
+                    function (data) {
+                        return $http.post('/Producto/UpdateProducto', data);
+                    },
+	            delete: function (id) {
+	                return $http.delete('/Producto/DeleteProducto/' + id);
+	            }            
 	        }
 	    };
 	});

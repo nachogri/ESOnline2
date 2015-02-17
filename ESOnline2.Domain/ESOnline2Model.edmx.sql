@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/14/2015 00:58:56
+-- Date Created: 02/17/2015 11:27:16
 -- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
@@ -51,6 +51,9 @@ IF OBJECT_ID(N'[dbo].[Telefonos]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Webs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Webs];
+GO
+IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Productos];
 GO
 
 -- --------------------------------------------------
@@ -115,6 +118,15 @@ CREATE TABLE [dbo].[Webs] (
 );
 GO
 
+-- Creating table 'Productos'
+CREATE TABLE [dbo].[Productos] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [Nombre] nvarchar(max)  NOT NULL,
+    [Vencimiento] nvarchar(max)  NULL,
+    [Imagen] varbinary(4000)  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -153,6 +165,12 @@ GO
 ALTER TABLE [dbo].[Webs]
 ADD CONSTRAINT [PK_Webs]
     PRIMARY KEY CLUSTERED ([ID], [Cliente_ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'Productos'
+ALTER TABLE [dbo].[Productos]
+ADD CONSTRAINT [PK_Productos]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
 -- --------------------------------------------------
