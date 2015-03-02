@@ -13,6 +13,7 @@
     <EntitySet Name="Telefonos" EntityType="ESOnlineDBModel.Store.Telefonos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Webs" EntityType="ESOnlineDBModel.Store.Webs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Productos" EntityType="ESOnlineDBModel.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductosVendidos" EntityType="ESOnlineDBModel.Store.ProductosVendidos" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Direcciones" EntitySet="Direcciones" />
@@ -28,6 +29,14 @@
     <AssociationSet Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Webs_dbo_Clientes_Cliente_ID">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Webs" EntitySet="Webs" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoVendidoCliente" Association="ESOnlineDBModel.Store.ProductoVendidoCliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoProductoVendido" Association="ESOnlineDBModel.Store.ProductoProductoVendido">
+      <End Role="Producto" EntitySet="Productos" />
+      <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -102,6 +111,15 @@
     <Property Name="Vencimiento" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Imagen" Type="varbinary" Nullable="true" MaxLength="4000" />
   </EntityType>
+  <EntityType Name="ProductosVendidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaVenta" Type="datetime" Nullable="false" />
+    <Property Name="ClienteID" Type="int" Nullable="false" />
+    <Property Name="ProductoID" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
     <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -158,6 +176,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ProductoVendidoCliente">
+    <End Role="Cliente" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1" />
+    <End Role="ProductoVendido" Type="ESOnlineDBModel.Store.ProductosVendidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoVendido">
+        <PropertyRef Name="ClienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoProductoVendido">
+    <End Role="Producto" Type="ESOnlineDBModel.Store.Productos" Multiplicity="1" />
+    <End Role="ProductoVendido" Type="ESOnlineDBModel.Store.ProductosVendidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoVendido">
+        <PropertyRef Name="ProductoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -188,6 +230,7 @@
           <NavigationProperty Name="Emails" Relationship="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Emails" />
           <NavigationProperty Name="Telefonos" Relationship="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Telefonos" />
           <NavigationProperty Name="Webs" Relationship="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID" FromRole="Clientes" ToRole="Webs" />
+          <NavigationProperty Name="ProductosVendidos" Relationship="ESOnlineDBModel.ProductoVendidoCliente" FromRole="Cliente" ToRole="ProductoVendido" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -313,6 +356,15 @@
             <End Role="Webs" EntitySet="Webs" />
           </AssociationSet>
           <EntitySet Name="Productos" EntityType="ESOnlineDBModel.Producto" />
+          <EntitySet Name="ProductosVendidos" EntityType="ESOnlineDBModel.ProductoVendido" />
+          <AssociationSet Name="ProductoVendidoCliente" Association="ESOnlineDBModel.ProductoVendidoCliente">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoProductoVendido" Association="ESOnlineDBModel.ProductoProductoVendido">
+            <End Role="Producto" EntitySet="Productos" />
+            <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Producto">
           <Key>
@@ -322,7 +374,43 @@
           <Property Name="Nombre" Type="String" Nullable="false" />
           <Property Name="Vencimiento" Type="String" />
           <Property Name="Imagen" Type="Binary" FixedLength="false" MaxLength="4000" />
+          <NavigationProperty Name="Ventas" Relationship="ESOnlineDBModel.ProductoProductoVendido" FromRole="Producto" ToRole="ProductoVendido" />
         </EntityType>
+        <EntityType Name="ProductoVendido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaVenta" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="ESOnlineDBModel.ProductoVendidoCliente" FromRole="ProductoVendido" ToRole="Cliente" />
+          <Property Name="ClienteID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="ESOnlineDBModel.ProductoProductoVendido" FromRole="ProductoVendido" ToRole="Producto" />
+          <Property Name="ProductoID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductoVendidoCliente">
+          <End Type="ESOnlineDBModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ESOnlineDBModel.ProductoVendido" Role="ProductoVendido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductoVendido">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductoProductoVendido">
+          <End Type="ESOnlineDBModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="ESOnlineDBModel.ProductoVendido" Role="ProductoVendido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductoVendido">
+              <PropertyRef Name="ProductoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -400,6 +488,16 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
           <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductosVendidos">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.ProductoVendido)">
+        <MappingFragment StoreEntitySet="ProductosVendidos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FechaVenta" ColumnName="FechaVenta" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+          <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -12,18 +12,14 @@ namespace ESOnline2.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Producto
+    public partial class ProductoVendido
     {
-        public Producto()
-        {
-            this.Ventas = new HashSet<ProductoVendido>();
-        }
+        public int Id { get; set; }
+        public System.DateTime FechaVenta { get; set; }
+        public int ClienteID { get; set; }
+        public int ProductoID { get; set; }
     
-        public int ID { get; set; }
-        public string Nombre { get; set; }
-        public string Vencimiento { get; set; }
-        public byte[] Imagen { get; set; }
-    
-        public virtual ICollection<ProductoVendido> Ventas { get; set; }
+        public virtual Cliente Cliente { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

@@ -191,6 +191,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ClienteDireccionController.cs" />
     <Compile Include="Controllers\ClienteEmailController.cs" />
+    <Compile Include="Controllers\ClienteProductoController.cs" />
     <Compile Include="Controllers\ClienteWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ClienteTelefonoController.cs" />
@@ -320,6 +321,8 @@
     <Content Include="Scripts\lib\angular-cookies.min.js.map" />
     <Content Include="Scripts\lib\angular-animate.min.js.map" />
     <Content Include="Scripts\lib\angular.min.js.map" />
+    <Content Include="Views\ClienteProducto\List.cshtml" />
+    <Content Include="Views\Pagination\Controlsm.cshtml" />
     <None Include="Views\Pagination\Control.cshtml" />
     <Content Include="Views\Producto\New.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />

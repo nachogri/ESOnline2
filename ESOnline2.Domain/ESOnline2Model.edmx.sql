@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/17/2015 11:27:16
+-- Date Created: 03/01/2015 15:50:59
 -- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
@@ -127,6 +127,15 @@ CREATE TABLE [dbo].[Productos] (
 );
 GO
 
+-- Creating table 'ProductosVendidos'
+CREATE TABLE [dbo].[ProductosVendidos] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [FechaVenta] datetime  NOT NULL,
+    [ClienteID] int  NOT NULL,
+    [ProductoID] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -171,6 +180,12 @@ GO
 ALTER TABLE [dbo].[Productos]
 ADD CONSTRAINT [PK_Productos]
     PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ProductosVendidos'
+ALTER TABLE [dbo].[ProductosVendidos]
+ADD CONSTRAINT [PK_ProductosVendidos]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -235,6 +250,36 @@ GO
 CREATE INDEX [IX_FK_dbo_Webs_dbo_Clientes_Cliente_ID]
 ON [dbo].[Webs]
     ([Cliente_ID]);
+GO
+
+-- Creating foreign key on [ClienteID] in table 'ProductosVendidos'
+ALTER TABLE [dbo].[ProductosVendidos]
+ADD CONSTRAINT [FK_ProductoVendidoCliente]
+    FOREIGN KEY ([ClienteID])
+    REFERENCES [dbo].[Clientes]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductoVendidoCliente'
+CREATE INDEX [IX_FK_ProductoVendidoCliente]
+ON [dbo].[ProductosVendidos]
+    ([ClienteID]);
+GO
+
+-- Creating foreign key on [ProductoID] in table 'ProductosVendidos'
+ALTER TABLE [dbo].[ProductosVendidos]
+ADD CONSTRAINT [FK_ProductoProductoVendido]
+    FOREIGN KEY ([ProductoID])
+    REFERENCES [dbo].[Productos]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductoProductoVendido'
+CREATE INDEX [IX_FK_ProductoProductoVendido]
+ON [dbo].[ProductosVendidos]
+    ([ProductoID]);
 GO
 
 -- --------------------------------------------------

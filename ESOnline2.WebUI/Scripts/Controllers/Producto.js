@@ -1,5 +1,12 @@
 ﻿"use strict";
 
+angular.module('mdlControllers').directive('clienteProductos', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/ClienteProducto/List'
+    };
+});
+
 angular.module('mdlControllers')
     .controller('ctlProducto', function ($scope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
 

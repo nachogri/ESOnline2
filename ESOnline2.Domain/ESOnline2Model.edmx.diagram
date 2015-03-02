@@ -16,7 +16,10 @@
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Emails_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ESOnlineDBModel.FK_dbo_Webs_dbo_Clientes_Cliente_ID" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.Producto" Width="2" PointX="8.375" PointY="2.875" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.Producto" Width="2" PointX="7.875" PointY="2.875" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.ProductoVendido" Width="1.5" PointX="8.25" PointY="6" />
+        <AssociationConnector Association="ESOnlineDBModel.ProductoVendidoCliente" />
+        <AssociationConnector Association="ESOnlineDBModel.ProductoProductoVendido" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

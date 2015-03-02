@@ -8,7 +8,17 @@ angular.module('mdlESOPagination').directive('paginationControl', function () {
             $scope.paginator = Paginator;                
             }       
         }
-    });
+});
+
+angular.module('mdlESOPagination').directive('paginationControlsm', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/Pagination/Controlsm',
+        controller: function ($scope, Paginator) {
+            $scope.paginator = Paginator;
+        }
+    }
+});
 
 angular.module('mdlESOPagination')
     .filter('paginate', function (Paginator) {

@@ -1,0 +1,16 @@
+﻿<div class="navbar-collapse collapse">
+    <div class="float-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" ng-show="!paginator.isLastPage()" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="paginator.nextPage()">Sig ></a>
+            </li>
+        </ul>
+    </div>
+    <div class="float-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" ng-show="!paginator.isFirstPage() && 'disabled'" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="paginator.previousPage()">Ant <</a>
+            </li>
+        </ul>
+    </div>  
+</div>

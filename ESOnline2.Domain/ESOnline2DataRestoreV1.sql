@@ -44,3 +44,12 @@ SET IDENTITY_INSERT [dbo].[Webs] ON
 INSERT INTO [dbo].[Webs] ([ID], [Tipo], [URL], [Cliente_ID]) VALUES (2, N'Personal', N'www.youtube.com', 3)
 SET IDENTITY_INSERT [dbo].[Webs] OFF
 GO
+
+SET IDENTITY_INSERT [dbo].[Productos] ON
+INSERT INTO [dbo].[Productos] ([ID], [Nombre], [Vencimiento]) VALUES (1, N'Drago 20 lts', N'12')
+INSERT INTO [dbo].[Productos] ([ID], [Nombre], [Vencimiento]) VALUES (2, N'Drago 40 lts', N'24')
+INSERT INTO [dbo].[Productos] ([ID], [Nombre], [Vencimiento]) VALUES (3, N'Drago 50 lts', N'24')
+INSERT INTO [dbo].[Productos] ([ID], [Nombre], [Vencimiento]) VALUES (4, N'Drago 10 lts', N'12')
+INSERT INTO [dbo].[Productos] ([ID], [Nombre], [Vencimiento]) VALUES (5, N'Drago 15 lts', N'12')
+INSERT INTO [dbo].[Productos] ([ID], [Nombre], [Vencimiento]) VALUES (6, N'Drago Polvo 10 lts', N'6')
+SET IDENTITY_INSERT [dbo].[Productos] OFF

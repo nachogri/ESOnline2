@@ -20,6 +20,7 @@ namespace ESOnline2.Domain
             this.Emails = new HashSet<Email>();
             this.Telefonos = new HashSet<Telefono>();
             this.Webs = new HashSet<Web>();
+            this.ProductosVendidos = new HashSet<ProductoVendido>();
         }
     
         public int ID { get; set; }
@@ -35,5 +36,6 @@ namespace ESOnline2.Domain
         public virtual ICollection<Email> Emails { get; set; }
         public virtual ICollection<Telefono> Telefonos { get; set; }
         public virtual ICollection<Web> Webs { get; set; }
+        public virtual ICollection<ProductoVendido> ProductosVendidos { get; set; }
     }
 }

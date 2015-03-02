@@ -15,5 +15,11 @@ namespace ESOnline2.WebUI.Controllers
         {
             return PartialView();
         }
+
+        [HttpGet]
+        public ActionResult Controlsm()
+        {
+            return PartialView();
+        }
     }
 }
