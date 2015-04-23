@@ -14,12 +14,15 @@ namespace ESOnline2.Domain
     
     public partial class ProductoVendido
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public System.DateTime FechaVenta { get; set; }
         public int ClienteID { get; set; }
-        public int ProductoID { get; set; }
+        public Nullable<int> ProductoID { get; set; }
+        public string NumeroSerie { get; set; }
+        public byte[] CodigoBarra { get; set; }
+        public int Fabricacion { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
-        public virtual Producto Producto { get; set; }
+        public virtual Cliente Cliente { internal get; set; }
+        public virtual Producto Producto { get; internal set; }
     }
 }

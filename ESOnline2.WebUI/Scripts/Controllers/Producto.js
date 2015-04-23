@@ -87,8 +87,8 @@ angular.module('mdlControllers')
         };
 
         $scope.delete = function () {
-            if (svcNotifications.confirm('Seguro que quiere eliminar este producto?')) {
-                svcESONlineUI.producto.delete($scope.producto.ID).success(function () {
+            if (svcNotifications.confirm('Seguro que quiere eliminar este producto?')) {                
+                svcESONlineUI.productos.delete($scope.producto.ID).success(function () {
                     svcBrowser.setNewLocation("/Producto/List");
                 });
             }
@@ -124,3 +124,95 @@ angular.module('mdlControllers')
         $scope.load();
     })
 
+angular.module('mdlControllers')
+    .controller('ctlClienteProducto', function ($scope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
+       
+        $scope.productos = [];        
+        $scope.anios = [];        
+        $scope.ErrorList = "";        
+        $scope.nuevoProductoVendido = {};
+
+        $scope.load = function () {            
+            $scope.getAllProductos();
+            $scope.getAnios();
+        };
+
+        $scope.getAllProductos = function () {
+            svcESONlineUI.productos.getAll()
+                .success(function (data) {
+                    $scope.productos = data;
+                    $scope.nuevoProductoVendido.Producto = data[0];
+                })
+                .error(function (err) {
+                    svcNotifications.alert("Ha ocurrido un error:" + err);
+                });
+        };
+
+        $scope.getAnios = function () {            
+            var anioDesde = getCurrentYear() - 10;
+            var anioHasta = getCurrentYear() + 2;
+
+            for (var i = anioDesde; i < anioHasta; i++) {
+                $scope.anios.push(i);
+            }
+            $scope.nuevoProductoVendido.Fabricacion = getCurrentYear();
+        };
+
+        $scope.addProductoVendido = function (cliente, producto) {            
+            var newProductoVendido = {};            
+           
+            newProductoVendido.ProductoID = producto.Producto.ID;
+            newProductoVendido.Producto = producto.Producto;           
+            newProductoVendido.FechaVenta = getCurrentDate();
+            newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
+            newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
+                        
+            if (cliente.ProductosVendidos == null) {
+                cliente.ProductosVendidos = [];
+            }
+
+            cliente.ProductosVendidos.push(newProductoVendido);
+
+            $scope.nuevoProductoVendido = {};
+            $scope.nuevoProductoVendido.Producto = $scope.productos[0];
+            $scope.nuevoProductoVendido.Fabricacion = getCurrentYear();
+        };
+
+        $scope.removeProductoVendido = function (cliente, index) {
+            cliente.ProductosVendidos.splice(index, 1);
+        };
+        
+        $scope.load();
+
+        $scope.calcularVencimiento= function (venta, vencimientoProducto) {            
+            var vencimento = new Date(venta);
+            alert(vencimiento.getMonth() + vencimientoProducto);
+            vencimiento.setMonths(vencimiento.getMonth() + vencimientoProducto);
+            alert(vencimento);
+            return vencimiento;
+        }
+
+        function getCurrentDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+
+          
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = mm + '/' + dd + '/' + yyyy;
+            return today;
+        }
+
+        function getCurrentYear() {
+            var date = new Date();
+            return date.getFullYear();
+        }
+    })

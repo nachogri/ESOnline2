@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/01/2015 15:50:59
+-- Date Created: 04/19/2015 17:08:51
 -- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
@@ -29,6 +29,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Webs_dbo_Clientes_Cliente_ID]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Webs] DROP CONSTRAINT [FK_dbo_Webs_dbo_Clientes_Cliente_ID];
 GO
+IF OBJECT_ID(N'[dbo].[FK_ProductoVendidoCliente]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductosVendidos] DROP CONSTRAINT [FK_ProductoVendidoCliente];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProductoProductoVendido]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductosVendidos] DROP CONSTRAINT [FK_ProductoProductoVendido];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -54,6 +60,9 @@ IF OBJECT_ID(N'[dbo].[Webs]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Productos];
+GO
+IF OBJECT_ID(N'[dbo].[ProductosVendidos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProductosVendidos];
 GO
 
 -- --------------------------------------------------
@@ -122,17 +131,20 @@ GO
 CREATE TABLE [dbo].[Productos] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Nombre] nvarchar(max)  NOT NULL,
-    [Vencimiento] nvarchar(max)  NULL,
+    [Vencimiento] int  NULL,
     [Imagen] varbinary(4000)  NULL
 );
 GO
 
 -- Creating table 'ProductosVendidos'
 CREATE TABLE [dbo].[ProductosVendidos] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [ID] int IDENTITY(1,1) NOT NULL,
     [FechaVenta] datetime  NOT NULL,
     [ClienteID] int  NOT NULL,
-    [ProductoID] int  NOT NULL
+    [ProductoID] int  NULL,
+    [NumeroSerie] nvarchar(max)  NULL,
+    [CodigoBarra] varbinary(max)  NULL,
+    [Fabricacion] int  NOT NULL
 );
 GO
 
@@ -182,10 +194,10 @@ ADD CONSTRAINT [PK_Productos]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [Id] in table 'ProductosVendidos'
+-- Creating primary key on [ID], [ClienteID] in table 'ProductosVendidos'
 ALTER TABLE [dbo].[ProductosVendidos]
 ADD CONSTRAINT [PK_ProductosVendidos]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [ClienteID] ASC);
 GO
 
 -- --------------------------------------------------

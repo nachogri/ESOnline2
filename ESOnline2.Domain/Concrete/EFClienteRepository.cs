@@ -72,7 +72,9 @@ namespace ESOnline2.Domain.Concrete
                 dbentry.Direcciones = cliente.Direcciones;
                 dbentry.Emails = cliente.Emails;
                 dbentry.Telefonos = cliente.Telefonos;
-                dbentry.Webs = cliente.Webs;               
+                dbentry.Webs = cliente.Webs;
+                
+                dbentry.ProductosVendidos = cliente.ProductosVendidos;
             }
 
 

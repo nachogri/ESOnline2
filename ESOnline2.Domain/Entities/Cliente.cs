@@ -60,5 +60,8 @@ namespace ESOnline2.Domain
 
         [Display(Name = "Favorito")]
         public bool Favorito { get; set; }
+
+        [Display(GroupName = "Productos")]
+        public virtual ICollection<ProductoVendido> ProductosVendidos { get; set; }
     }
 }

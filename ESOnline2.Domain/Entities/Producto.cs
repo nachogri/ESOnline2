@@ -27,10 +27,10 @@ namespace ESOnline2.Domain.Entities
         public string Nombre { get; set; }
         
         [Display(Name = "Vencimiento del producto")]
-        public string Vencimiento { get; set; }
+        public int Vencimiento { get; set; }
       
         [Display(Name = "Imagen")]
         [DataType(DataType.ImageUrl)]
-        public byte[] Imagen { get; set; }
+        public byte[] Imagen { get; set; }    
     }
 }
