@@ -184,12 +184,10 @@ angular.module('mdlControllers')
         
         $scope.load();
 
-        $scope.calcularVencimiento= function (venta, vencimientoProducto) {            
-            var vencimento = new Date(venta);
-            alert(vencimiento.getMonth() + vencimientoProducto);
-            vencimiento.setMonths(vencimiento.getMonth() + vencimientoProducto);
-            alert(vencimento);
-            return vencimiento;
+        $scope.calcularVencimiento = function (data) {            
+            var vencimento = new Date(data.FechaVenta);            
+            vencimento.setMonth(vencimento.getMonth() + data.Producto.Vencimiento);            
+            return vencimento.toLocaleDateString();
         }
 
         function getCurrentDate() {

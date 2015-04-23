@@ -388,7 +388,7 @@
           <Property Name="FechaVenta" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="ESOnlineDBModel.ProductoVendidoCliente" FromRole="ProductoVendido" ToRole="Cliente" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="ClienteID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="ESOnlineDBModel.ProductoProductoVendido" FromRole="ProductoVendido" ToRole="Producto" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Producto" Relationship="ESOnlineDBModel.ProductoProductoVendido" FromRole="ProductoVendido" ToRole="Producto" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Public" />
           <Property Name="ProductoID" Type="Int32" Nullable="true" />
           <Property Name="NumeroSerie" Type="String" Nullable="true" />
           <Property Name="CodigoBarra" Type="Binary" Nullable="true" />
