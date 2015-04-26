@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/22/2015 23:05:34
+-- Date Created: 04/25/2015 20:20:00
 -- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
@@ -144,7 +144,8 @@ CREATE TABLE [dbo].[ProductosVendidos] (
     [ProductoID] int  NULL,
     [NumeroSerie] nvarchar(max)  NULL,
     [CodigoBarra] varbinary(max)  NULL,
-    [Fabricacion] int  NOT NULL
+    [Fabricacion] int  NOT NULL,
+    [FechaVencimiento] datetime  NOT NULL
 );
 GO
 

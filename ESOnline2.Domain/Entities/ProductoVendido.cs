@@ -22,9 +22,11 @@ namespace ESOnline2.Domain.Entities
         [HiddenInput(DisplayValue = false)]
         public int ID { get; set; }
 
-        [Display(Name = "Fecha de venta")]
-        [DataType(DataType.Date)]
+        [Display(Name = "Fecha de venta")]        
         public DateTime FechaVenta { get; set; }
+
+        [Display(Name = "Fecha de vencimiento")]
+        public DateTime FechaVencimiento { get; set; }
 
         [Display(Name = "Cliente")]
         public Cliente Cliente { get; set; }

@@ -123,6 +123,7 @@
     <Property Name="NumeroSerie" Type="nvarchar(max)" Nullable="true" />
     <Property Name="CodigoBarra" Type="varbinary(max)" Nullable="true" />
     <Property Name="Fabricacion" Type="int" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
     <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
@@ -393,6 +394,7 @@
           <Property Name="NumeroSerie" Type="String" Nullable="true" />
           <Property Name="CodigoBarra" Type="Binary" Nullable="true" />
           <Property Name="Fabricacion" Type="Int32" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="ProductoVendidoCliente">
           <End Type="ESOnlineDBModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -508,6 +510,7 @@
           <ScalarProperty Name="NumeroSerie" ColumnName="NumeroSerie" />
           <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
           <ScalarProperty Name="Fabricacion" ColumnName="Fabricacion" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

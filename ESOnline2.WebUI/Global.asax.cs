@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ESOnline2.WebUI.Infrastructure;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ESOnline2.WebUI
 {
@@ -25,7 +27,7 @@ namespace ESOnline2.WebUI
 
             //ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());          
 
-           // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<ESOnline2.Domain.ESOnlineDBEntities>());
+           // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<ESOnline2.Domain.ESOnlineDBEntities>());          
         }
      
     }

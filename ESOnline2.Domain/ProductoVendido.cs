@@ -21,6 +21,7 @@ namespace ESOnline2.Domain
         public string NumeroSerie { get; set; }
         public byte[] CodigoBarra { get; set; }
         public int Fabricacion { get; set; }
+        public System.DateTime FechaVencimiento { get; set; }
     
         public virtual Cliente Cliente { internal get; set; }
         public virtual Producto Producto { get; internal set; }

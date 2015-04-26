@@ -163,7 +163,8 @@ angular.module('mdlControllers')
            
             newProductoVendido.ProductoID = producto.Producto.ID;
             newProductoVendido.Producto = producto.Producto;           
-            newProductoVendido.FechaVenta = getCurrentDate();
+            newProductoVendido.FechaVenta = getCurrentDate();            
+            newProductoVendido.FechaVencimiento = calcularVencimiento(getCurrentDate(),producto.Producto.Vencimiento);
             newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
             newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
                         
@@ -184,10 +185,21 @@ angular.module('mdlControllers')
         
         $scope.load();
 
-        $scope.calcularVencimiento = function (data) {            
-            var vencimento = new Date(data.FechaVenta);            
-            vencimento.setMonth(vencimento.getMonth() + data.Producto.Vencimiento);            
-            return vencimento.toLocaleDateString();
+        function calcularVencimiento(fecha, mesesVencimiento) {                        
+            var vencimento = new Date(fecha);
+            vencimento.setMonth(vencimento.getMonth() + mesesVencimiento);
+            return vencimento;
+        }
+
+        $scope.formatDate = function (data) {
+                        
+            if (data.length) {
+                var date = new Date(parseInt(data.substr(6)));
+            } else {
+                var date = data;
+            }
+            
+            return data;
         }
 
         function getCurrentDate() {
