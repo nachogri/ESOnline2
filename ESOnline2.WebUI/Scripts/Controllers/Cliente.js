@@ -8,6 +8,7 @@ angular.module('mdlControllers')
         $scope.cliente.Emails = [];
         $scope.cliente.Direcciones = [];
         $scope.cliente.Webs = [];
+        $scope.cliente.ProductosVendidos = [];
         $scope.clientes = [];
         $scope.nombreBusqueda = "";
         $scope.ErrorList = "";        

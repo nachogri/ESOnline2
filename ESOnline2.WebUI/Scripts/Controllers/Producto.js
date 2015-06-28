@@ -192,12 +192,14 @@ angular.module('mdlControllers')
             return vencimento;
         }
 
-        function formatDates() {
-            if ($scope.cliente.ProductosVendido != undefined) {
+        function formatDates() {           
+            alert();
+            if ($scope.cliente.ProductosVendidos != undefined) {
+                alert($scope.cliente.ProductosVendidos);
                 for (var i = 0; i < $scope.cliente.ProductosVendidos.length; i++) {
                     var FechaVenta = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
                     var FechaVencimiento = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
-
+                    
                     $scope.cliente.ProductosVendidos[i].FechaVenta = FechaVenta;
                     $scope.cliente.ProductosVendidos[i].FechaVencimiento = FechaVencimiento;
                 }
