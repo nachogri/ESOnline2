@@ -132,9 +132,9 @@ angular.module('mdlControllers')
         $scope.ErrorList = "";        
         $scope.nuevoProductoVendido = {};
 
-        $scope.load = function () {            
+        $scope.load = function () {                        
             $scope.getAllProductos();
-            $scope.getAnios();
+            $scope.getAnios();            
         };
 
         $scope.getAllProductos = function () {
@@ -164,7 +164,7 @@ angular.module('mdlControllers')
             newProductoVendido.ProductoID = producto.Producto.ID;
             newProductoVendido.Producto = producto.Producto;           
             newProductoVendido.FechaVenta = getCurrentDate();            
-            newProductoVendido.FechaVencimiento = calcularVencimiento(getCurrentDate(),producto.Producto.Vencimiento);
+            newProductoVendido.FechaVencimiento = calcularVencimiento(getCurrentDate(), producto.Producto.Vencimiento);
             newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
             newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
                         
@@ -184,6 +184,7 @@ angular.module('mdlControllers')
         };
         
         $scope.load();
+        formatDates();
 
         function calcularVencimiento(fecha, mesesVencimiento) {                        
             var vencimento = new Date(fecha);
@@ -191,15 +192,16 @@ angular.module('mdlControllers')
             return vencimento;
         }
 
-        $scope.formatDate = function (data) {
-                        
-            if (data.length) {
-                var date = new Date(parseInt(data.substr(6)));
-            } else {
-                var date = data;
-            }
-            
-            return data;
+        function formatDates() {
+            if ($scope.cliente.ProductosVendido != undefined) {
+                for (var i = 0; i < $scope.cliente.ProductosVendidos.length; i++) {
+                    var FechaVenta = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
+                    var FechaVencimiento = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
+
+                    $scope.cliente.ProductosVendidos[i].FechaVenta = FechaVenta;
+                    $scope.cliente.ProductosVendidos[i].FechaVencimiento = FechaVencimiento;
+                }
+            }                        
         }
 
         function getCurrentDate() {

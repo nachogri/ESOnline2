@@ -10,7 +10,7 @@
                         <div class="list-group-item">
                             <div class="row">
                                 <h4 class="list-group-item-heading col-sm-5">{{itemProductoVendido.Producto.Nombre}}</h4>
-                                <div class="list-group-item-text text-success col-sm-5">Vence: {{formatDate(itemProductoVendido.FechaVencimiento) | date:'dd/MM/yyyy'}}</div>
+                                <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVendido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
                                 <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVendido.NumeroSerie}}</div>
                                 <button class="btn btn-sm col-md-pull-1" type="button" ng-click="removeProductoVendido(cliente,$index)">x</button>
                             </div>

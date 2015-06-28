@@ -773,3 +773,7 @@ width: 1000px;
 .navbar {
  margin-bottom: 0px!important; 
 }
+
+.logo {
+  display: block;
+}

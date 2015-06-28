@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ESOnline2.Domain.Abstract;
 using ESOnline2.Domain.Concrete;
 using ESOnline2.Domain;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ESOnline2.WebUI.Controllers
 {
@@ -44,8 +46,10 @@ namespace ESOnline2.WebUI.Controllers
 
         [HttpGet]
         public JsonResult GetCliente(int id)
-        {
-            return Json(clienteRepo.Get(id), JsonRequestBehavior.AllowGet);
+        {           
+            JsonResult jsonResult = Json(clienteRepo.Get(id), JsonRequestBehavior.AllowGet);
+                        
+            return jsonResult; 
         }
 
         [HttpGet]
