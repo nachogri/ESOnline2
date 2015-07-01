@@ -46,8 +46,9 @@ namespace ESOnline2.WebUI.Controllers
 
         [HttpGet]
         public JsonResult GetCliente(int id)
-        {           
-            JsonResult jsonResult = Json(clienteRepo.Get(id), JsonRequestBehavior.AllowGet);
+        {
+            Cliente cli = clienteRepo.Get(id);
+            JsonResult jsonResult = Json(cli, JsonRequestBehavior.AllowGet);
                         
             return jsonResult; 
         }

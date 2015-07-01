@@ -16,8 +16,8 @@ angular.module('mdlControllers')
         $scope.load = function () {
             switch (svcUtils.getAction()) {
                 case "Edit":
-                    if (svcUtils.getObjectId() != "") {
-                        $scope.getCliente();
+                    if (svcUtils.getObjectId() != "") {                        
+                        $scope.getCliente();                        
                     }
                 case "List":
                     $scope.getAllClientes();                
@@ -39,6 +39,8 @@ angular.module('mdlControllers')
             svcESONlineUI.clientes.get(svcUtils.getObjectId())
                 .success(function (data) {
                     $scope.cliente = data;
+
+                    formatDates();
             })
                 .error(function (err) {
                     svcNotifications.alert(err.Message || err.message);
@@ -69,7 +71,7 @@ angular.module('mdlControllers')
             .success(function () {
                 svcBrowser.setNewLocation("/Cliente/List/");
             }).error(function (data, status, headers, config) {                
-                handleErrors(data,$scope);
+                svcUtils.handleErrors(data, $scope);
             });
         };
 
@@ -80,7 +82,7 @@ angular.module('mdlControllers')
             .success(function () {
                 svcBrowser.setNewLocation("/Cliente/List/");
             }).error(function (data, status, headers, config) {
-                handleErrors(data, $scope);
+                svcUtils.handleErrors(data, $scope);
             });
         };
 
@@ -91,33 +93,20 @@ angular.module('mdlControllers')
                 });
             }
         };
+       
 
-        function updateErrors(errors,$scope) {            
-            $scope.errors = {};            
-            $scope.errors.formErrors = {};
-            $scope.errors.pageError = "";
+        function formatDates() {
+            if ($scope.cliente.ProductosVendidos != undefined) {                
+                for (var i = 0; i < $scope.cliente.ProductosVendidos.length; i++) {
+                    var FechaVenta = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
+                    var FechaVencimiento = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
 
-            if (errors) {
-                for (var i = 0; i < errors.length; i++) {
-                    $scope.errors.formErrors[errors[i].Key] = errors[i].Message;                    
+                    $scope.cliente.ProductosVendidos[i].FechaVenta = FechaVenta;
+                    $scope.cliente.ProductosVendidos[i].FechaVencimiento = FechaVencimiento;
                 }
             }
-        }
+        };
 
-        function handleErrors (data,$scope) {
-            if (data.Errors) {
-                updateErrors(data.Errors,$scope);
-            } else if (data.message) {
-                $scope.errors.pageError = data.message;
-                svcNotifications.alert($scope.errors.pageError);
-            } else if (data) {
-                $scope.errors.pageError = data;
-                svcNotifications.alert($scope.errors.pageError);
-            } else {
-                $scope.errors.pageError = "An unexpected error has occurred, please try again later.";
-                svcNotifications.alert('Error',$scope.errors.pageError);
-            }            
-        };                                    
         $scope.load();
     })
 

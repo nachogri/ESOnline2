@@ -71,7 +71,7 @@ angular.module('mdlControllers')
             .success(function () {
                 svcBrowser.setNewLocation("/Producto/List/");
             }).error(function (data, status, headers, config) {
-                handleErrors(data, $scope);
+                svcUtils.handleErrors(data, $scope);
             });
         };
 
@@ -82,7 +82,7 @@ angular.module('mdlControllers')
             .success(function () {
                 svcBrowser.setNewLocation("/Producto/List/");
             }).error(function (data, status, headers, config) {
-                handleErrors(data, $scope);
+                svcUtils.handleErrors(data, $scope);
             });
         };
 
@@ -91,33 +91,6 @@ angular.module('mdlControllers')
                 svcESONlineUI.productos.delete($scope.producto.ID).success(function () {
                     svcBrowser.setNewLocation("/Producto/List");
                 });
-            }
-        };
-
-        function updateErrors(errors, $scope) {
-            $scope.errors = {};
-            $scope.errors.formErrors = {};
-            $scope.errors.pageError = "";
-
-            if (errors) {
-                for (var i = 0; i < errors.length; i++) {
-                    $scope.errors.formErrors[errors[i].Key] = errors[i].Message;
-                }
-            }
-        }
-
-        function handleErrors(data, $scope) {
-            if (data.Errors) {
-                updateErrors(data.Errors, $scope);
-            } else if (data.message) {
-                $scope.errors.pageError = data.message;
-                svcNotifications.alert($scope.errors.pageError);
-            } else if (data) {
-                $scope.errors.pageError = data;
-                svcNotifications.alert($scope.errors.pageError);
-            } else {
-                $scope.errors.pageError = "An unexpected error has occurred, please try again later.";
-                svcNotifications.alert('Error', $scope.errors.pageError);
             }
         };
 
@@ -132,7 +105,7 @@ angular.module('mdlControllers')
         $scope.ErrorList = "";        
         $scope.nuevoProductoVendido = {};
 
-        $scope.load = function () {                        
+        $scope.load = function () {           
             $scope.getAllProductos();
             $scope.getAnios();            
         };
@@ -149,13 +122,13 @@ angular.module('mdlControllers')
         };
 
         $scope.getAnios = function () {            
-            var anioDesde = getCurrentYear() - 10;
-            var anioHasta = getCurrentYear() + 2;
+            var anioDesde = svcUtils.getCurrentYear() - 10;
+            var anioHasta = svcUtils.getCurrentYear() + 2;
 
             for (var i = anioDesde; i < anioHasta; i++) {
                 $scope.anios.push(i);
             }
-            $scope.nuevoProductoVendido.Fabricacion = getCurrentYear();
+            $scope.nuevoProductoVendido.Fabricacion = svcUtils.getCurrentYear();
         };
 
         $scope.addProductoVendido = function (cliente, producto) {            
@@ -163,8 +136,8 @@ angular.module('mdlControllers')
            
             newProductoVendido.ProductoID = producto.Producto.ID;
             newProductoVendido.Producto = producto.Producto;           
-            newProductoVendido.FechaVenta = getCurrentDate();            
-            newProductoVendido.FechaVencimiento = calcularVencimiento(getCurrentDate(), producto.Producto.Vencimiento);
+            newProductoVendido.FechaVenta = svcUtils.getCurrentDate();
+            newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);
             newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
             newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
                         
@@ -176,57 +149,12 @@ angular.module('mdlControllers')
 
             $scope.nuevoProductoVendido = {};
             $scope.nuevoProductoVendido.Producto = $scope.productos[0];
-            $scope.nuevoProductoVendido.Fabricacion = getCurrentYear();
+            $scope.nuevoProductoVendido.Fabricacion = svcUtils.getCurrentYear();
         };
 
         $scope.removeProductoVendido = function (cliente, index) {
             cliente.ProductosVendidos.splice(index, 1);
         };
         
-        $scope.load();
-        formatDates();
-
-        function calcularVencimiento(fecha, mesesVencimiento) {                        
-            var vencimento = new Date(fecha);
-            vencimento.setMonth(vencimento.getMonth() + mesesVencimiento);
-            return vencimento;
-        }
-
-        function formatDates() {           
-            alert();
-            if ($scope.cliente.ProductosVendidos != undefined) {
-                alert($scope.cliente.ProductosVendidos);
-                for (var i = 0; i < $scope.cliente.ProductosVendidos.length; i++) {
-                    var FechaVenta = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
-                    var FechaVencimiento = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
-                    
-                    $scope.cliente.ProductosVendidos[i].FechaVenta = FechaVenta;
-                    $scope.cliente.ProductosVendidos[i].FechaVencimiento = FechaVencimiento;
-                }
-            }                        
-        }
-
-        function getCurrentDate() {
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1;
-            var yyyy = today.getFullYear();
-
-          
-            if(dd<10) {
-                dd='0'+dd
-            } 
-
-            if(mm<10) {
-                mm='0'+mm
-            } 
-
-            today = mm + '/' + dd + '/' + yyyy;
-            return today;
-        }
-
-        function getCurrentYear() {
-            var date = new Date();
-            return date.getFullYear();
-        }
+        $scope.load();                             
     })

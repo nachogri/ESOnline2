@@ -9,7 +9,9 @@ var Guid = function () {
 angular.module('mdlESOnlineApp')
 	.service('svcUtils', function ($window) {	    
 	    return {
-	        getObjectId: function () {	           
+
+            /*Navigation*/
+	        getObjectId: function () {
 	            var absoluteUrlPath = $window.location.href;
 	            var results = String(absoluteUrlPath).split("/");
 	            
@@ -39,6 +41,7 @@ angular.module('mdlESOnlineApp')
 	        }
 	        },
 
+	        /*Dates*/
 	        getCurrentDate: function () {
 	            var today = new Date();
 	            var dd = today.getDate();
@@ -55,6 +58,47 @@ angular.module('mdlESOnlineApp')
 
 	            today = mm+'/'+dd+'/'+yyyy;
 	            return today;
-	        }   
+	        },
+
+	        getCurrentYear: function () {
+	            var date = new Date();
+	            return date.getFullYear();
+	        },
+
+	        calcularVencimiento: function (fecha, mesesVencimiento) {                        
+	            var vencimento = new Date(fecha);
+	            vencimento.setMonth(vencimento.getMonth() + mesesVencimiento);
+	            return vencimento;
+	        },
+
+
+	        /*Errors*/
+	        updateErrors: function (errors, $scope) {
+	            $scope.errors = {};
+	            $scope.errors.formErrors = {};
+	            $scope.errors.pageError = "";
+
+	            if (errors) {
+	                for (var i = 0; i < errors.length; i++) {
+	                    $scope.errors.formErrors[errors[i].Key] = errors[i].Message;
+	                }
+	            }
+	        },
+
+	        handleErrors: function (data, $scope) {
+	            if (data.Errors) {
+	                this.updateErrors(data.Errors, $scope);
+	            } else if (data.message) {
+	                $scope.errors.pageError = data.message;
+	                svcNotifications.alert($scope.errors.pageError);
+	            } else if (data) {
+	                $scope.errors.pageError = data;
+	                svcNotifications.alert($scope.errors.pageError);
+	            } else {
+	                $scope.errors.pageError = "An unexpected error has occurred, please try again later.";
+	                svcNotifications.alert('Error', $scope.errors.pageError);
+	            }
+	        }
+
 	    };	    
 	});
