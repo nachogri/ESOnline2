@@ -98,7 +98,7 @@ angular.module('mdlControllers')
     })
 
 angular.module('mdlControllers')
-    .controller('ctlClienteProducto', function ($scope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
+    .controller('ctlClienteProducto', function ($scope, $rootScope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
        
         $scope.productos = [];        
         $scope.anios = [];        
@@ -150,10 +150,14 @@ angular.module('mdlControllers')
             $scope.nuevoProductoVendido = {};
             $scope.nuevoProductoVendido.Producto = $scope.productos[0];
             $scope.nuevoProductoVendido.Fabricacion = svcUtils.getCurrentYear();
+
+            $rootScope.$broadcast("updatedProductos");
         };
 
-        $scope.removeProductoVendido = function (cliente, index) {
+        $scope.removeProductoVendido = function (cliente, producto) {
+            var index=cliente.ProductosVendidos.indexOf(producto);
             cliente.ProductosVendidos.splice(index, 1);
+            $rootScope.$broadcast("updatedProductos");
         };
         
         $scope.load();                             

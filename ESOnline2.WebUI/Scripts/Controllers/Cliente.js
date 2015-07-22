@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 angular.module('mdlControllers')
-    .controller('ctlCliente', function ($scope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
+    .controller('ctlCliente', function ($scope,$rootScope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
 
         $scope.cliente = {};        
         $scope.cliente.Telefonos = [];
@@ -41,7 +41,7 @@ angular.module('mdlControllers')
                     $scope.cliente = data;
                     
                     deserializeDates();
-                    calculateVencimientos();                    
+                    calculateVencimientos();
             })
                 .error(function (err) {
                     svcNotifications.alert(err.Message || err.message);
@@ -124,6 +124,10 @@ angular.module('mdlControllers')
                 }
             }            
         }
+
+        $rootScope.$on("updatedProductos", function (event, args) {            
+            calculateVencimientos();
+        });
 
         $scope.load();
     })

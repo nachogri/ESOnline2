@@ -12,7 +12,7 @@
                                 <h4 class="list-group-item-heading col-sm-5">{{itemProductoVigente.Producto.Nombre}}</h4>
                                 <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVigente.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
                                 <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVigente.NumeroSerie}}</div>
-                                <button class="btn btn-sm col-md-pull-1" type="button" ng-click="removeProductoVendido(cliente,$index)">x</button>
+                                <button class="btn btn-sm col-md-pull-1" type="button" ng-click="removeProductoVendido(cliente,itemProductoVigente)">x</button>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                     <h4 class="list-group-item-heading col-sm-5">{{itemProductoVencido.Producto.Nombre}}</h4>
                                     <div class="list-group-item-text col-sm-5 text-danger">Vencio: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
                                     <div class="list-group-item-text col-sm-5">N. Serie: {{itemProductoVencido.NumeroSerie}}</div>
-                                    <button class="col-sm-push-1 btn btn-sm" type="button" ng-click="removeProductoVendido(cliente,$index)">x</button>
+                                    <button class="col-sm-push-1 btn btn-sm" type="button" ng-click="removeProductoVendido(cliente,itemProductoVencido)">x</button>
                                 </div>
                             </div>
                         </div>

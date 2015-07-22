@@ -14,8 +14,8 @@
                     <table>
                         <tr>
                             <td>
-                                Nombre: <input type="text" ng-model="cliente.Nombre" class="form-control" placeholder="Ingrese el nombre" />
-                                Apellido: <input type="text" ng-model="cliente.Apellido" class="form-control" placeholder="Ingrese el apellido" />
+                                Nombre: <input type="text" ng-model="cliente.Nombre" class="form-control input-lg" placeholder="Ingrese el nombre" />
+                                @*Apellido: <input type="text" ng-model="cliente.Apellido" class="form-control" placeholder="Ingrese el apellido" />*@
                             </td>
                             <td>
                                 <div ng-model="cliente.Favorito" ng-class="{favorite:cliente.Favorito, nonfavorite:!cliente.Favorito}" ng-click="cliente.Favorito=!cliente.Favorito" />
