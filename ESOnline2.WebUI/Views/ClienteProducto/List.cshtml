@@ -6,12 +6,12 @@
                     <h3 class="panel-title">Vigentes</h3>
                 </div>
                 <div class="panel-body">
-                    <div ng-repeat="itemProductoVendido in cliente.ProductosVendidos | orderBy:'Nombre'">
+                    <div ng-repeat="itemProductoVigente in cliente.ProductosVigentes | orderBy:'Nombre'">
                         <div class="list-group-item">
                             <div class="row">
-                                <h4 class="list-group-item-heading col-sm-5">{{itemProductoVendido.Producto.Nombre}}</h4>
-                                <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVendido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVendido.NumeroSerie}}</div>
+                                <h4 class="list-group-item-heading col-sm-5">{{itemProductoVigente.Producto.Nombre}}</h4>
+                                <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVigente.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
+                                <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVigente.NumeroSerie}}</div>
                                 <button class="btn btn-sm col-md-pull-1" type="button" ng-click="removeProductoVendido(cliente,$index)">x</button>
                             </div>
                         </div>
@@ -25,11 +25,12 @@
                         <h3 class="panel-title">Vencidos</h3>
                     </div>
                     <div class="panel-body">
-                        <div ng-repeat="itemProductoVencido in cliente.ProductosVendidos | orderBy:'Nombre' ">
+                        <div ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
                             <div class="list-group-item">
                                 <div class="row">
                                     <h4 class="list-group-item-heading col-sm-5">{{itemProductoVencido.Producto.Nombre}}</h4>
-                                    <div class="list-group-item-text col-sm-5 text-danger">Vencio: 12/12/12</div>
+                                    <div class="list-group-item-text col-sm-5 text-danger">Vencio: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
+                                    <div class="list-group-item-text col-sm-5">N. Serie: {{itemProductoVencido.NumeroSerie}}</div>
                                     <button class="col-sm-push-1 btn btn-sm" type="button" ng-click="removeProductoVendido(cliente,$index)">x</button>
                                 </div>
                             </div>
@@ -37,13 +38,13 @@
                     </div>
                 </div>
             </div>
-    </div>    
-    <hr noshade size=3>    
-    <div class="form-horizontal">               
-        <h4>Nueva venta</h4>         
+    </div>
+    <hr noshade size=3>
+    <div class="form-horizontal">
+        <h4>Nueva venta</h4>
         Producto: <select ng-model="nuevoProductoVendido.Producto" class="form-control" ng-options="tipoProducto as tipoProducto.Nombre for tipoProducto in productos" ></select>
         &nbsp; Numero de serie:  <input type="text" class="form-control" ng-model="nuevoProductoVendido.NumeroSerie" />
         &nbsp; Año de Fabricacion: <select ng-model="nuevoProductoVendido.Fabricacion" class="form-control" ng-options="anio for anio in anios" ></select>
         &nbsp; <button class="form-control btn btn-success" ng-disabled="nuevoProductoVendido.NumeroSerie=='' || nuevoProductoVendido.NumeroSerie==undefined || nuevoProductoVendido.NumeroSerie==undefined" type="button" ng-click="addProductoVendido(cliente,nuevoProductoVendido)">+</button>
-    </div>        
+    </div>
 </div>
