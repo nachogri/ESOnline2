@@ -104,6 +104,9 @@ angular.module('mdlControllers')
         $scope.anios = [];        
         $scope.ErrorList = "";        
         $scope.nuevoProductoVendido = {};
+        $scope.lblVenta = "Nuevo";
+        $scope.clsConfirmar = "glyphicon glyphicon-plus";
+        $scope.editMode = false;
 
         $scope.load = function () {           
             $scope.getAllProductos();
@@ -134,25 +137,39 @@ angular.module('mdlControllers')
         $scope.addProductoVendido = function (cliente, producto) {            
             var newProductoVendido = {};            
            
-            newProductoVendido.ProductoID = producto.Producto.ID;
-            newProductoVendido.Producto = producto.Producto;           
-            newProductoVendido.FechaVenta = svcUtils.getCurrentDate();
-            newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);
-            newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
-            newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
-                        
-            if (cliente.ProductosVendidos == null) {
-                cliente.ProductosVendidos = [];
-            }
+            if ($scope.editMode == false) {
+                newProductoVendido.ProductoID = producto.Producto.ID;
+                newProductoVendido.Producto = producto.Producto;
+                newProductoVendido.FechaVenta = svcUtils.getCurrentDate();
+                newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);
+                newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
+                newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
 
-            cliente.ProductosVendidos.push(newProductoVendido);
+                if (cliente.ProductosVendidos == null) {
+                    cliente.ProductosVendidos = [];
+                }
+
+                cliente.ProductosVendidos.push(newProductoVendido);
+            }
 
             $scope.nuevoProductoVendido = {};
             $scope.nuevoProductoVendido.Producto = $scope.productos[0];
             $scope.nuevoProductoVendido.Fabricacion = svcUtils.getCurrentYear();
 
+            $scope.editMode = false;
+            $scope.lblVenta = "Nuevo";
+            $scope.clsConfirmar = "glyphicon glyphicon-plus";
+
             $rootScope.$broadcast("updatedProductos");
         };
+
+        $scope.editProductoVendido = function (cliente, producto) {
+            $scope.nuevoProductoVendido = producto;                        
+            $scope.editMode = true;
+            $scope.lblVenta = "Editar";
+            $scope.clsConfirmar = "glyphicon glyphicon-ok";
+        };
+
 
         $scope.removeProductoVendido = function (cliente, producto) {
             var index=cliente.ProductosVendidos.indexOf(producto);

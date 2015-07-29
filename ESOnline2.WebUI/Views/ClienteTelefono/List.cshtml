@@ -4,11 +4,15 @@
         <div ng-repeat="telefono in cliente.Telefonos">        
             <select ng-model="telefono.Tipo" class="form-control" ng-options="tipoTelefono for tipoTelefono in TiposTelefono" ng-selected="telefono.Tipo"></select>
             <input type="text" ng-model="telefono.Numero" class="form-control"/>             
-            <button type="button" ng-click="removeTelefono(cliente,$index)" class="btn btn-xs">x</button>
+            <button type="button" ng-click="removeTelefono(cliente,$index)" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+            </button>
         </div>      
     </div>         
     <p></p>
     <select name="ddlNuevoTipoTelefono" ng-model="NuevoTipoTelefono" class="form-control" ng-options="tipoTelefono for tipoTelefono in TiposTelefono"></select>        
     <input name="txtNuevoNumeroTelefono" type="text"  ng-model="NuevoNumeroTelefono" class="form-control" />     
-    <button ng-disabled="NuevoNumeroTelefono=='' || NuevoNumeroTelefono==undefined || NuevoTipoTelefono==undefined" type="button" ng-click="addTelefono(cliente)" class="btn btn-success btn-xs" value="+">+</button>
+    <button ng-disabled="NuevoNumeroTelefono=='' || NuevoNumeroTelefono==undefined || NuevoTipoTelefono==undefined" type="button" ng-click="addTelefono(cliente)" class="btn btn-success btn-sm">
+        <span class="glyphicon glyphicon-plus" ng-disabled="editMode"></span>
+    </button>
 </div>        

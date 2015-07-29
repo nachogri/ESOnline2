@@ -4,12 +4,20 @@
         <div ng-repeat="direccion in cliente.Direcciones">
             <select ng-model="direccion.Tipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="direccion.Tipo"></select>
             <input type="text" class="form-control direcciones" ng-model="direccion.Descripcion" />
-            <button type="button" ng-click="removeDireccion(cliente,$index)" class="btn btn-xs">x</button>
-            <button type="button" ng-click="findDireccionInMap(direccion.Descripcion)" class="btn btn-xs">Ubicar</button>
+            <button type="button" ng-click="removeDireccion(cliente,$index)" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+            </button>
+            <button type="button" ng-click="findDireccionInMap(direccion.Descripcion)" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-search" ng-disabled="editMode"></span>
+            </button>
         </div>
     </div>
     <select ng-model="NuevoTipo" class="form-control" ng-options="tipoDireccion for tipoDireccion in TiposDireccion" ng-selected="TiposDireccion[0]"></select>
     <input type="text" ng-model="NuevaDescripcion" class="direcciones form-control" placeholder="calle, altura, localidad, provincia" />
-    <button type="button" ng-disabled="NuevaDescripcion=='' || NuevaDescripcion==undefined || NuevoTipo==undefined" ng-click="addDireccion(cliente)" class="btn btn-success btn-xs">+</button>
-    <button ng-disabled="NuevaDescripcion=='' || NuevaDescripcion==undefined || NuevoTipo==undefined" type="button" ng-click="findDireccionInMap(NuevaDescripcion)" class="btn btn-xs ">Ubicar</button>
+    <button type="button" ng-disabled="NuevaDescripcion=='' || NuevaDescripcion==undefined || NuevoTipo==undefined" ng-click="addDireccion(cliente)" class="btn btn-success btn-sm">
+        <span class="glyphicon glyphicon-plus" ng-disabled="editMode"></span>
+    </button>
+    <button ng-disabled="NuevaDescripcion=='' || NuevaDescripcion==undefined || NuevoTipo==undefined" type="button" ng-click="findDireccionInMap(NuevaDescripcion)" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-search" ng-disabled="editMode"></span>
+    </button>
 </div>

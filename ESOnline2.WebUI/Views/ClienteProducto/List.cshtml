@@ -9,10 +9,15 @@
                     <div ng-repeat="itemProductoVigente in cliente.ProductosVigentes | orderBy:'Nombre'">
                         <div class="list-group-item">
                             <div class="row">
-                                <h4 class="list-group-item-heading col-sm-5">{{itemProductoVigente.Producto.Nombre}}</h4>
+                                <h4 class="list-group-item-heading col-sm-4">{{itemProductoVigente.Producto.Nombre}}</h4>
                                 <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVigente.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVigente.NumeroSerie}}</div>
-                                <button class="btn btn-sm col-md-pull-1" type="button" ng-click="removeProductoVendido(cliente,itemProductoVigente)">x</button>
+                                <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVigente.NumeroSerie}}</div>                                                                
+                                <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVigente)">
+                                    <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
+                                </button>                                
+                                <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVigente)">
+                                    <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -28,10 +33,15 @@
                         <div ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
                             <div class="list-group-item">
                                 <div class="row">
-                                    <h4 class="list-group-item-heading col-sm-5">{{itemProductoVencido.Producto.Nombre}}</h4>
+                                    <h4 class="list-group-item-heading col-sm-4">{{itemProductoVencido.Producto.Nombre}}</h4>
                                     <div class="list-group-item-text col-sm-5 text-danger">Vencio: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                    <div class="list-group-item-text col-sm-5">N. Serie: {{itemProductoVencido.NumeroSerie}}</div>
-                                    <button class="col-sm-push-1 btn btn-sm" type="button" ng-click="removeProductoVendido(cliente,itemProductoVencido)">x</button>
+                                    <div class="list-group-item-text col-sm-5 text-danger">N. Serie: {{itemProductoVencido.NumeroSerie}}</div>                                                                                                               
+                                    <button class="col-sm-push-1 btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVencido)">
+                                        <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
+                                    </button>
+                                    <button class="col-sm-push-1 btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVencido)">
+                                        <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -41,10 +51,13 @@
     </div>
     <hr noshade size=3>
     <div class="form-horizontal">
-        <h4>Nueva venta</h4>
-        Producto: <select ng-model="nuevoProductoVendido.Producto" class="form-control" ng-options="tipoProducto as tipoProducto.Nombre for tipoProducto in productos" ></select>
+        <h4>{{lblVenta}}</h4>        
+        Producto: <select ng-show="!editMode" ng-disabled="editMode" ng-model="nuevoProductoVendido.Producto" class="form-control" ng-options="tipoProducto as tipoProducto.Nombre for tipoProducto in productos"></select>
+        <input type="text" class="form-control" ng-disabled="!editmode" ng-show="editMode" ng-model="nuevoProductoVendido.Producto.Nombre" />
         &nbsp; Numero de serie:  <input type="text" class="form-control" ng-model="nuevoProductoVendido.NumeroSerie" />
-        &nbsp; Año de Fabricacion: <select ng-model="nuevoProductoVendido.Fabricacion" class="form-control" ng-options="anio for anio in anios" ></select>
-        &nbsp; <button class="form-control btn btn-success" ng-disabled="nuevoProductoVendido.NumeroSerie=='' || nuevoProductoVendido.NumeroSerie==undefined || nuevoProductoVendido.NumeroSerie==undefined" type="button" ng-click="addProductoVendido(cliente,nuevoProductoVendido)">+</button>
+        &nbsp; Año de Fabricacion: <select ng-model="nuevoProductoVendido.Fabricacion" class="form-control" ng-options="anio for anio in anios" ></select>        
+        &nbsp; <button class="form-control btn btn-success" ng-disabled="nuevoProductoVendido.NumeroSerie=='' || nuevoProductoVendido.NumeroSerie==undefined || nuevoProductoVendido.NumeroSerie==undefined" type="button" ng-click="addProductoVendido(cliente,nuevoProductoVendido)">
+                   <span class={{clsConfirmar}} ng-disabled="editMode"></span>
+        </button>        
     </div>
 </div>

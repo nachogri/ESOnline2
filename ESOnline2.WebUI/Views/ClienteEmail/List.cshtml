@@ -4,11 +4,15 @@
                 <div ng-repeat="email in cliente.Emails">
                     <select ng-model="email.Tipo" class="form-control" ng-options="tipoEmail for tipoEmail in TiposEmail" ng-selected="Email.Tipo"></select>                        
                     <input type="email" ng-model="email.Casilla" class="form-control"   />                     
-                    <button type="button" ng-click="removeEmail(cliente, $index)" class="btn btn-xs">x</button>
+                    <button type="button" ng-click="removeEmail(cliente, $index)" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+                    </button>
                 </div>     
             </div>   
              <p></p>
             <select name="ddlNuevaTipoEmail" ng-model="NuevoTipoEmail" class="form-control" ng-options="tipoEmail for tipoEmail in TiposEmail"></select>        
             <input name="txtNuevaCasillaEmail" type="email" ng-model="NuevaCasillaEmail" class="form-control"  />             
-            <button ng-disabled="NuevaCasillaEmail=='' || NuevaCasillaEmail==undefined || NuevoTipoEmail==undefined" type="button" ng-click="addEmail(cliente)" class="btn btn-success btn-xs">+</button>
+            <button ng-disabled="NuevaCasillaEmail=='' || NuevaCasillaEmail==undefined || NuevoTipoEmail==undefined" type="button" ng-click="addEmail(cliente)" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-plus" ng-disabled="editMode"></span>
+            </button>
         </div>
