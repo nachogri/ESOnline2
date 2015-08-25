@@ -87,14 +87,17 @@ angular.module('mdlControllers')
             });
         };
 
-        $scope.delete = function () {
-            if (svcNotifications.confirm('Seguro que quiere eliminar este Cliente?')) {
-                svcESONlineUI.clientes.delete($scope.cliente.ID).success(function () {
-                    svcBrowser.setNewLocation("/Cliente/List");
-                });
-            }
-        };
        
+        $scope.delete = function () {
+            svcNotifications.deleteConfirm('Seguro que quiere eliminar este cliente?', 'Eliminar ' + $scope.cliente.Nombre, svcESONlineUI, deleteCliente);
+        };
+
+        function deleteCliente() {
+            svcESONlineUI.clientes.delete($scope.cliente.ID).success(function () {
+                svcBrowser.setNewLocation("/Cliente/List");
+            });
+        }
+
 
         function deserializeDates() {
             if ($scope.cliente.ProductosVendidos != undefined) {                

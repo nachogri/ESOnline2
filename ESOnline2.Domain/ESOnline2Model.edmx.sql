@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/25/2015 20:20:00
--- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
+-- Date Created: 08/25/2015 16:34:37
+-- Generated from EDMX file: D:\DATA.IDB\Desarrollo\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -141,7 +141,7 @@ CREATE TABLE [dbo].[ProductosVendidos] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [FechaVenta] datetime  NOT NULL,
     [ClienteID] int  NOT NULL,
-    [ProductoID] int  NULL,
+    [ProductoID] int  NOT NULL,
     [NumeroSerie] nvarchar(max)  NULL,
     [CodigoBarra] varbinary(max)  NULL,
     [Fabricacion] int  NOT NULL,
@@ -271,7 +271,7 @@ ADD CONSTRAINT [FK_ProductoVendidoCliente]
     FOREIGN KEY ([ClienteID])
     REFERENCES [dbo].[Clientes]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ProductoVendidoCliente'
@@ -286,7 +286,7 @@ ADD CONSTRAINT [FK_ProductoProductoVendido]
     FOREIGN KEY ([ProductoID])
     REFERENCES [dbo].[Productos]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ProductoProductoVendido'

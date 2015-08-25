@@ -17,7 +17,7 @@ namespace ESOnline2.Domain
         public int ID { get; set; }
         public System.DateTime FechaVenta { get; set; }
         public int ClienteID { get; set; }
-        public Nullable<int> ProductoID { get; set; }
+        public int ProductoID { get; set; }
         public string NumeroSerie { get; set; }
         public byte[] CodigoBarra { get; set; }
         public int Fabricacion { get; set; }

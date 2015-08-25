@@ -119,7 +119,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FechaVenta" Type="datetime" Nullable="false" />
     <Property Name="ClienteID" Type="int" Nullable="false" />
-    <Property Name="ProductoID" Type="int" Nullable="true" />
+    <Property Name="ProductoID" Type="int" Nullable="false" />
     <Property Name="NumeroSerie" Type="nvarchar(max)" Nullable="true" />
     <Property Name="CodigoBarra" Type="varbinary(max)" Nullable="true" />
     <Property Name="Fabricacion" Type="int" Nullable="false" />
@@ -182,7 +182,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ProductoVendidoCliente">
-    <End Role="Cliente" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1" />
+    <End Role="Cliente" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ProductoVendido" Type="ESOnlineDBModel.Store.ProductosVendidos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cliente">
@@ -194,7 +196,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ProductoProductoVendido">
-    <End Role="Producto" Type="ESOnlineDBModel.Store.Productos" Multiplicity="0..1" />
+    <End Role="Producto" Type="ESOnlineDBModel.Store.Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ProductoVendido" Type="ESOnlineDBModel.Store.ProductosVendidos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Producto">
@@ -337,7 +341,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ESOnlineDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ESOnlineDBEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Direcciones" EntityType="ESOnlineDBModel.Direccion" />
@@ -390,14 +394,16 @@
           <NavigationProperty Name="Cliente" Relationship="ESOnlineDBModel.ProductoVendidoCliente" FromRole="ProductoVendido" ToRole="Cliente" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="ClienteID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="ESOnlineDBModel.ProductoProductoVendido" FromRole="ProductoVendido" ToRole="Producto" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Public" />
-          <Property Name="ProductoID" Type="Int32" Nullable="true" />
+          <Property Name="ProductoID" Type="Int32" Nullable="false" />
           <Property Name="NumeroSerie" Type="String" Nullable="true" />
           <Property Name="CodigoBarra" Type="Binary" Nullable="true" />
           <Property Name="Fabricacion" Type="Int32" Nullable="false" />
           <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="ProductoVendidoCliente">
-          <End Type="ESOnlineDBModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ESOnlineDBModel.Cliente" Role="Cliente" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ESOnlineDBModel.ProductoVendido" Role="ProductoVendido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
@@ -409,7 +415,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ProductoProductoVendido">
-          <End Type="ESOnlineDBModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="ESOnlineDBModel.Producto" Role="Producto" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ESOnlineDBModel.ProductoVendido" Role="ProductoVendido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">

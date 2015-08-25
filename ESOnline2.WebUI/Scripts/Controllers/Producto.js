@@ -87,12 +87,14 @@ angular.module('mdlControllers')
         };
 
         $scope.delete = function () {
-            if (svcNotifications.confirm('Seguro que quiere eliminar este producto?')) {                
-                svcESONlineUI.productos.delete($scope.producto.ID).success(function () {
-                    svcBrowser.setNewLocation("/Producto/List");
-                });
-            }
+            svcNotifications.deleteConfirm('Seguro que quiere eliminar este producto?', 'Eliminar ' + $scope.producto.Nombre, svcESONlineUI, deleteProducto);
         };
+        
+        function deleteProducto() {            
+            svcESONlineUI.productos.delete($scope.producto.ID).success(function () {
+                svcBrowser.setNewLocation("/Producto/List");            
+            });
+        }
 
         $scope.load();
     })
@@ -138,7 +140,7 @@ angular.module('mdlControllers')
             var newProductoVendido = {};            
            
             if ($scope.editMode == false) {
-                newProductoVendido.ProductoID = producto.Producto.ID;
+                newProductoVendido.ProductoID = producto.Producto.ID;                
                 newProductoVendido.Producto = producto.Producto;
                 newProductoVendido.FechaVenta = svcUtils.getCurrentDate();
                 newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);

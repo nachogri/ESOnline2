@@ -18,6 +18,7 @@ namespace ESOnline2.Domain
         public ESOnlineDBEntities()
             : base("name=ESOnlineDBEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

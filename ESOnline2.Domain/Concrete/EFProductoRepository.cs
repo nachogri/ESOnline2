@@ -17,6 +17,7 @@ namespace ESOnline2.Domain.Concrete
 
         public IEnumerable<Producto> GetAll()
         {
+            
             return context.Productos.AsEnumerable();
         }
 

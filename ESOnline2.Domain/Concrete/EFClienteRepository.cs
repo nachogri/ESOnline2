@@ -14,18 +14,18 @@ namespace ESOnline2.Domain.Concrete
                
         public EFClienteRepository()
         {
-                             
+                                         
         }
 
         public IEnumerable<Cliente> GetAll()
         {
+            context.ProductosVendidos.Include("Producto").ToList();
             return context.Clientes.AsEnumerable();
         }
 
         public Cliente Get(int id)
-        {
-           
-            return context.Clientes.Find(id);
+        {                      
+           return context.Clientes.Find(id); ;
         }
 
         public Cliente Add(Cliente cliente)
@@ -37,7 +37,7 @@ namespace ESOnline2.Domain.Concrete
           
 
             context.Clientes.Add(cliente);
-            context.SaveChanges();
+            context.SaveChanges();            
 
             return cliente;
         }
@@ -78,8 +78,9 @@ namespace ESOnline2.Domain.Concrete
             }
 
 
-            context.SaveChanges();
+            context.SaveChanges();            
             return true;
         }
+        
     }
 }
