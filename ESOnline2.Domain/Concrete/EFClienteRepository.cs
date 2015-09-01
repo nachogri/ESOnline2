@@ -19,13 +19,18 @@ namespace ESOnline2.Domain.Concrete
 
         public IEnumerable<Cliente> GetAll()
         {
+            //This is done to pull any possible changes done in other repositories
+            context.Dispose();
+            context = new ESOnlineDBEntities();
+
             context.ProductosVendidos.Include("Producto").ToList();
             return context.Clientes.AsEnumerable();
         }
 
         public Cliente Get(int id)
-        {                      
-           return context.Clientes.Find(id); ;
+        {
+            Cliente cliente = context.Clientes.Find(id);
+            return cliente;
         }
 
         public Cliente Add(Cliente cliente)

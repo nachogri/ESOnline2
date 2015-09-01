@@ -88,7 +88,7 @@ namespace ESOnline2.WebUI.Controllers
                 return Json(new { Status = "Not found" }, JsonRequestBehavior.AllowGet);
             else
             {
-                productoRepo.Remove(id);
+                productoRepo.Remove(id);                
                 return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
             }
         }

@@ -48,6 +48,7 @@ namespace ESOnline2.WebUI.Controllers
         public JsonResult GetCliente(int id)
         {
             Cliente cli = clienteRepo.Get(id);
+                 
             JsonResult jsonResult = Json(cli, JsonRequestBehavior.AllowGet);
                         
             return jsonResult; 

@@ -42,9 +42,11 @@ namespace ESOnline2.Domain.Concrete
         public void Remove(int id)
         {
             Producto producto = context.Productos.Find(id);
-            context.Productos.Remove(producto);
-
+            context.Productos.Remove(producto);                        
             context.SaveChanges();
+
+            context.Dispose();
+            context = new ESOnlineDBEntities();
         }
 
         public bool Update(Producto producto)
