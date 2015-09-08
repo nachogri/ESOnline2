@@ -199,6 +199,7 @@
     <Compile Include="Controllers\JsonValidationError.cs" />
     <Compile Include="Controllers\PaginationController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\VencimientoController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,6 +277,7 @@
     <Content Include="Scripts\Controllers\Email.js" />
     <Content Include="Scripts\Controllers\Producto.js" />
     <Content Include="Scripts\Controllers\TabNavigator.js" />
+    <Content Include="Scripts\Controllers\Vencimiento.js" />
     <Content Include="Scripts\Modules\ESOPagination.js" />
     <Content Include="Scripts\Controllers\Menu.js" />
     <Content Include="Scripts\Controllers\Telefono.js" />
@@ -327,6 +329,7 @@
     <Content Include="Views\Producto\New.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\List.cshtml" />
+    <Content Include="Views\Vencimiento\List.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

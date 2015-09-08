@@ -69,6 +69,15 @@
 	            delete: function (id) {
 	                return $http.delete('/Producto/DeleteProducto/' + id);
 	            }            
-	        }
+            },
+
+            vencimientos: {
+                getAll: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientos');
+                },
+                getAllProductosVendidos: function () {
+                    return $http.get('/Vencimiento/GetAllProductosVendidos');
+                }
+            }
 	    };
 	});

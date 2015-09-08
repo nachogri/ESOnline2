@@ -21,8 +21,7 @@ namespace ESOnline2.Domain.Concrete
         {
             //This is done to pull any possible changes done in other repositories
             context.Dispose();
-            context = new ESOnlineDBEntities();
-
+            context = new ESOnlineDBEntities();            
             context.ProductosVendidos.Include("Producto").ToList();
             return context.Clientes.AsEnumerable();
         }

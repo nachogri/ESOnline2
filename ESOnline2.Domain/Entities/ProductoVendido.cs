@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-
 namespace ESOnline2.Domain.Entities
 {
     [MetadataType(typeof(ProductoVendidoMetadata))]
@@ -28,7 +27,7 @@ namespace ESOnline2.Domain.Entities
         [Display(Name = "Fecha de vencimiento")]
         public DateTime FechaVencimiento { get; set; }
 
-        [Display(Name = "Cliente")]
+        [Display(Name = "Cliente")]        
         public Cliente Cliente { get; set; }
 
         [Display(Name = "Producto")]

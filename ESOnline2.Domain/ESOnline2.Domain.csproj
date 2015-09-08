@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BKPs\ESOnline2\ESOnline2.WebUI\bin\System.Web.Mvc.dll</HintPath>
@@ -72,11 +73,13 @@
   <ItemGroup>
     <Compile Include="Abstract\IClienteRepository.cs" />
     <Compile Include="Abstract\IProductoRepository.cs" />
+    <Compile Include="Abstract\IProductoVendidoRepository.cs" />
     <Compile Include="Cliente.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Concrete\EFClienteRepository.cs" />
     <Compile Include="Concrete\EFProductoRepository.cs" />
+    <Compile Include="Concrete\EFProductoVendidoRepository.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>

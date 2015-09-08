@@ -39,8 +39,8 @@ angular.module('mdlControllers')
             svcESONlineUI.clientes.get(svcUtils.getObjectId())
                 .success(function (data) {
                     $scope.cliente = data;
-                    
-                    deserializeDates();
+                                        
+                    svcUtils.deserializeDates($scope.cliente.ProductosVendidos);
                     calculateVencimientos();
             })
                 .error(function (err) {
@@ -98,18 +98,6 @@ angular.module('mdlControllers')
             });
         }
 
-
-        function deserializeDates() {
-            if ($scope.cliente.ProductosVendidos != undefined) {                
-                for (var i = 0; i < $scope.cliente.ProductosVendidos.length; i++) {
-                    var FechaVenta = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
-                    var FechaVencimiento = new Date(parseInt($scope.cliente.ProductosVendidos[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
-
-                    $scope.cliente.ProductosVendidos[i].FechaVenta = FechaVenta;
-                    $scope.cliente.ProductosVendidos[i].FechaVencimiento = FechaVencimiento;
-                }
-            }
-        };
 
         function calculateVencimientos() {
             var today = new Date();            

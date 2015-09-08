@@ -777,3 +777,7 @@ width: 1000px;
 .logo {
   display: block;
 }
+
+.col-header-link {
+   cursor:pointer;
+}

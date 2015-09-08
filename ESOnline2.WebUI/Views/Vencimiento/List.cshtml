@@ -1,0 +1,42 @@
+﻿<div ng-controller="ctlVencimiento">            
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h2 class="list-group-item-heading">Vencimientos</h2>
+            </div>            
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-header-link" ng-click="reverse=!reverse;setOrder('ClienteID')">
+                            <span>Cliente</span>
+                            <span ng-show="order=='ClienteID'">
+                                <span class="glyphicon glyphicon-chevron-down" ng-show="reverse"></span>
+                                <span class="glyphicon glyphicon-chevron-up" ng-show="!reverse"></span>
+                            </span>
+                        </th>
+                        <th class="col-header-link" ng-click="reverse=!reverse;setOrder('Producto.Nombre')">
+                            <span>Producto</span>
+                            <span ng-show="order=='Producto.Nombre'">
+                                <span class="glyphicon glyphicon-chevron-down" ng-show="reverse"></span>
+                                <span class="glyphicon glyphicon-chevron-up" ng-show="!reverse"></span>
+                            </span>
+                            </th>
+                        <th class="col-header-link" ng-click="reverse=!reverse;setOrder('FechaVencimiento')">
+                            <span>Vencimiento</span>
+                            <span ng-show="order=='FechaVencimiento'">
+                                <span class="glyphicon glyphicon-chevron-down" ng-show="reverse"></span>
+                                <span class="glyphicon glyphicon-chevron-up" ng-show="!reverse"></span>
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse | paginate:rowsPerPage ">
+                    <td class="list-group-item col-sm-4">{{itemVencimiento.ClienteID}}</td>
+                    <td class="list-group-item col-sm-4">
+                        {{itemVencimiento.Producto.Nombre}} - N. Serie: {{itemVencimiento.NumeroSerie}}
+                    </td>
+                    <td class="list-group-item col-sm-2 text-danger">Vencio: {{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</td>
+                </tr>
+        </table>
+        <pagination-control></pagination-control>
+     </div>
+</div>

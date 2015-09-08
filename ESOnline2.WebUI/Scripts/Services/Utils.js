@@ -71,6 +71,18 @@ angular.module('mdlESOnlineApp')
 	            return vencimento;
 	        },
 
+	        deserializeDates:function (dates) {
+	            if (dates != undefined) {
+	                for (var i = 0; i < dates.length; i++) {
+	                    var FechaVenta = new Date(parseInt(dates[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
+	                    var FechaVencimiento = new Date(parseInt(dates[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
+
+	                    dates[i].FechaVenta = FechaVenta;
+	                    dates[i].FechaVencimiento = FechaVencimiento;
+                    }
+                }
+	        },
+
 
 	        /*Errors*/
 	        updateErrors: function (errors, $scope) {
