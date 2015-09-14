@@ -60,6 +60,18 @@ namespace ESOnline2.WebUI.Controllers
             return Json(clienteRepo.GetAll().Where(c => c.Nombre.ToLower().Contains(id.ToLower()) || (c.Apellido!=null && c.Apellido.ToLower().Contains(id.ToLower()))), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetClientesWithVencimientos()
+        {
+            List<Cliente>clientes=(List<Cliente>)clienteRepo.GetAll().ToList();
+            
+            var filtered = clientes
+                            .Where(c => c.ProductosVendidos.Any(pv => pv.FechaVencimiento <= DateTime.Today.AddYears(1)))
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVendidos.Where(pv => pv.FechaVencimiento <= DateTime.Today.AddYears(1)) });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult CreateCliente(Cliente cliente)
         {

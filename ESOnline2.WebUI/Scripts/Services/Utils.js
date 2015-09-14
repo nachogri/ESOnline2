@@ -71,9 +71,9 @@ angular.module('mdlESOnlineApp')
 	            return vencimento;
 	        },
 
-	        deserializeDates:function (dates) {
+	        deserializeDates: function (dates) {	            
 	            if (dates != undefined) {
-	                for (var i = 0; i < dates.length; i++) {
+	                for (var i = 0; i < dates.length; i++) {	                    
 	                    var FechaVenta = new Date(parseInt(dates[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
 	                    var FechaVencimiento = new Date(parseInt(dates[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
 
@@ -110,7 +110,25 @@ angular.module('mdlESOnlineApp')
 	                $scope.errors.pageError = "An unexpected error has occurred, please try again later.";
 	                svcNotifications.alert('Error', $scope.errors.pageError);
 	            }
-	        }
+	        },
+            
+	    /*Clientes*/
+	    calculateVencimientos: function (cliente) {
+	        var today = new Date();
+	        today = today.setDate(today.getDate() + 365);
+	        var vencimiento = new Date();
+	        cliente.ProductosVigentes = [];
+	        cliente.ProductosVencidos = [];
 
-	    };	    
+	        for (var i = 0; i < cliente.ProductosVendidos.length; i++) {
+	            vencimiento = cliente.ProductosVendidos[i].FechaVencimiento;
+	            if (vencimiento < today) {
+	                cliente.ProductosVencidos.push(cliente.ProductosVendidos[i]);
+	            }
+	            else {
+	                cliente.ProductosVigentes.push(cliente.ProductosVendidos[i]);
+	            }
+	        }
+	    }	        
+	    };	    	    
 	});

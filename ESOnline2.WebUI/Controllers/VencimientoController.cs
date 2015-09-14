@@ -13,8 +13,7 @@ namespace ESOnline2.WebUI.Controllers
 {
     public class VencimientoController : Controller
     {
-        static readonly IProductoVendidoRepository productosVendidosRepo = new EFProductoVendidoRepository();
-        static readonly IClienteRepository clienteRepo = new EFClienteRepository();
+        static readonly IProductoVendidoRepository productosVendidosRepo = new EFProductoVendidoRepository();        
 
         [HttpGet]
         public ActionResult List()
@@ -31,15 +30,8 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientos()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetAll();
-            //IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetAll().Where(p => p.FechaVencimiento <= DateTime.Today.AddMonths(12));
-
-            foreach (ProductoVendido productoVendido in productosVendidos)
-	        {
-                productoVendido.Cliente=clienteRepo.Get(productoVendido.ClienteID);		                 
-	        }
-
-            
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetAll().Where(p => p.FechaVencimiento <= DateTime.Today.AddYears(1));
+                        
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);                                    
         }
 

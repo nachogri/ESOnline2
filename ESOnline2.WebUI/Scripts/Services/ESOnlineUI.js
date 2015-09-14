@@ -4,7 +4,7 @@
 	        clientes: {	            
 	            getAll: function () {
 	                return $http.get('/Cliente/GetAllClientes');
-	            },
+	            },            
 	            get: function (id) {
 	                return $http.get('/Cliente/GetCliente/' + id);
 	            },
@@ -74,6 +74,9 @@
             vencimientos: {
                 getAll: function () {
                     return $http.get('/Vencimiento/GetAllVencimientos');
+                },
+                getClientesWithVencimientos: function () {
+                    return $http.get('/Cliente/GetClientesWithVencimientos');
                 },
                 getAllProductosVendidos: function () {
                     return $http.get('/Vencimiento/GetAllProductosVendidos');
