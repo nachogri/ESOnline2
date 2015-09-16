@@ -31,7 +31,7 @@
                         </span>
                     </th>
                 </thead>
-                <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse | paginate:rowsPerPage">
+                <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse ">@*| paginate:rowsPerPage*@
                     <td class="list-group-item col-sm-4">
                         <span>{{itemVencimiento.ClienteID}}</span>
                     </td>
@@ -41,9 +41,9 @@
                     <td class="list-group-item col-sm-2 text-danger">Vencio: {{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</td>
                 </tr>
             </table>            
-            <div ng-show="TableView">
+            @*<div ng-show="TableView">
                 <pagination-control></pagination-control>
-            </div>
+            </div>*@
             <div class="panel" ng-show="!TableView">
                 <div class="panel-heading">
                     <div class="col-header-link" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">                        

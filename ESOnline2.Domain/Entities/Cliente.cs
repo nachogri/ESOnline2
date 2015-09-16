@@ -12,6 +12,13 @@ namespace ESOnline2.Domain
     [MetadataType(typeof(ClienteMetadata))]
     public partial class Cliente
     {
+        [NotMapped]
+        [Display(GroupName = "ProductosVigentes")]
+        public virtual ICollection<ProductoVendido> ProductosVigentes { get; set; }
+
+        [NotMapped]
+        [Display(GroupName = "ProductosVencidos")]
+        public virtual ICollection<ProductoVendido> ProductosVencidos { get; set; }
     }
 
     public class ClienteMetadata
@@ -62,6 +69,6 @@ namespace ESOnline2.Domain
         public bool Favorito { get; set; }
 
         [Display(GroupName = "Productos")]
-        public virtual ICollection<ProductoVendido> ProductosVendidos { get; set; }
+        public virtual ICollection<ProductoVendido> ProductosVendidos { get; set; }        
     }
 }

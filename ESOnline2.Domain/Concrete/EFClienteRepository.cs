@@ -23,12 +23,23 @@ namespace ESOnline2.Domain.Concrete
             context.Dispose();
             context = new ESOnlineDBEntities();            
             context.ProductosVendidos.Include("Producto").ToList();
+
+            IEnumerable<Cliente> clientes=context.Clientes.AsEnumerable();
+
+            foreach (Cliente cli in clientes)
+            {
+                CalculateVencimientos(cli);
+            }
+
             return context.Clientes.AsEnumerable();
         }
 
         public Cliente Get(int id)
         {
             Cliente cliente = context.Clientes.Find(id);
+
+            CalculateVencimientos(cliente);
+
             return cliente;
         }
 
@@ -84,6 +95,24 @@ namespace ESOnline2.Domain.Concrete
 
             context.SaveChanges();            
             return true;
+        }
+
+
+        private static void CalculateVencimientos(Cliente cli)
+        {
+            if (cli.ProductosVigentes == null)
+                cli.ProductosVigentes = new HashSet<ProductoVendido>();
+
+            if (cli.ProductosVencidos == null)
+                cli.ProductosVencidos = new HashSet<ProductoVendido>();
+
+            foreach (ProductoVendido prod in cli.ProductosVendidos)
+            {
+                if (prod.FechaVencimiento <= DateTime.Today.AddYears(1))
+                    cli.ProductosVencidos.Add(prod);
+                else
+                    cli.ProductosVigentes.Add(prod);
+            }
         }
         
     }

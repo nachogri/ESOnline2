@@ -41,7 +41,8 @@ angular.module('mdlControllers')
                     $scope.cliente = data;
                                         
                     svcUtils.deserializeDates($scope.cliente.ProductosVendidos);
-                    svcUtils.calculateVencimientos($scope.cliente);
+                    svcUtils.deserializeDates($scope.cliente.ProductosVigentes);
+                    svcUtils.deserializeDates($scope.cliente.ProductosVencidos);                    
             })
                 .error(function (err) {
                     svcNotifications.alert(err.Message || err.message);
@@ -96,12 +97,7 @@ angular.module('mdlControllers')
             svcESONlineUI.clientes.delete($scope.cliente.ID).success(function () {
                 svcBrowser.setNewLocation("/Cliente/List");
             });
-        }
-        
-
-        $rootScope.$on("updatedProductos", function (event, args) {            
-            calculateVencimientos();
-        });
+        }               
 
         $scope.load();
     })

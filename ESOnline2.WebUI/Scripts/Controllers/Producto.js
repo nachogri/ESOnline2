@@ -140,7 +140,7 @@ angular.module('mdlControllers')
             var newProductoVendido = {};            
            
             if ($scope.editMode == false) {
-                newProductoVendido.ProductoID = producto.Producto.ID;                
+                newProductoVendido.ProductoID = producto.Producto.ID;
                 newProductoVendido.Producto = producto.Producto;
                 newProductoVendido.FechaVenta = svcUtils.getCurrentDate();
                 newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);
@@ -152,6 +152,14 @@ angular.module('mdlControllers')
                 }
 
                 cliente.ProductosVendidos.push(newProductoVendido);
+                cliente.ProductosVigentes.push(newProductoVendido);
+            }
+            else {
+                for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {
+                    if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0) {
+                        cliente.ProductosVendidos[i] = producto;
+                    }
+                }
             }
 
             $scope.nuevoProductoVendido = {};
@@ -160,9 +168,7 @@ angular.module('mdlControllers')
 
             $scope.editMode = false;
             $scope.lblVenta = "Nuevo";
-            $scope.clsConfirmar = "glyphicon glyphicon-plus";
-
-            $rootScope.$broadcast("updatedProductos");
+            $scope.clsConfirmar = "glyphicon glyphicon-plus";            
         };
 
         $scope.editProductoVendido = function (cliente, producto) {
@@ -174,9 +180,24 @@ angular.module('mdlControllers')
 
 
         $scope.removeProductoVendido = function (cliente, producto) {
-            var index=cliente.ProductosVendidos.indexOf(producto);
-            cliente.ProductosVendidos.splice(index, 1);
-            $rootScope.$broadcast("updatedProductos");
+            for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {                
+                if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0)
+                {                    
+                    cliente.ProductosVendidos.splice(i, 1);
+                }
+            }
+            
+            var index = cliente.ProductosVigentes.indexOf(producto);            
+            if (index != -1)
+            {
+                cliente.ProductosVigentes.splice(index, 1);
+            }
+
+            var index = cliente.ProductosVencidos.indexOf(producto);
+            if (index != -1)
+            {
+                cliente.ProductosVencidos.splice(index, 1);
+            }                        
         };
         
         $scope.load();                             

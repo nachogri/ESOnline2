@@ -48,7 +48,7 @@ namespace ESOnline2.WebUI.Controllers
         public JsonResult GetCliente(int id)
         {
             Cliente cli = clienteRepo.Get(id);
-                 
+            
             JsonResult jsonResult = Json(cli, JsonRequestBehavior.AllowGet);
                         
             return jsonResult; 
@@ -64,11 +64,11 @@ namespace ESOnline2.WebUI.Controllers
         public JsonResult GetClientesWithVencimientos()
         {
             List<Cliente>clientes=(List<Cliente>)clienteRepo.GetAll().ToList();
-            
+          
             var filtered = clientes
-                            .Where(c => c.ProductosVendidos.Any(pv => pv.FechaVencimiento <= DateTime.Today.AddYears(1)))
-                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVendidos.Where(pv => pv.FechaVencimiento <= DateTime.Today.AddYears(1)) });
-
+                            .Where(c => c.ProductosVencidos.Count>=1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count>=1});
+                        
             return Json(filtered, JsonRequestBehavior.AllowGet);
         }
 

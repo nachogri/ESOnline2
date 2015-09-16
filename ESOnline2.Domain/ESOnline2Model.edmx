@@ -341,7 +341,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ESOnlineDBEntities" annotation:LazyLoadingEnabled="false">
+        <EntityContainer Name="ESOnlineDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Direcciones" EntityType="ESOnlineDBModel.Direccion" />
