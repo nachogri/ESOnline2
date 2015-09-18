@@ -9,9 +9,9 @@
             </div>                      
             <table class="table table-hover" ng-show="TableView">
                 <thead>
-                    <th class="col-header-link col-md-5" ng-click="reverse=!reverse;setOrder('ClienteID')">
+                    <th class="col-header-link col-md-5" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
                         <span>Cliente</span>
-                        <span ng-show="order=='ClienteID'">
+                        <span ng-show="order=='Cliente.Nombre'">
                             <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
                             <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
                         </span>
@@ -31,19 +31,19 @@
                         </span>
                     </th>
                 </thead>
-                <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse ">@*| paginate:rowsPerPage*@
-                    <td class="list-group-item col-sm-4">
-                        <span>{{itemVencimiento.ClienteID}}</span>
-                    </td>
-                    <td class="list-group-item col-sm-4">
-                        {{itemVencimiento.Producto.Nombre}} - N. Serie: {{itemVencimiento.NumeroSerie}}
-                    </td>
-                    <td class="list-group-item col-sm-2 text-danger">Vencio: {{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</td>
-                </tr>
+                <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse | paginate:rowsPerPage">                    
+                <td class="list-group-item col-sm-4">
+                    <span>{{itemVencimiento.Cliente.Nombre}}</span>
+                </td>
+                <td class="list-group-item col-sm-4">
+                    {{itemVencimiento.Producto.Nombre}} - N. Serie: {{itemVencimiento.NumeroSerie}}
+                </td>
+                <td class="list-group-item col-sm-2 text-danger">Vencio: {{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</td>
+            </tr>
             </table>            
-            @*<div ng-show="TableView">
+            <div ng-show="TableView">
                 <pagination-control></pagination-control>
-            </div>*@
+            </div>
             <div class="panel" ng-show="!TableView">
                 <div class="panel-heading">
                     <div class="col-header-link" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">                        
@@ -53,10 +53,10 @@
                         </h4>
                     </div>                    
                 <div class="panel-body">
-                    <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6" ng-repeat="itemCliente in clientes | orderBy:order:reverse">
+                    <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6" ng-repeat="itemCliente in clientes | orderBy:order:reverse | paginate:rowsPerPage">
                         <div class="panel panel-default">
-                            <div class="panel-heading">                                
-                                <h4 class="list-group-item-heading col-xs-9 col-sm-10 col-md-10">{{itemCliente.Cliente.Nombre}}</h4>                                               
+                            <div class="panel-heading">
+                                <h4 class="list-group-item-heading col-xs-9 col-sm-10 col-md-10">{{itemCliente.Cliente.Nombre}}</h4>
                                 <div class="list-group-item-heading col-xs-offset-2 col-sm-offset-1 col-md-offset-1">
                                     <span class="glyphicon glyphicon-phone"></span>
                                     <span class="glyphicon glyphicon-map-marker"></span>
@@ -82,6 +82,9 @@
                             </div>
                         </div>
                     </div>                    
+                </div>
+                <div ng-show="!TableView">
+                    <pagination-control></pagination-control>
                 </div>
                 <div class="panel-footer">
                     <div class="btn btn-link" ng-click="mostrarVigentes=!mostrarVigentes">

@@ -17,8 +17,7 @@ angular.module("mdlControllers")
                     for (var i = 0; i < $scope.clientes.length; i++) {                        
                         svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVendidos);
                         svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVigentes);
-                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVencidos);
-                        //svcUtils.calculateVencimientos($scope.clientes[i].Cliente);
+                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVencidos);                        
                     }                    
                     $scope.reverse = false;
                     $scope.setOrder('Cliente.Nombre');
@@ -30,7 +29,8 @@ angular.module("mdlControllers")
             svcESONlineUI.vencimientos.getAll()
                 .success(function (data) {
                     $scope.vencimientos = data;
-                    //loadClientes();                    
+
+                    loadClientes();
                     svcUtils.deserializeDates($scope.vencimientos);                    
                 })
                 .error(function (err) {
@@ -42,14 +42,23 @@ angular.module("mdlControllers")
             $scope.order = desiredOrder;
         }
 
-        function loadClientes() {            
-            for (var i = 0; i < $scope.vencimientos.length; i++) {
-                for (var x = 0; x < $scope.clientes.length; x++) {
-                    if ($scope.clientes[x].Cliente.ID == $scope.vencimientos[i].ClienteID) {
-                        $scope.vencimientos[i].Cliente = $scope.clientes[x].Cliente;
-                    }
-                }                
-            }           
+        function loadClientes() {
+
+            svcESONlineUI.clientes.getAll()
+              .success(function (data) {
+                  $scope.clientesAux = data;
+
+                  for (var i = 0; i < $scope.vencimientos.length; i++) {
+                      for (var x = 0; x < $scope.clientesAux.length; x++) {
+                          if ($scope.clientesAux[x].ID == $scope.vencimientos[i].ClienteID) {
+                              $scope.vencimientos[i].Cliente = $scope.clientesAux[x];
+                          }
+                      }
+                  }
+              })
+              .error(function (err) {
+                  svcNotifications.alert("Ha ocurrido un error:" + err);
+              });                       
         }
        
         $scope.load();       

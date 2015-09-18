@@ -36,8 +36,17 @@ namespace ESOnline2.Domain.Concrete
 
         public Cliente Get(int id)
         {
-            Cliente cliente = context.Clientes.Find(id);
-
+            Cliente cliente = new Cliente();
+            try
+            {
+                cliente = context.Clientes.Find(id);
+            }
+            catch (InvalidOperationException invOperEx)
+            {                
+                context = new ESOnlineDBEntities();    
+                cliente = context.Clientes.Find(id);                
+            }           
+                        
             CalculateVencimientos(cliente);
 
             return cliente;

@@ -30,8 +30,8 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientos()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetAll().Where(p => p.FechaVencimiento <= DateTime.Today.AddYears(1));
-                        
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos();            
+                  
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);                                    
         }
 
