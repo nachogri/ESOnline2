@@ -45,13 +45,11 @@ namespace ESOnline2.Domain
         public virtual ICollection<Direccion> Direcciones { get; set; }
 
         [Display(Name = "Número de CUIL del cliente")]
-        [RegularExpression(@"/^\d{2}\-\d{8}\-\d{1}$/", ErrorMessage="El formáto de CUIL no es válido")]
-        [StringLength(13, ErrorMessage = "El número de {0} tiene que tener {2} caracteres.", MinimumLength = 11)]
+        [StringLength(11, ErrorMessage = "El número de {0} tiene que tener 11 caracteres.", MinimumLength = 11)]
         public string CUIL { get; set; }
 
-        [Display(Name = "Número de CUIT del cliente")]
-        [RegularExpression(@"/^\d{2}\-\d{8}\-\d{1}$/", ErrorMessage = "El formáto de CUIT no es válido")]
-        [StringLength(13, ErrorMessage = "El número de {0} tiene que tener {2} caracteres.", MinimumLength = 11)]
+        [Display(Name = "Número de CUIT del cliente")]        
+        [StringLength(11, ErrorMessage = "El número de {0} tiene que tener 11 caracteres.", MinimumLength = 11)]
         public string CUIT { get; set; }
 
         [Display(Name = "Notas")]

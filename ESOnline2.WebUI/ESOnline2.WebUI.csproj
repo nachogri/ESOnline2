@@ -330,6 +330,9 @@
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\List.cshtml" />
     <Content Include="Views\Vencimiento\List.cshtml" />
+    <Content Include="Views\Vencimiento\ListByCliente.cshtml" />
+    <Content Include="Views\Vencimiento\ListByClientes.cshtml" />
+    <Content Include="Views\Vencimiento\Test.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

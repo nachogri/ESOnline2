@@ -23,16 +23,16 @@ angular.module('mdlESOPagination').directive('paginationControlsm', function () 
 angular.module('mdlESOPagination')
     .filter('paginate', function (Paginator) {
         return function (input, rowsPerPage) {
-            if (!input) {
+            if (!input || !input.length) {
                 return input;
             }
 
-            if (rowsPerPage) {
+            if (rowsPerPage) {                
                 Paginator.rowsPerPage = rowsPerPage;
             }
-
-            Paginator.itemCount = input.length;
             
+            Paginator.itemCount = input.length;
+                                    
             return input.slice(parseInt(Paginator.page * Paginator.rowsPerPage), parseInt((Paginator.page + 1) * Paginator.rowsPerPage + 1) - 1);
         }
     })

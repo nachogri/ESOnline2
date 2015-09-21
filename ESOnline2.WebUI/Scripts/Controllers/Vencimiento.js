@@ -7,12 +7,19 @@ angular.module("mdlControllers")
         $scope.order = 'Cliente.Nombre';
         $scope.reverse = 'false';
         $scope.TableView = true;
+        $scope.NoVencimientos = false;
 
         $scope.load = function ()
         {
             
             svcESONlineUI.vencimientos.getClientesWithVencimientos()
-                .success(function (data) {                    
+                .success(function (data) {
+
+                    if (data.length == 0)
+                        $scope.NoVencimientos = true;
+                    else
+                        $scope.NoVencimientos = false;
+
                     $scope.clientes = data;
                     for (var i = 0; i < $scope.clientes.length; i++) {                        
                         svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVendidos);
@@ -27,7 +34,7 @@ angular.module("mdlControllers")
                 });
 
             svcESONlineUI.vencimientos.getAll()
-                .success(function (data) {
+                .success(function (data) {                                      
                     $scope.vencimientos = data;
 
                     loadClientes();
