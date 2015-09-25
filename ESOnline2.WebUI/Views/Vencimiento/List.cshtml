@@ -11,21 +11,39 @@
                 <div class="panel-heading">
                     <div class="col-header-link" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
                         <h4 ng-show="order=='Cliente.Nombre'">
-                            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="reverse"></span>
-                            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="!reverse"></span>
+                            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
+                            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
                         </h4>
                     </div>
                     <div class="panel-body">
                         <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6" ng-repeat="itemCliente in clientes | orderBy:order:reverse">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="list-group-item-heading col-xs-9 col-sm-10 col-md-10">{{itemCliente.Cliente.Nombre}}</h4>
-                                    <div class="list-group-item-heading col-xs-offset-2 col-sm-offset-1 col-md-offset-1">
-                                        <span class="glyphicon glyphicon-phone"></span>
-                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                    <h4 class="list-group-item-heading col-xs-9 col-sm-10 col-md-10">
+                                        <a class="col-header-link-noDeco" href="/Cliente/Edit/{{itemCliente.Cliente.ID}}">{{itemCliente.Cliente.Nombre}}</a>                                        
+                                    </h4>                                    
+                                    <div class="list-group-item-heading col-xs-offset-2 col-sm-offset-1 col-md-offset-1 row">
+                                        <span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Telefonos" ng-click="showTelefonos=!showTelefonos">
+                                            <span class="glyphicon glyphicon-phone"></span>
+                                        </span>                                        
+                                        <span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Direcciones" ng-click="showDirecciones=!showDirecciones">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                        </span>                                        
                                     </div>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-heading" ng-show="showTelefonos" ng-repeat="telefono in itemCliente.Cliente.Telefonos">
+                                    <div>
+                                        <span class="glyphicon glyphicon-phone"></span>
+                                        <span class="list-group-item-text">{{telefono.Tipo}}  - {{telefono.Numero}}</span>
+                                    </div>
+                                </div>
+                                <div class="panel-heading" ng-show="showDirecciones" ng-repeat="direccion in itemCliente.Cliente.Direcciones">
+                                    <div>
+                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                        <span class="list-group-item-text">{{direccion.Tipo}} - {{direccion.Descripcion}}</span>
+                                    </div>
+                                </div>
+                                <div class="panel-body">                                    
                                     <div ng-repeat="itemVencimiento in itemCliente.Cliente.ProductosVencidos | orderBy:order:reverse">
                                         <div>
                                             <p class="list-group-item-text">
@@ -49,8 +67,14 @@
                     <div class="panel-footer">
                         <div class="btn btn-link" ng-click="mostrarVigentes=!mostrarVigentes">
                             <span ng-show="!mostrarVigentes">Mostrar Vigentes</span>
-                            <span ng-show="mostrarVigentes">Ocultar Vigentes</span>
+                            <span ng-show="mostrarVigentes">Ocultar Vigentes</span>                            
                         </div>
+                        <div class="btn btn-link" ng-click="showTelefonos=!showTelefonos">
+                            <span class="glyphicon glyphicon-phone"></span>
+                        </div>
+                        <div class="btn btn-link" ng-click="showDirecciones=!showDirecciones">
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                        </div>                        
                     </div>
                 </div>
             </div>               
@@ -80,7 +104,7 @@
                 </thead>
                 <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse | paginate:rowsPerPage">
                     <td class="list-group-item col-sm-4">
-                        <span>{{itemVencimiento.Cliente.Nombre}}</span>
+                        <span>{{itemVencimiento.Cliente.Nombre}}</span>                        
                     </td>
                     <td class="list-group-item col-sm-4">
                         {{itemVencimiento.Producto.Nombre}} - N. Serie: {{itemVencimiento.NumeroSerie}}

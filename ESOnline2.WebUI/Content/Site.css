@@ -781,3 +781,8 @@ width: 1000px;
 .col-header-link {
    cursor:pointer;
 }
+
+.col-header-link-noDeco {
+   cursor:pointer;
+   text-decoration:none !important;   
+}

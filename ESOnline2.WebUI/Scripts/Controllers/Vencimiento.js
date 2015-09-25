@@ -8,6 +8,9 @@ angular.module("mdlControllers")
         $scope.reverse = 'false';
         $scope.TableView = true;
         $scope.NoVencimientos = false;
+        $scope.showTelefonos = false;
+        $scope.showDirecciones = false;
+
 
         $scope.load = function ()
         {
