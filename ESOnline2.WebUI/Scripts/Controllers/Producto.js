@@ -199,6 +199,24 @@ angular.module('mdlControllers')
                 cliente.ProductosVencidos.splice(index, 1);
             }                        
         };
+
+        $scope.recargarProductoVendido = function (cliente, producto, vencido) {
+            producto.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento + 1);
+            for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {
+                if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0) {                    
+                    cliente.ProductosVendidos[i] = producto;
+                }
+            }
+
+            if (vencido) {
+                var index = cliente.ProductosVencidos.indexOf(producto);
+                if (index != -1) {
+                    cliente.ProductosVencidos.splice(index, 1);
+                }
+
+                cliente.ProductosVigentes.push(producto);
+            }            
+        }
         
         $scope.load();                             
     })

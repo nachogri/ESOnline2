@@ -14,7 +14,7 @@ namespace ESOnline2.Domain.Concrete
                
         public EFClienteRepository()
         {
-                                         
+            
         }
 
         public IEnumerable<Cliente> GetAll()

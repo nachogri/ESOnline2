@@ -1,6 +1,6 @@
 ﻿<div ng-controller="ctlClienteProducto as productoVendidoCtrl">
     <div class="row">
-        <div class="col-sm-6">            
+        <div class="col-sm-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Vigentes</h3>
@@ -9,12 +9,15 @@
                     <div ng-repeat="itemProductoVigente in cliente.ProductosVigentes | orderBy:'Nombre'">
                         <div class="list-group-item">
                             <div class="row">
-                                <h4 class="list-group-item-heading col-sm-4">{{itemProductoVigente.Producto.Nombre}}</h4>
+                                <h4 class="list-group-item-heading col-sm-3">{{itemProductoVigente.Producto.Nombre}}</h4>
                                 <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVigente.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                <div class="list-group-item-text text-success col-sm-5">N. Serie: {{itemProductoVigente.NumeroSerie}}</div>                                                                
+                                <div class="list-group-item-text text-success col-sm-5">Serie: {{itemProductoVigente.NumeroSerie}}</div>
+                                <button class="btn btn-sm btn-success col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="recargarProductoVendido(cliente,itemProductoVigente,false)">
+                                    <span class="glyphicon glyphicon-refresh" ng-disabled="editMode"></span>
+                                </button>
                                 <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVigente)">
                                     <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
-                                </button>                                
+                                </button>
                                 <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVigente)">
                                     <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
                                 </button>
@@ -23,31 +26,34 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Vencidos</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
-                            <div class="list-group-item">
-                                <div class="row">
-                                    <h4 class="list-group-item-heading col-sm-4">{{itemProductoVencido.Producto.Nombre}}</h4>
-                                    <div class="list-group-item-text col-sm-5 text-danger">Vencio: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                    <div class="list-group-item-text col-sm-5 text-danger">N. Serie: {{itemProductoVencido.NumeroSerie}}</div>                                                                                                               
-                                    <button class="col-sm-push-1 btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVencido)">
-                                        <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
-                                    </button>
-                                    <button class="col-sm-push-1 btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVencido)">
-                                        <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
-                                    </button>
-                                </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Vencidos</h3>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
+                        <div class="list-group-item">
+                            <div class="row">
+                                <h4 class="list-group-item-heading col-sm-3">{{itemProductoVencido.Producto.Nombre}}</h4>
+                                <div class="list-group-item-text col-sm-5 text-danger">Vencio: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
+                                <div class="list-group-item-text col-sm-5 text-danger">Serie: {{itemProductoVencido.NumeroSerie}}</div>
+                                <button class="btn btn-sm btn-success col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="recargarProductoVendido(cliente,itemProductoVencido,true)">
+                                    <span class="glyphicon glyphicon-refresh" ng-disabled="editMode"></span>
+                                </button>
+                                <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVencido)">
+                                    <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
+                                </button>
+                                <button class="btn btn-sm btn-default col-sm-pull-1 " type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVencido)">
+                                    <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <hr noshade size=3>
     <div class="form-horizontal">
