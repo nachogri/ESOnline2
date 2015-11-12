@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/16/2015 17:01:53
+-- Date Created: 11/12/2015 18:53:20
 -- Generated from EDMX file: D:\DATA.IDB\Desarrollo\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
@@ -63,6 +63,9 @@ IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ProductosVendidos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ProductosVendidos];
+GO
+IF OBJECT_ID(N'[dbo].[UserProfile]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserProfile];
 GO
 
 -- --------------------------------------------------
@@ -149,6 +152,13 @@ CREATE TABLE [dbo].[ProductosVendidos] (
 );
 GO
 
+-- Creating table 'UserProfile'
+CREATE TABLE [dbo].[UserProfile] (
+    [UserId] int IDENTITY(1,1) NOT NULL,
+    [UserName] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -199,6 +209,12 @@ GO
 ALTER TABLE [dbo].[ProductosVendidos]
 ADD CONSTRAINT [PK_ProductosVendidos]
     PRIMARY KEY CLUSTERED ([ID], [ClienteID] ASC);
+GO
+
+-- Creating primary key on [UserId] in table 'UserProfile'
+ALTER TABLE [dbo].[UserProfile]
+ADD CONSTRAINT [PK_UserProfile]
+    PRIMARY KEY CLUSTERED ([UserId] ASC);
 GO
 
 -- --------------------------------------------------

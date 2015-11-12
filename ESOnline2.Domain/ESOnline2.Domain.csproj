@@ -109,6 +109,7 @@
     <Compile Include="Entities\TipoWeb.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Entities\Web.cs" />
     <Compile Include="ESOnline2Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -133,6 +134,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Telefono.cs">
+      <DependentUpon>ESOnline2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Web.cs">

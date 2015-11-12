@@ -151,6 +151,10 @@ angular.module('mdlControllers')
                     cliente.ProductosVendidos = [];
                 }
 
+                if (cliente.ProductosVigentes == null) {
+                    cliente.ProductosVigentes = [];
+                }
+                 
                 cliente.ProductosVendidos.push(newProductoVendido);
                 cliente.ProductosVigentes.push(newProductoVendido);
             }

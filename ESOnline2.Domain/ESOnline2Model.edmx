@@ -14,6 +14,7 @@
     <EntitySet Name="Webs" EntityType="ESOnlineDBModel.Store.Webs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Productos" EntityType="ESOnlineDBModel.Store.Productos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProductosVendidos" EntityType="ESOnlineDBModel.Store.ProductosVendidos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProfile" EntityType="ESOnlineDBModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Direcciones" EntitySet="Direcciones" />
@@ -124,6 +125,13 @@
     <Property Name="CodigoBarra" Type="varbinary(max)" Nullable="true" />
     <Property Name="Fabricacion" Type="int" Nullable="false" />
     <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
     <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
@@ -374,6 +382,7 @@
             <End Role="Producto" EntitySet="Productos" />
             <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
           </AssociationSet>
+          <EntitySet Name="UserProfile" EntityType="ESOnlineDBModel.UserProfile" />
         </EntityContainer>
         <EntityType Name="Producto">
           <Key>
@@ -428,6 +437,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="UserName" Nullable="false" Type="String" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -519,6 +535,14 @@
           <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
           <ScalarProperty Name="Fabricacion" ColumnName="Fabricacion" />
           <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfile">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.UserProfile)">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

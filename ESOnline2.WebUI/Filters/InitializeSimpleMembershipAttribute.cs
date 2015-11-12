@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using ESOnline2.WebUI.Models;
+using ESOnline2.Domain;
 
 namespace ESOnline2.WebUI.Filters
 {
@@ -25,11 +26,11 @@ namespace ESOnline2.WebUI.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<ESOnlineDBEntities>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new ESOnlineDBEntities())
                     {
                         if (!context.Database.Exists())
                         {
@@ -38,7 +39,7 @@ namespace ESOnline2.WebUI.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("ESOnlineDBEntitiesMembership", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

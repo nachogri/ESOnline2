@@ -10,6 +10,8 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using ESOnline2.WebUI.Filters;
 using ESOnline2.WebUI.Models;
+//using ESOnline2.Domain.Entities;
+using ESOnline2.Domain;
 
 namespace ESOnline2.WebUI.Controllers
 {
@@ -263,14 +265,14 @@ namespace ESOnline2.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
+                using (ESOnlineDBEntities db = new ESOnlineDBEntities())
                 {
-                    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                    UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists
                     if (user == null)
                     {
                         // Insert name into the profile table
-                        db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+                        db.UserProfile.Add(new UserProfile { UserName = model.UserName });
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
