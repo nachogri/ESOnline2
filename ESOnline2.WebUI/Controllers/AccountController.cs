@@ -49,7 +49,6 @@ namespace ESOnline2.WebUI.Controllers
 
         //
         // POST: /Account/LogOff
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

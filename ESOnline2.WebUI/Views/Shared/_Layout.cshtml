@@ -11,21 +11,45 @@
     <div>
         <div class="ESOpage-header">
             <a href="/">
-                <img class="logo" src="~/Images/ESLogo.jpg" />                
+                @*<img class="logo" src="~/Images/ESLogo.jpg" />*@                
             </a>            
         </div>
         <nav class="navbar navbar-default">
-            <div class="ESOpage-header">
-                <section id="login">
-                    @Html.Partial("_LoginPartial")
-                </section>
+            <div class="ESOpage-header">               
                 <div id="navbar" class="navbar">
                     <ul class="nav navbar-nav">
                         <li><a href="/Vencimiento/List">Vencimientos</a></li>
                         <li><a href="/Cliente/List">Clientes</a></li>
-                        <li><a href="/Producto/List">Catalogo de Productos</a></li>
+                        <li><a href="/Producto/List">Catalogo de Productos</a></li>                        
                     </ul>
-                </div>
+
+                    @if (Request.IsAuthenticated)
+                    {                      
+                        <ul class="nav navbar-nav navbar-right navbar-btn">
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a class="btn btn-link" href="javascript:document.getElementById('logoutForm').submit()">
+                                        <span class="glyphicon glyphicon-log-out" title="Log Off"></span>
+                                    </a>
+                                }
+                            </li>
+                        </ul>   
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
+                            </li>                            
+                        </ul>
+                    }
+                    else
+                    {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Account/Login">Log in</a></li>
+                        <li><a href="/Account/Register">Registrarse</a></li>
+                    </ul>
+                    }
+</div>
             </div>
         </nav>
     </div>
