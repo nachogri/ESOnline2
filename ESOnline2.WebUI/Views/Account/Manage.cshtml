@@ -1,28 +1,26 @@
 ﻿@model ESOnline2.WebUI.Models.LocalPasswordModel
-@{
-    ViewBag.Title = "Manage Account";
-}
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
-
-<p class="message-success">@ViewBag.StatusMessage</p>
-
-<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
-
-@if (ViewBag.HasLocalPassword)
-{
-    @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
-
-<section id="externalLogins">
-    @Html.Action("RemoveExternalLogins")
-
-    <h3>Add an external login</h3>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+<div class="col-sm-4"></div>
+<div class="col-sm-5">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="list-group-item-heading">
+                Gestionar cuenta
+            </h2>
+        </div>
+        <div class="panel-body">            
+                <p class="message-success">@ViewBag.StatusMessage</p>
+                <p>Usted está logueado como <strong>@User.Identity.Name</strong>.</p>                
+               
+                @if (ViewBag.HasLocalPassword)
+                {
+                @Html.Partial("_ChangePasswordPartial")
+                }
+                else
+                {
+                @Html.Partial("_SetPasswordPartial")
+                }  
+        </div>
+    </div>   
+</div>
+<div class="col-sm-3"></div>

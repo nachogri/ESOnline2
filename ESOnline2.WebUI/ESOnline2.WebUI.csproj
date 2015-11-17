@@ -272,6 +272,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\ESLogo.jpg" />
+    <Content Include="Scripts\Controllers\Account.js" />
     <Content Include="Scripts\Controllers\Cliente.js" />
     <Content Include="Scripts\Controllers\Direccion.js" />
     <Content Include="Scripts\Controllers\Email.js" />
@@ -325,6 +326,8 @@
     <Content Include="Scripts\lib\angular.min.js.map" />
     <Content Include="Views\ClienteProducto\List.cshtml" />
     <Content Include="Views\Pagination\Controlsm.cshtml" />
+    <Content Include="Views\Account\List.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
     <None Include="Views\Pagination\Control.cshtml" />
     <Content Include="Views\Producto\New.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />

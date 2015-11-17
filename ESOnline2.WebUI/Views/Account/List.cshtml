@@ -1,0 +1,16 @@
+﻿<div ng-controller='ctlAccount as accountCtrl'>
+    <p>
+        <input id="txtBusqueda" type="search" class="form-control center-block" ng-model="nombreBusqueda" ng-keypress="searchByName($event,nombreBusqueda)" placeholder="Buscar por nombre del usuario.." />
+    </p>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="list-group-item-heading">
+                Usuarios
+            </h2>
+        </div>
+        <div class="list-group" ng-repeat="user in Users | orderBy:'UserName' | paginate:rowsPerPage">
+            <a class="list-group-item" href="/Account/Edit/{{user.UserId}}">{{user.UserName}}</a>
+        </div>
+        <pagination-control></pagination-control>
+    </div>
+</div>

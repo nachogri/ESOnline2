@@ -81,6 +81,18 @@
                 getAllProductosVendidos: function () {
                     return $http.get('/Vencimiento/GetAllProductosVendidos');
                 }
+            },
+
+            accounts: {
+                getAll: function () {
+                    return $http.get('/Account/GetAllUsers');
+                },
+                getByNombre: function (id) {
+                    return $http.get('/Account/GetAllGetAllUsersByName/' + id);
+                },
+                get: function (id) {
+                    return $http.get('/Account/GetUser/' + id);
+                }
             }
 	    };
 	});

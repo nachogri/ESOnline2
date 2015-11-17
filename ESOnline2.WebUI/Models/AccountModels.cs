@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
-using System.Web.Security;
+//using System.Web.Security;
 
 
 namespace ESOnline2.WebUI.Models
@@ -12,8 +12,8 @@ namespace ESOnline2.WebUI.Models
  
     public class RegisterExternalLoginModel
     {
-        [Required]
-        [Display(Name = "User name")]
+        [Required(ErrorMessage="El {0} es requerido")]
+        [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
         public string ExternalLoginData { get; set; }
@@ -21,53 +21,53 @@ namespace ESOnline2.WebUI.Models
 
     public class LocalPasswordModel
     {
-        [Required]
+        [Required(ErrorMessage = "El {0} es requerido")]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Password actual")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "El {0} es requerido")]
+        [StringLength(100, ErrorMessage = "El {0} tiene que tener al menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nuevo password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Confirmar nuevo password")]
+        [Compare("NewPassword", ErrorMessage = "El nuevo password y la confirmación no concuerdan.")]
         public string ConfirmPassword { get; set; }
     }
 
     public class LoginModel
     {
-        [Required]
-        [Display(Name = "User name")]
+        [Required(ErrorMessage = "El {0} es requerido")]
+        [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El {0} es requerido")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Recordarme?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterModel
     {
-        [Required]
-        [Display(Name = "User name")]
+        [Required(ErrorMessage = "El {0} es requerido")]
+        [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "El {0} es requerido")]
+        [StringLength(100, ErrorMessage = "El {0} tiene que tener al menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar password")]
+        [Compare("Password", ErrorMessage = "El nuevo password y la confirmación no concuerdan.")]
         public string ConfirmPassword { get; set; }
     }
 

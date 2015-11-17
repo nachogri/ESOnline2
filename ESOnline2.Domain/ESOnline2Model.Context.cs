@@ -34,5 +34,9 @@ namespace ESOnline2.Domain
         public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<ProductoVendido> ProductosVendidos { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
+        public virtual DbSet<webpages_Membership> webpages_Membership { get; set; }
+        public virtual DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
+        public virtual DbSet<webpages_Roles> webpages_Roles { get; set; }
+        public virtual DbSet<webpages_UsersInRoles> webpages_UsersInRoles { get; set; }
     }
 }

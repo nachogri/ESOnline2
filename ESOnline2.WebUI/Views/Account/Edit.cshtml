@@ -1,0 +1,36 @@
+﻿<form name="frmNew" ng-controller='ctlAccount as accountCtrl' novalidate>
+    <div class="form-inline">
+        <div class="well">
+            <div class="alert alert-danger" ng-show="errors.formErrors">
+                <span ng-repeat="error in errors.formErrors"><strong>o</strong> {{error}}<br /></span>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            Nombre:
+                        </td>
+                        <td>
+                            <input type="text" ng-model="User.UserName" class="form-control input-lg" placeholder="Ingrese el nombre" />
+                        </td>
+                    </tr>                   
+                    <tr>
+                        <td>
+                            Rol:
+                        </td>
+                        <td>
+                            <button class="btn btn-lg btn-default" ng-click="">Administrador</button>
+                            <button class="btn btn-lg btn-default" ng-click="">Empleado</button>
+                            <button class="btn btn-lg btn-default" ng-click="">Visitante</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <a class="btn btn-lg btn-default" href="/Account/List">Volver</a>
+            <button class="btn btn-lg btn-primary" ng-click="update()">Guardar</button>
+            <button class="btn btn-lg btn-default" ng-click="delete()">Eliminar</button>
+        </div>
+    </div>
+</form>

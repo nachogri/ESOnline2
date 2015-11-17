@@ -20,12 +20,12 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/Vencimiento/List">Vencimientos</a></li>
                         <li><a href="/Cliente/List">Clientes</a></li>
-                        <li><a href="/Producto/List">Catalogo de Productos</a></li>                        
+                        <li><a href="/Producto/List">Catalogo de Productos</a></li>                                                                      
                     </ul>
 
                     @if (Request.IsAuthenticated)
-                    {                      
-                        <ul class="nav navbar-nav navbar-right navbar-btn">
+                    {                            
+                        <ul class="nav navbar-nav navbar-right navbar-btn">                            
                             <li>
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
@@ -37,6 +37,7 @@
                             </li>
                         </ul>   
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/Account/List">Usuarios</a></li> 
                             <li>
                                 @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
                             </li>                            

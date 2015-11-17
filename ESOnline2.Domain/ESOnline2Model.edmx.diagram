@@ -21,6 +21,11 @@
         <AssociationConnector Association="ESOnlineDBModel.ProductoVendidoCliente" />
         <AssociationConnector Association="ESOnlineDBModel.ProductoProductoVendido" />
         <EntityTypeShape EntityType="ESOnlineDBModel.UserProfile" PointX="6.5" PointY="10.125" Width="1.5" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.webpages_Membership" Width="1.5" PointX="7.125" PointY="12.125" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.webpages_OAuthMembership" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.webpages_Roles" Width="1.5" PointX="8.75" PointY="12.125" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.webpages_UsersInRoles" Width="1.5" PointX="9.875" PointY="9.75" />
+        <AssociationConnector Association="ESOnlineDBModel.fk_RoleId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -142,6 +142,18 @@
     <Compile Include="Web.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="webpages_Membership.cs">
+      <DependentUpon>ESOnline2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_OAuthMembership.cs">
+      <DependentUpon>ESOnline2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Roles.cs">
+      <DependentUpon>ESOnline2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_UsersInRoles.cs">
+      <DependentUpon>ESOnline2Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

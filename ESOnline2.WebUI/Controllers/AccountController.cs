@@ -10,7 +10,6 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using ESOnline2.WebUI.Filters;
 using ESOnline2.WebUI.Models;
-//using ESOnline2.Domain.Entities;
 using ESOnline2.Domain;
 
 namespace ESOnline2.WebUI.Controllers
@@ -39,12 +38,62 @@ namespace ESOnline2.WebUI.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                InitalizeRoles();                
+                
                 return RedirectToLocal(returnUrl);
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "El nombre de usuario o password es inválido");
             return View(model);
+        }
+
+        private static void InitalizeRoles()
+        {
+            if (!Roles.RoleExists("Administrator"))
+                Roles.CreateRole("Administrator");
+            if (!Roles.RoleExists("Guest"))
+                Roles.CreateRole("Guest");
+            if (!Roles.RoleExists("VencimientosUser"))
+                Roles.CreateRole("VencimientosUser");
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet]
+        public ActionResult List()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            return View(id);
+        }
+
+        [HttpGet]
+        public JsonResult GetUser(int id)
+        {
+            ESOnlineDBEntities context = new ESOnlineDBEntities();
+            UserProfile user = context.UserProfile.Find(id);
+
+            JsonResult jsonResult = Json(user, JsonRequestBehavior.AllowGet);
+
+            return jsonResult;
+        }
+
+        [HttpGet]
+        public JsonResult GetAllUsers()
+        {
+            ESOnlineDBEntities context = new ESOnlineDBEntities();
+            return Json(context.UserProfile.AsEnumerable(), JsonRequestBehavior.AllowGet);
+        }
+        
+        [HttpGet]
+        public JsonResult GetAllUsersByName(string id)
+        {
+            ESOnlineDBEntities context = new ESOnlineDBEntities();
+            return Json(context.UserProfile.AsEnumerable().Where(u => u.UserName.ToLower().Contains(id.ToLower())), JsonRequestBehavior.AllowGet);            
         }
 
         //
@@ -129,8 +178,8 @@ namespace ESOnline2.WebUI.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                message == ManageMessageId.ChangePasswordSuccess ? "El password fue cambiado"
+                : message == ManageMessageId.SetPasswordSuccess ? "El password fue definido"
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
@@ -169,7 +218,7 @@ namespace ESOnline2.WebUI.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", "El password actual o nuevo password son inválidos");
                     }
                 }
             }
@@ -281,7 +330,7 @@ namespace ESOnline2.WebUI.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", "El nombre de password ya existe. Por favor ingrese un nuevo nombre usuario.");
                     }
                 }
             }
