@@ -7,6 +7,9 @@ angular.module('mdlControllers')
         $scope.Users = [];
         $scope.nombreBusqueda = "";
         $scope.ErrorList = "";
+        $scope.RoleAdmin = true;
+        $scope.RoleEmpleado = false;
+        $scope.RoleVisitante = false;
 
         $scope.load = function () {
             switch (svcUtils.getAction()) {
@@ -57,6 +60,31 @@ angular.module('mdlControllers')
                 }
             }
         };
+
+        $scope.changeRole = function (data) {
+            switch (data) {
+                case "Administrador":
+                    $scope.RoleAdmin = true;
+                    $scope.RoleEmpleado = false;
+                    $scope.RoleVisitante = false;
+                    break;
+                case "Empleado":
+                    $scope.RoleAdmin = false;
+                    $scope.RoleEmpleado = true;
+                    $scope.RoleVisitante = false;
+                    break;
+                case "Visitante":
+                    $scope.RoleAdmin = false;
+                    $scope.RoleEmpleado = false;
+                    $scope.RoleVisitante = true;
+                    break;
+                default:
+                    $scope.RoleAdmin = false;
+                    $scope.RoleEmpleado = false;
+                    $scope.RoleVisitante = false;
+                    break;
+            }            
+        }
         
         $scope.load();
     })

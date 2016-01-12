@@ -65,6 +65,21 @@ namespace ESOnline2.WebUI.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Edit(UserProfile user )
+        {
+            if (ModelState.IsValid)
+            {                
+                
+                //if (!userRepo.Update(cliente))
+
+                //return Json(new { Status = "Not found" }, JsonRequestBehavior.AllowGet);
+                //else
+                return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
