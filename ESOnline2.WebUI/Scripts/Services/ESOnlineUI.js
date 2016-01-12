@@ -86,12 +86,18 @@
             accounts: {
                 getAll: function () {
                     return $http.get('/Account/GetAllUsers');
-                },
+                },                
                 getByNombre: function (id) {
                     return $http.get('/Account/GetAllGetAllUsersByName/' + id);
                 },
                 get: function (id) {
                     return $http.get('/Account/GetUser/' + id);
+                },
+                getRolesByUser: function (id) {
+                    return $http.get('/Account/GetRolesByUser/' + id);
+	            },
+                update: function (data) {
+                    return $http.post('/Account/Edit', data);
                 }
             }
 	    };

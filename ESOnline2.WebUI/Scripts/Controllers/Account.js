@@ -7,6 +7,7 @@ angular.module('mdlControllers')
         $scope.Users = [];
         $scope.nombreBusqueda = "";
         $scope.ErrorList = "";
+        $scope.SelectedRole = "";
         $scope.RoleAdmin = true;
         $scope.RoleEmpleado = false;
         $scope.RoleVisitante = false;
@@ -26,11 +27,22 @@ angular.module('mdlControllers')
         $scope.getUser = function () {
             svcESONlineUI.accounts.get(svcUtils.getObjectId())
                 .success(function (data) {
-                    $scope.User = data;                   
+                    $scope.User = data;
+                    
+                    svcESONlineUI.accounts.getRolesByUser(data.UserName)
+                       .success(function (roleData) {
+                           if (roleData.length > 0) {
+                               $scope.changeRole(roleData[0]);
+                           }
+                       })
+                       .error(function (err) {
+                           svcNotifications.alert(err.Message || err.message);
+                       });
                 })
                 .error(function (err) {
                     svcNotifications.alert(err.Message || err.message);
                 });
+                      
         };
 
         $scope.getAllUsers = function () {            
@@ -61,29 +73,42 @@ angular.module('mdlControllers')
             }
         };
 
-        $scope.changeRole = function (data) {
-            switch (data) {
-                case "Administrador":
+        $scope.changeRole = function (data) {            
+            switch (data) {                
+                case "Administrator":
                     $scope.RoleAdmin = true;
                     $scope.RoleEmpleado = false;
-                    $scope.RoleVisitante = false;
+                    $scope.RoleVisitante = false;                    
                     break;
-                case "Empleado":
+                case "VencimientosUser":
                     $scope.RoleAdmin = false;
                     $scope.RoleEmpleado = true;
-                    $scope.RoleVisitante = false;
+                    $scope.RoleVisitante = false;                    
                     break;
-                case "Visitante":
+                case "Guest":
                     $scope.RoleAdmin = false;
                     $scope.RoleEmpleado = false;
-                    $scope.RoleVisitante = true;
+                    $scope.RoleVisitante = true;                    
                     break;
                 default:
                     $scope.RoleAdmin = false;
                     $scope.RoleEmpleado = false;
                     $scope.RoleVisitante = false;
                     break;
-            }            
+            }
+            $scope.SelectedRole = data;
+        }
+
+        $scope.saveUser = function () {            
+            svcESONlineUI.accounts.update({
+                user: $scope.User,
+                role: $scope.SelectedRole
+            })
+            .success(function () {
+                svcBrowser.setNewLocation("/Account/List/");
+            }).error(function (data, status, headers, config) {
+                svcUtils.handleErrors(data, $scope);
+            });
         }
         
         $scope.load();

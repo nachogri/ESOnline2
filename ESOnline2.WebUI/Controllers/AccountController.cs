@@ -66,18 +66,25 @@ namespace ESOnline2.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(UserProfile user )
+        public ActionResult Edit(UserProfile user, string role)
         {
             if (ModelState.IsValid)
-            {                
-                
-                //if (!userRepo.Update(cliente))
+            {
+                ESOnlineDBEntities context = new ESOnlineDBEntities();
+                UserProfile preExisting=context.UserProfile.Find(user.UserId);
+                preExisting.UserName=user.UserName;
+                context.SaveChanges();
 
-                //return Json(new { Status = "Not found" }, JsonRequestBehavior.AllowGet);
-                //else
+                foreach (string oldRole in Roles.GetRolesForUser(user.UserName))
+                {
+                    Roles.RemoveUserFromRole(user.UserName, oldRole);                    
+                }
+
+                Roles.AddUserToRole(user.UserName, role);
+                                               
                 return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = "Error" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -93,6 +100,14 @@ namespace ESOnline2.WebUI.Controllers
             UserProfile user = context.UserProfile.Find(id);
 
             JsonResult jsonResult = Json(user, JsonRequestBehavior.AllowGet);
+
+            return jsonResult;
+        }
+
+        [HttpGet]
+        public JsonResult GetRolesByUser(string id)
+        {            
+            JsonResult jsonResult = Json(Roles.GetRolesForUser(id), JsonRequestBehavior.AllowGet);
 
             return jsonResult;
         }

@@ -11,15 +11,15 @@
                 </p>
                 <p>
                     Rol:
-                    <button class="btn btn-md btn-default" ng-class="{'btn-success':RoleAdmin, 'btn-default':!RoleAdmin}" ng-click="changeRole('Administrador')">Administrador</button>
-                    <button class="btn btn-md btn-default" ng-class="{'btn-success':RoleEmpleado, 'btn-default':!RoleEmpleado}" ng-click="changeRole('Empleado')">Empleado</button>
-                    <button class="btn btn-md btn-default" ng-class="{'btn-success':RoleVisitante, 'btn-default':!RoleVisitante}" ng-click="changeRole('Visitante')">Visitante</button>
+                    <button class="btn btn-md btn-default" ng-class="{'btn-success':RoleAdmin, 'btn-default':!RoleAdmin}" ng-click="changeRole('Administrator')">Administrador</button>
+                    <button class="btn btn-md btn-default" ng-class="{'btn-success':RoleEmpleado, 'btn-default':!RoleEmpleado}" ng-click="changeRole('VencimientosUser')">Empleado</button>
+                    <button class="btn btn-md btn-default" ng-class="{'btn-success':RoleVisitante, 'btn-default':!RoleVisitante}" ng-click="changeRole('Guest')">Visitante</button>
                 </p>
             </div>
         </div>
         <div>
             <a class="btn btn-lg btn-default" href="/Account/List">Volver</a>
-            <button class="btn btn-lg btn-primary" ng-click="update()">Guardar</button>
+            <button class="btn btn-lg btn-primary" ng-click="saveUser()">Guardar</button>
             <button class="btn btn-lg btn-default" ng-click="delete()">Eliminar</button>
         </div>
     </div>
