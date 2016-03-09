@@ -139,7 +139,7 @@ namespace ESOnline2.WebUI.Controllers
 
         //
         // GET: /Account/Register
-
+        
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -149,7 +149,7 @@ namespace ESOnline2.WebUI.Controllers
         //
         // POST: /Account/Register
 
-        [HttpPost]
+        [HttpPost]        
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)

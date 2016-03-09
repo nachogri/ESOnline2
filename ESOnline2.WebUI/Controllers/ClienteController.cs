@@ -11,6 +11,7 @@ using Newtonsoft.Json.Converters;
 
 namespace ESOnline2.WebUI.Controllers
 {
+
     public class ClienteController : Controller
     {
         static readonly IClienteRepository clienteRepo = new EFClienteRepository();
@@ -20,6 +21,7 @@ namespace ESOnline2.WebUI.Controllers
 
         }
 
+        
         [HttpGet]
         public ActionResult List()
         {
