@@ -52,8 +52,8 @@ namespace ESOnline2.WebUI.Controllers
         {
             if (!Roles.RoleExists("Administrator"))
                 Roles.CreateRole("Administrator");
-            if (!Roles.RoleExists("Guest"))
-                Roles.CreateRole("Guest");
+            //if (!Roles.RoleExists("Guest"))
+            //    Roles.CreateRole("Guest");
             if (!Roles.RoleExists("VencimientosUser"))
                 Roles.CreateRole("VencimientosUser");
         }
@@ -91,6 +91,17 @@ namespace ESOnline2.WebUI.Controllers
         public ActionResult Edit(int id)
         {
             return View(id);
+        }
+
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {                        
+            ESOnlineDBEntities context = new ESOnlineDBEntities();
+            UserProfile user = context.UserProfile.Find(id);                  
+            context.UserProfile.Remove(user);
+            context.SaveChanges();
+            return Json(new { Status = "Successful" }, JsonRequestBehavior.AllowGet);                        
         }
 
         [HttpGet]

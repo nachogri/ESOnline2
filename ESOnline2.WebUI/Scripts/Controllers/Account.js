@@ -85,11 +85,11 @@ angular.module('mdlControllers')
                     $scope.RoleEmpleado = true;
                     $scope.RoleVisitante = false;                    
                     break;
-                case "Guest":
-                    $scope.RoleAdmin = false;
-                    $scope.RoleEmpleado = false;
-                    $scope.RoleVisitante = true;                    
-                    break;
+                //case "Guest":
+                //    $scope.RoleAdmin = false;
+                //    $scope.RoleEmpleado = false;
+                //    $scope.RoleVisitante = true;                    
+                //    break;
                 default:
                     $scope.RoleAdmin = false;
                     $scope.RoleEmpleado = false;
@@ -104,6 +104,19 @@ angular.module('mdlControllers')
                 user: $scope.User,
                 role: $scope.SelectedRole
             })
+            .success(function () {
+                svcBrowser.setNewLocation("/Account/List/");
+            }).error(function (data, status, headers, config) {
+                svcUtils.handleErrors(data, $scope);
+            });
+        }
+
+        $scope.delete = function () {
+            svcNotifications.deleteConfirm('Seguro que quiere eliminar este usuario?', 'Eliminar ' + $scope.User.UserName, svcESONlineUI, deleteUsuario);
+        };
+
+        function deleteUsuario() {            
+            svcESONlineUI.accounts.delete(svcUtils.getObjectId())
             .success(function () {
                 svcBrowser.setNewLocation("/Account/List/");
             }).error(function (data, status, headers, config) {

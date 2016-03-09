@@ -20,9 +20,13 @@
                     @if (Request.IsAuthenticated)
                     {
                         <ul class="nav navbar-nav">
-                            <li><a href="/Vencimiento/List">Vencimientos</a></li>
+                            <li><a href="/Vencimiento/List">Vencimientos</a></li>                                                            
                             <li><a href="/Cliente/List">Clientes</a></li>
                             <li><a href="/Producto/List">Catalogo de Productos</a></li>
+                            @if (Roles.IsUserInRole("Administrator"))
+                            {
+                                   <li><a href="/Account/List">Usuarios</a></li>
+                            }
                         </ul>
                         <ul class="nav navbar-nav navbar-right navbar-btn">                            
                             <li>
@@ -31,15 +35,18 @@
                                     @Html.AntiForgeryToken()
                                     <a class="btn btn-link" href="javascript:document.getElementById('logoutForm').submit()">
                                         <span class="glyphicon glyphicon-log-out" title="Log Off"></span>
+                                        Salir
                                     </a>
                                 }
                             </li>
-                        </ul>   
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/Account/List">Usuarios</a></li> 
-                            <li>
+                        </ul>                           
+                        <ul class="nav navbar-nav navbar-right">                                                        
+                            <li>                                                                
                                 @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
                             </li>                            
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right nav-divider">
+                            <li></li>                            
                         </ul>
                     }
                     else

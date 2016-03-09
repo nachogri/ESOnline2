@@ -98,6 +98,9 @@
 	            },
                 update: function (data) {
                     return $http.post('/Account/Edit', data);
+                },
+                delete: function (id) {
+                    return $http.delete('/Account/Delete/'+ id);
                 }
             }
 	    };
