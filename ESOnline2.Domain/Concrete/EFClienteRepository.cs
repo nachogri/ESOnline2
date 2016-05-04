@@ -10,21 +10,33 @@ namespace ESOnline2.Domain.Concrete
 {
     public class EFClienteRepository: IClienteRepository
     {
-        private ESOnlineDBEntities context = new ESOnlineDBEntities();
+        private ESOnlineDBEntities context;
                
-        public EFClienteRepository()
+        public EFClienteRepository(ESOnlineDBEntities context)
         {
-            
+            this.context = context;
         }
 
         public IEnumerable<Cliente> GetAll()
         {
             //This is done to pull any possible changes done in other repositories
-            context.Dispose();
-            context = new ESOnlineDBEntities();            
+            //context.Dispose();
+            //context = new ESOnlineDBEntities();            
             context.ProductosVendidos.Include("Producto").ToList();
 
             IEnumerable<Cliente> clientes=context.Clientes.AsEnumerable();
+            
+            return context.Clientes.AsEnumerable();
+        }
+
+        public IEnumerable<Cliente> GetAllWithVencimientos()
+        {
+            //This is done to pull any possible changes done in other repositories
+            //context.Dispose();
+            //context = new ESOnlineDBEntities();            
+            context.ProductosVendidos.Include("Producto").ToList();
+
+            IEnumerable<Cliente> clientes = context.Clientes.AsEnumerable();
 
             foreach (Cliente cli in clientes)
             {
@@ -59,7 +71,6 @@ namespace ESOnline2.Domain.Concrete
                 throw new ArgumentNullException("Cliente");
             }
           
-
             context.Clientes.Add(cliente);
             context.SaveChanges();            
 
@@ -67,8 +78,7 @@ namespace ESOnline2.Domain.Concrete
         }
 
         public void Remove(int id)
-        {
-           
+        {           
             Cliente cliente = context.Clientes.Find(id);
             context.Clientes.Remove(cliente);
 
@@ -97,10 +107,9 @@ namespace ESOnline2.Domain.Concrete
                 dbentry.Emails = cliente.Emails;
                 dbentry.Telefonos = cliente.Telefonos;
                 dbentry.Webs = cliente.Webs;
-                
+
                 dbentry.ProductosVendidos = cliente.ProductosVendidos;
             }
-
 
             context.SaveChanges();            
             return true;
@@ -108,12 +117,9 @@ namespace ESOnline2.Domain.Concrete
 
 
         private static void CalculateVencimientos(Cliente cli)
-        {
-            if (cli.ProductosVigentes == null)
-                cli.ProductosVigentes = new HashSet<ProductoVendido>();
-
-            if (cli.ProductosVencidos == null)
-                cli.ProductosVencidos = new HashSet<ProductoVendido>();
+        {        
+            cli.ProductosVigentes = new HashSet<ProductoVendido>();        
+            cli.ProductosVencidos = new HashSet<ProductoVendido>();
 
             foreach (ProductoVendido prod in cli.ProductosVendidos)
             {

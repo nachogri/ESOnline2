@@ -36,10 +36,10 @@ namespace ESOnline2.WebUI.Filters
                         {
                             // Create the SimpleMembership database without Entity Framework migration schema
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
+                            
+                            WebSecurity.InitializeDatabaseConnection("ESOnlineDBEntitiesMembership", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                         }
-                    }
-
-                    WebSecurity.InitializeDatabaseConnection("ESOnlineDBEntitiesMembership", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    }                    
                 }
                 catch (Exception ex)
                 {

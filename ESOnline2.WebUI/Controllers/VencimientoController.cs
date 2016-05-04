@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ESOnline2.Domain.Abstract;
 using ESOnline2.Domain.Concrete;
 using ESOnline2.Domain;
+using ESOnline2.WebUI.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -13,7 +14,13 @@ namespace ESOnline2.WebUI.Controllers
 {
     public class VencimientoController : Controller
     {
-        static readonly IProductoVendidoRepository productosVendidosRepo = new EFProductoVendidoRepository();        
+        private IProductoVendidoRepository productosVendidosRepo;
+
+        public VencimientoController(IProductoVendidoRepository productosVendidosRepo)
+        {
+            this.productosVendidosRepo = productosVendidosRepo;
+        }
+
 
         [HttpGet]
         public ActionResult List()

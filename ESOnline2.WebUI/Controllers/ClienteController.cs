@@ -8,19 +8,19 @@ using ESOnline2.Domain.Concrete;
 using ESOnline2.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using ESOnline2.WebUI.Data;
 
 namespace ESOnline2.WebUI.Controllers
 {
 
     public class ClienteController : Controller
     {
-        static readonly IClienteRepository clienteRepo = new EFClienteRepository();
+        private IClienteRepository clienteRepo;
 
-        public ClienteController()
-        {
-
-        }
-
+        public ClienteController(IClienteRepository clienteRepo)
+        {            
+            this.clienteRepo = clienteRepo;
+        }        
         
         [HttpGet]
         public ActionResult List()
@@ -65,7 +65,7 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetClientesWithVencimientos()
         {
-            List<Cliente>clientes=(List<Cliente>)clienteRepo.GetAll().ToList();
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos().ToList();
           
             var filtered = clientes
                             .Where(c => c.ProductosVencidos.Count>=1)

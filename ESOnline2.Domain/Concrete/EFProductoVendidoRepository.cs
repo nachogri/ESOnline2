@@ -9,11 +9,18 @@ namespace ESOnline2.Domain.Concrete
 {
     public class EFProductoVendidoRepository:IProductoVendidoRepository
     {
-        private ESOnlineDBEntities context = new ESOnlineDBEntities();
+        private ESOnlineDBEntities context;
+
+        public EFProductoVendidoRepository(ESOnlineDBEntities pContext)
+        {
+            context = pContext;
+        }
+
+
         public IEnumerable<ProductoVendido> GetAll()
         {
-            context.Dispose();
-            context = new ESOnlineDBEntities();
+            //context.Dispose();
+            //context = new ESOnlineDBEntities();
             
             context.ProductosVendidos.Include("Producto").ToList();            
 
@@ -22,8 +29,8 @@ namespace ESOnline2.Domain.Concrete
 
         public IEnumerable<ProductoVendido> GetProductosVencidos()
         {
-            context.Dispose();
-            context = new ESOnlineDBEntities();
+            //context.Dispose();
+            //context = new ESOnlineDBEntities();
 
             context.ProductosVendidos.Include("Producto").ToList();            
 

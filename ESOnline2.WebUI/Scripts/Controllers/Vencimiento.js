@@ -71,5 +71,10 @@ angular.module("mdlControllers")
               });                       
         }
        
-        $scope.load();       
+        $scope.findDireccionInMap = function (direccion) {
+            svcUtils.findDireccionInMap(direccion);
+        }
+
+        $scope.load();
+
     });

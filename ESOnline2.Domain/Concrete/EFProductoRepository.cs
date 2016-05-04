@@ -9,15 +9,15 @@ namespace ESOnline2.Domain.Concrete
 {
     public class EFProductoRepository:IProductoRepository
     {
-        private ESOnlineDBEntities context = new ESOnlineDBEntities();
+        private ESOnlineDBEntities context;        
 
-        public EFProductoRepository() { 
-        
+        public EFProductoRepository(ESOnlineDBEntities pContext)
+        {
+            context = pContext;
         }
 
         public IEnumerable<Producto> GetAll()
-        {
-            
+        {            
             return context.Productos.AsEnumerable();
         }
 
@@ -45,8 +45,8 @@ namespace ESOnline2.Domain.Concrete
             context.Productos.Remove(producto);                        
             context.SaveChanges();
 
-            context.Dispose();
-            context = new ESOnlineDBEntities();
+            //context.Dispose();
+            //context = new ESOnlineDBEntities();
         }
 
         public bool Update(Producto producto)

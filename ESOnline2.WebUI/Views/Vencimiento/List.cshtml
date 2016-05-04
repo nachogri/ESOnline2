@@ -40,7 +40,10 @@
                                 <div class="panel-heading" ng-show="showDirecciones" ng-repeat="direccion in itemCliente.Cliente.Direcciones">
                                     <div>
                                         <span class="glyphicon glyphicon-map-marker"></span>
-                                        <span class="list-group-item-text">{{direccion.Tipo}} - {{direccion.Descripcion}}</span>
+                                        <span class="list-group-item-text">{{direccion.Tipo}} - {{direccion.Descripcion}}</span>                                       
+                                        <span class="col-header-link-noDeco col-sm-pull-4">
+                                            <span ng-click="findDireccionInMap(direccion.Descripcion)" class="glyphicon glyphicon-search" ng-disabled="editMode"></span>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="panel-body">                                    

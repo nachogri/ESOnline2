@@ -7,7 +7,7 @@ var Guid = function () {
 };
 
 angular.module('mdlESOnlineApp')
-	.service('svcUtils', function ($window) {	    
+	.service('svcUtils', function ($window, svcBrowser) {
 	    return {
 
             /*Navigation*/
@@ -110,25 +110,11 @@ angular.module('mdlESOnlineApp')
 	                $scope.errors.pageError = "An unexpected error has occurred, please try again later.";
 	                svcNotifications.alert('Error', $scope.errors.pageError);
 	            }
-	        }
+	        },
             
-	    /*Clientes*/
-	    //calculateVencimientos: function (cliente) {
-	    //    var today = new Date();
-	    //    today = today.setDate(today.getDate() + 365);
-	    //    var vencimiento = new Date();
-	    //    cliente.ProductosVigentes = [];
-	    //    cliente.ProductosVencidos = [];
-
-	    //    for (var i = 0; i < cliente.ProductosVendidos.length; i++) {
-	    //        vencimiento = cliente.ProductosVendidos[i].FechaVencimiento;
-	    //        if (vencimiento < today) {
-	    //            cliente.ProductosVencidos.push(cliente.ProductosVendidos[i]);
-	    //        }
-	    //        else {
-	    //            cliente.ProductosVigentes.push(cliente.ProductosVendidos[i]);
-	    //        }
-	    //    }
-	    //}	        
+	        /*Misc*/
+            findDireccionInMap : function (direccion) {
+	            svcBrowser.openNewTab('https://www.google.com/maps/place/' + direccion);
+	        }
 	    };	    	    
 	});

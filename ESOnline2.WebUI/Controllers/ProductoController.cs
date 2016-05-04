@@ -6,16 +6,17 @@ using System.Web.Mvc;
 using ESOnline2.Domain.Abstract;
 using ESOnline2.Domain.Concrete;
 using ESOnline2.Domain;
+using ESOnline2.WebUI.Data;
 
 namespace ESOnline2.WebUI.Controllers
 {
     public class ProductoController : Controller
     {
-        static readonly IProductoRepository productoRepo = new EFProductoRepository();
+        private IProductoRepository productoRepo ;
 
-        public ProductoController()
+        public ProductoController(IProductoRepository productoRepo)
         {
-
+            this.productoRepo = productoRepo;
         }
 
         [HttpGet]

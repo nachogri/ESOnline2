@@ -27,7 +27,7 @@ angular.module('mdlControllers')
 
         };
 
-        $scope.getAllProductos = function () {
+        $scope.getAllProductos = function () {            
             svcESONlineUI.productos.getAll()
                 .success(function (data) {
                     $scope.productos = data;

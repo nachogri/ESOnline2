@@ -4,280 +4,280 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ESOnlineDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Clientes">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Apellido" Type="nvarchar" MaxLength="4000" />
-          <Property Name="CUIL" Type="nvarchar" MaxLength="13" />
-          <Property Name="CUIT" Type="nvarchar" MaxLength="13" />
-          <Property Name="Notas" Type="nvarchar" MaxLength="4000" />
-          <Property Name="Imagen" Type="varbinary" MaxLength="4000" />
-          <Property Name="Favorito" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Direcciones">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Cliente_ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Cliente_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Emails">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Cliente_ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Casilla" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Cliente_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Vencimiento" Type="int" />
-          <Property Name="Imagen" Type="varbinary" MaxLength="4000" />
-        </EntityType>
-        <EntityType Name="ProductosVendidos">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="ClienteID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FechaVenta" Type="datetime" Nullable="false" />
-          <Property Name="ClienteID" Type="int" Nullable="false" />
-          <Property Name="ProductoID" Type="int" Nullable="false" />
-          <Property Name="NumeroSerie" Type="nvarchar(max)" />
-          <Property Name="CodigoBarra" Type="varbinary(max)" />
-          <Property Name="Fabricacion" Type="int" Nullable="false" />
-          <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Telefonos">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Cliente_ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Numero" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Cliente_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="webpages_Membership">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" />
-          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
-          <Property Name="IsConfirmed" Type="bit" />
-          <Property Name="LastPasswordFailureDate" Type="datetime" />
-          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="PasswordChangedDate" Type="datetime" />
-          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
-          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="webpages_OAuthMembership">
-          <Key>
-            <PropertyRef Name="Provider" />
-            <PropertyRef Name="ProviderUserId" />
-          </Key>
-          <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="webpages_Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="webpages_UsersInRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="RoleId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Webs">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Cliente_ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="URL" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Cliente_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Direcciones">
-              <PropertyRef Name="Cliente_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Emails">
-              <PropertyRef Name="Cliente_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Telefonos">
-              <PropertyRef Name="Cliente_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Webs" Type="Self.Webs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Webs">
-              <PropertyRef Name="Cliente_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductoProductoVendido">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ProductosVendidos" Type="Self.ProductosVendidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductosVendidos">
-              <PropertyRef Name="ProductoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductoVendidoCliente">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ProductosVendidos" Type="Self.ProductosVendidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductosVendidos">
-              <PropertyRef Name="ClienteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_RoleId">
-          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
-          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="webpages_Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="webpages_UsersInRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ESOnlineDBModelStoreContainer">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Emails" EntityType="Self.Emails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductosVendidos" EntityType="Self.ProductosVendidos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Webs" EntityType="Self.Webs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Direcciones" EntitySet="Direcciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Emails_dbo_Clientes_Cliente_ID">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Emails" EntitySet="Emails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Telefonos" EntitySet="Telefonos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID" Association="Self.FK_dbo_Webs_dbo_Clientes_Cliente_ID">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Webs" EntitySet="Webs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductoProductoVendido" Association="Self.FK_ProductoProductoVendido">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="ProductosVendidos" EntitySet="ProductosVendidos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductoVendidoCliente" Association="Self.FK_ProductoVendidoCliente">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="ProductosVendidos" EntitySet="ProductosVendidos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
-            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
-            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="ESOnlineDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ESOnlineDBModelStoreContainer">
+    <EntitySet Name="C__MigrationHistory" EntityType="ESOnlineDBModel.Store.C__MigrationHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clientes" EntityType="ESOnlineDBModel.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Direcciones" EntityType="ESOnlineDBModel.Store.Direcciones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Emails" EntityType="ESOnlineDBModel.Store.Emails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Telefonos" EntityType="ESOnlineDBModel.Store.Telefonos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Webs" EntityType="ESOnlineDBModel.Store.Webs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Productos" EntityType="ESOnlineDBModel.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductosVendidos" EntityType="ESOnlineDBModel.Store.ProductosVendidos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProfile" EntityType="ESOnlineDBModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Membership" EntityType="ESOnlineDBModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="ESOnlineDBModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Roles" EntityType="ESOnlineDBModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="ESOnlineDBModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Direcciones" EntitySet="Direcciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Emails_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Emails" EntitySet="Emails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Telefonos" EntitySet="Telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID" Association="ESOnlineDBModel.Store.FK_dbo_Webs_dbo_Clientes_Cliente_ID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Webs" EntitySet="Webs" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoVendidoCliente" Association="ESOnlineDBModel.Store.ProductoVendidoCliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoProductoVendido" Association="ESOnlineDBModel.Store.ProductoProductoVendido">
+      <End Role="Producto" EntitySet="Productos" />
+      <End Role="ProductoVendido" EntitySet="ProductosVendidos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="ESOnlineDBModel.Store.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Apellido" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="CUIL" Type="nvarchar" Nullable="true" MaxLength="13" />
+    <Property Name="CUIT" Type="nvarchar" Nullable="true" MaxLength="13" />
+    <Property Name="Notas" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Imagen" Type="varbinary" Nullable="true" MaxLength="4000" />
+    <Property Name="Favorito" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Casilla" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Telefonos">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Numero" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Webs">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Cliente_ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vencimiento" Type="int" Nullable="true" />
+    <Property Name="Imagen" Type="varbinary" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="ProductosVendidos">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ClienteID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaVenta" Type="datetime" Nullable="false" />
+    <Property Name="ClienteID" Type="int" Nullable="false" />
+    <Property Name="ProductoID" Type="int" Nullable="false" />
+    <Property Name="NumeroSerie" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CodigoBarra" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Fabricacion" Type="int" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="true" />
+    <Property Name="ConfirmationToken" Type="nvarchar" Nullable="true" MaxLength="128" />
+    <Property Name="IsConfirmed" Type="bit" Nullable="true" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" Nullable="true" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordChangedDate" Type="datetime" Nullable="true" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar" Nullable="true" MaxLength="128" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_Direcciones_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Direcciones" Type="ESOnlineDBModel.Store.Direcciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Direcciones">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Emails_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Emails" Type="ESOnlineDBModel.Store.Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Emails">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Telefonos_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Telefonos" Type="ESOnlineDBModel.Store.Telefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Telefonos">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Webs_dbo_Clientes_Cliente_ID">
+    <End Role="Clientes" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Webs" Type="ESOnlineDBModel.Store.Webs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Webs">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoVendidoCliente">
+    <End Role="Cliente" Type="ESOnlineDBModel.Store.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductoVendido" Type="ESOnlineDBModel.Store.ProductosVendidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoVendido">
+        <PropertyRef Name="ClienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoProductoVendido">
+    <End Role="Producto" Type="ESOnlineDBModel.Store.Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductoVendido" Type="ESOnlineDBModel.Store.ProductosVendidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoVendido">
+        <PropertyRef Name="ProductoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="ESOnlineDBModel.Store.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="ESOnlineDBModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ESOnlineDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -668,48 +668,48 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-          <EntitySetMapping Name="webpages_Membership">
-            <EntityTypeMapping TypeName="ESOnlineDBModel.webpages_Membership">
-              <MappingFragment StoreEntitySet="webpages_Membership">
-                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
-                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
-                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
-                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
-                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="webpages_OAuthMembership">
-            <EntityTypeMapping TypeName="ESOnlineDBModel.webpages_OAuthMembership">
-              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
-                <ScalarProperty Name="Provider" ColumnName="Provider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="webpages_Roles">
-            <EntityTypeMapping TypeName="ESOnlineDBModel.webpages_Roles">
-              <MappingFragment StoreEntitySet="webpages_Roles">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="webpages_UsersInRoles">
-            <EntityTypeMapping TypeName="ESOnlineDBModel.webpages_UsersInRoles">
-              <MappingFragment StoreEntitySet="webpages_UsersInRoles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Membership">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.webpages_Membership)">
+        <MappingFragment StoreEntitySet="webpages_Membership">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_OAuthMembership">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.webpages_OAuthMembership)">
+        <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+          <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.webpages_Roles)">
+        <MappingFragment StoreEntitySet="webpages_Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_UsersInRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(ESOnlineDBModel.webpages_UsersInRoles)">
+        <MappingFragment StoreEntitySet="webpages_UsersInRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

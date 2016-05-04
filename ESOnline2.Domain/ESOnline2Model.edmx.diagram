@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="419c171ffdc24c598355422c064b3ce1" Name="Diagram1" ZoomLevel="97" DisplayType="true">
-        <EntityTypeShape EntityType="ESOnlineDBModel.C__MigrationHistory" Width="1.5" PointX="3.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.C__MigrationHistory" Width="1.5" PointX="10.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ESOnlineDBModel.Cliente" Width="1.5" PointX="5.125" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ESOnlineDBModel.Direccion" Width="1.5" PointX="0.875" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ESOnlineDBModel.Email" Width="1.5" PointX="0.875" PointY="4.375" IsExpanded="true" />
@@ -22,7 +22,7 @@
         <AssociationConnector Association="ESOnlineDBModel.ProductoProductoVendido" />
         <EntityTypeShape EntityType="ESOnlineDBModel.UserProfile" PointX="6.5" PointY="10.125" Width="1.5" />
         <EntityTypeShape EntityType="ESOnlineDBModel.webpages_Membership" Width="1.5" PointX="7.125" PointY="12.125" />
-        <EntityTypeShape EntityType="ESOnlineDBModel.webpages_OAuthMembership" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ESOnlineDBModel.webpages_OAuthMembership" Width="1.5" PointX="10.875" PointY="11.875" />
         <EntityTypeShape EntityType="ESOnlineDBModel.webpages_Roles" Width="1.5" PointX="8.75" PointY="12.125" />
         <EntityTypeShape EntityType="ESOnlineDBModel.webpages_UsersInRoles" Width="1.5" PointX="9.875" PointY="9.75" />
         <AssociationConnector Association="ESOnlineDBModel.fk_RoleId" />

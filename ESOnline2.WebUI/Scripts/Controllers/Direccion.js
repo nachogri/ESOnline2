@@ -8,7 +8,7 @@ angular.module('mdlControllers').directive('clienteDirecciones', function () {
 });
 
 angular.module('mdlControllers')
-.controller('ctlDireccion', function ($scope, svcESONlineUI, svcBrowser) {
+.controller('ctlDireccion', function ($scope, svcESONlineUI, svcBrowser, svcUtils) {
 
     svcESONlineUI.tiposDireccion.getAll()
             .success(function (data) {
@@ -38,6 +38,6 @@ angular.module('mdlControllers')
     };
 
     $scope.findDireccionInMap = function (direccion) {
-        svcBrowser.openNewTab('https://www.google.com/maps/place/' + direccion);
+        svcUtils.findDireccionInMap(direccion);
     }
 })

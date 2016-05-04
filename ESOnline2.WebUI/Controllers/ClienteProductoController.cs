@@ -12,7 +12,12 @@ namespace ESOnline2.WebUI.Controllers
 {
     public class ClienteProductoController : Controller
     {
-        ProductoController productoCtrl = new ProductoController();
+        ProductoController productoCtrl ;
+
+        public ClienteProductoController(IProductoRepository repo)        
+        {
+            productoCtrl = new ProductoController(repo);
+        }
 
         [HttpGet]
         public ActionResult List()
@@ -22,8 +27,8 @@ namespace ESOnline2.WebUI.Controllers
 
         [HttpGet]
         public JsonResult GetAllProductos()
-        {
-            return productoCtrl.GetAllProductos();
+        {           
+           return productoCtrl.GetAllProductos();
         }
 
     }

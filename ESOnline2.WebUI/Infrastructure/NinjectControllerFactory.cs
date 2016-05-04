@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
+using Ninject.Web.Common;
+using ESOnline2.Domain;
 using ESOnline2.Domain.Entities;
 using ESOnline2.Domain.Abstract;
 using ESOnline2.Domain.Concrete;
@@ -17,7 +19,7 @@ namespace ESOnline2.WebUI.Infrastructure
 
         public NinjectControllerFactory()
         {
-            ninjectKernel = new StandardKernel();
+            ninjectKernel = new  StandardKernel();
             AddBidings();
         }
 
@@ -34,8 +36,11 @@ namespace ESOnline2.WebUI.Infrastructure
             //    new Cliente{ Nombre="Meli", Apellido="Ongaro"},
             //    new Cliente{ Nombre="Franco", Apellido="Gri"}
             //}.AsQueryable());
-
-            ninjectKernel.Bind<IClienteRepository>().To<EFClienteRepository>();
+            
+            ninjectKernel.Bind<ESOnlineDBEntities>().ToSelf().InSingletonScope();           
+            ninjectKernel.Bind<IClienteRepository>().To<EFClienteRepository>().InThreadScope();
+            ninjectKernel.Bind<IProductoRepository>().To<EFProductoRepository>().InThreadScope();
+            ninjectKernel.Bind<IProductoVendidoRepository>().To<EFProductoVendidoRepository>().InThreadScope();            
         }
     }
 }

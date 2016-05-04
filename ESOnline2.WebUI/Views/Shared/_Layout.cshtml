@@ -10,8 +10,8 @@
     </head>
     <div>
         <div class="ESOpage-header">
-            <a href="/">
-                @*<img class="logo" src="~/Images/ESLogo.jpg" />*@                
+            <a href="~/Vencimiento/List">
+                <img class="logo" src="~/Images/ESLogo.jpg" />                
             </a>            
         </div>
         <nav class="navbar navbar-default">
@@ -22,7 +22,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="/Vencimiento/List">Vencimientos</a></li>                                                            
                             <li><a href="/Cliente/List">Clientes</a></li>
-                            <li><a href="/Producto/List">Catalogo de Productos</a></li>
+                            <li><a href="/Producto/List">Catalogo de Productos</a></li>                            
                             @if (Roles.IsUserInRole("Administrator"))
                             {
                                    <li><a href="/Account/List">Usuarios</a></li>
