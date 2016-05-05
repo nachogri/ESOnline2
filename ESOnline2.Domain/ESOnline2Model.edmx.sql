@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/21/2016 12:36:10
--- Generated from EDMX file: C:\Users\jgri\Documents\DISCO D\DATA\DATA.IDB\Desarrollo\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
+-- Date Created: 05/05/2016 13:03:08
+-- Generated from EDMX file: C:\Users\Nacho\Source\Repos\ESOnline2\ESOnline2.Domain\ESOnline2Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -29,11 +29,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Webs_dbo_Clientes_Cliente_ID]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Webs] DROP CONSTRAINT [FK_dbo_Webs_dbo_Clientes_Cliente_ID];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ProductoProductoVendido]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ProductosVendidos] DROP CONSTRAINT [FK_ProductoProductoVendido];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ProductoVendidoCliente]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProductosVendidos] DROP CONSTRAINT [FK_ProductoVendidoCliente];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProductoProductoVendido]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductosVendidos] DROP CONSTRAINT [FK_ProductoProductoVendido];
 GO
 IF OBJECT_ID(N'[dbo].[fk_RoleId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[webpages_UsersInRoles] DROP CONSTRAINT [fk_RoleId];
@@ -55,14 +55,17 @@ GO
 IF OBJECT_ID(N'[dbo].[Emails]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Emails];
 GO
+IF OBJECT_ID(N'[dbo].[Telefonos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Telefonos];
+GO
+IF OBJECT_ID(N'[dbo].[Webs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Webs];
+GO
 IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Productos];
 GO
 IF OBJECT_ID(N'[dbo].[ProductosVendidos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ProductosVendidos];
-GO
-IF OBJECT_ID(N'[dbo].[Telefonos]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Telefonos];
 GO
 IF OBJECT_ID(N'[dbo].[UserProfile]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserProfile];
@@ -78,9 +81,6 @@ IF OBJECT_ID(N'[dbo].[webpages_Roles]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[webpages_UsersInRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[webpages_UsersInRoles];
-GO
-IF OBJECT_ID(N'[dbo].[Webs]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Webs];
 GO
 
 -- --------------------------------------------------

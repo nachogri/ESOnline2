@@ -26,9 +26,11 @@ angular.module('mdlControllers')
         };
 
         $scope.getAllClientes = function () {
+            $("#wait").show();
             svcESONlineUI.clientes.getAll()
                 .success(function (data) {
-                    $scope.clientes = data;                                       
+                    $scope.clientes = data;
+                    $("#wait").hide();
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -36,17 +38,21 @@ angular.module('mdlControllers')
         };
 
         $scope.getCliente = function () {
+            $("#wait").show();
             svcESONlineUI.clientes.get(svcUtils.getObjectId())
                 .success(function (data) {
                     $scope.cliente = data;
                                         
                     svcUtils.deserializeDates($scope.cliente.ProductosVendidos);
                     svcUtils.deserializeDates($scope.cliente.ProductosVigentes);
-                    svcUtils.deserializeDates($scope.cliente.ProductosVencidos);                    
+                    svcUtils.deserializeDates($scope.cliente.ProductosVencidos);
+                   
             })
                 .error(function (err) {
                     svcNotifications.alert(err.Message || err.message);
-            });
+                    $("#wait").hide();
+                });
+            $("#wait").hide();
         };                   
 
         $scope.searchByName = function (event) {

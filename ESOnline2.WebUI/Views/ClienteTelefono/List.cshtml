@@ -1,5 +1,5 @@
 ﻿<div class="list-group"  ng-controller='ctlTelefono as telefonoCtrl'>
-    <p>Telefonos:</p>
+    <p>Teléfonos:</p>
     <div >                    
         <div ng-repeat="telefono in cliente.Telefonos">        
             <select ng-model="telefono.Tipo" class="form-control" ng-options="tipoTelefono for tipoTelefono in TiposTelefono" ng-selected="telefono.Tipo"></select>

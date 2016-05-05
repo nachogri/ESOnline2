@@ -16,7 +16,7 @@
     <div class="float-right">
         <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Pagina {{paginator.page + 1}} de {{paginator.pageCount()}} <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Página {{paginator.page + 1}} de {{paginator.pageCount()}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li ng-repeat="i in [] | forLoop:0:paginator.pageCount()">
                         <button type="button" ng-class="selected" class="btn btn-link" ng-click="paginator.setPage(i)">{{i + 1}}</button>

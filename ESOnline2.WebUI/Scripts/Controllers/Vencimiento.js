@@ -14,8 +14,9 @@ angular.module("mdlControllers")
 
         $scope.load = function ()
         {
-            
+            $("#wait").show();
             svcESONlineUI.vencimientos.getClientesWithVencimientos()
+
                 .success(function (data) {
 
                     if (data.length == 0)
@@ -46,6 +47,7 @@ angular.module("mdlControllers")
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
                 });
+            $("#wait").hide();
         };
 
         $scope.setOrder = function (desiredOrder) {            
@@ -53,7 +55,7 @@ angular.module("mdlControllers")
         }
 
         function loadClientes() {
-
+            $("#wait").show();
             svcESONlineUI.clientes.getAll()
               .success(function (data) {
                   $scope.clientesAux = data;
@@ -68,10 +70,11 @@ angular.module("mdlControllers")
               })
               .error(function (err) {
                   svcNotifications.alert("Ha ocurrido un error:" + err);
-              });                       
+              });
+            $("#wait").hide();
         }
        
-        $scope.findDireccionInMap = function (direccion) {
+        $scope.findDireccionInMap = function (direccion) {            
             svcUtils.findDireccionInMap(direccion);
         }
 
