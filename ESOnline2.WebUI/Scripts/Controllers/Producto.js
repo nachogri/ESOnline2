@@ -205,7 +205,7 @@ angular.module('mdlControllers')
         };
 
         $scope.recargarProductoVendido = function (cliente, producto, vencido) {
-            producto.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento + 1);
+            producto.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento );
             for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {
                 if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0) {                    
                     cliente.ProductosVendidos[i] = producto;

@@ -6,6 +6,7 @@
         <div class="panel-heading">
             <h2 class="list-group-item-heading">
                 Usuarios
+                <a class="list-group-item-heading pull-right" href="/Account/Register/">+</a>
             </h2>
         </div>
         <div class="list-group" ng-repeat="user in Users | orderBy:'UserName' | paginate:rowsPerPage">
