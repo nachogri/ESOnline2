@@ -19,10 +19,7 @@ namespace ESOnline2.Domain.Concrete
 
         public IEnumerable<Cliente> GetAll()
         {
-            //This is done to pull any possible changes done in other repositories
-            //context.Dispose();
-            //context = new ESOnlineDBEntities();            
-            context.ProductosVendidos.Include("Producto").ToList();
+           context.ProductosVendidos.Include("Producto").ToList();
 
             IEnumerable<Cliente> clientes=context.Clientes.AsEnumerable();
             
@@ -30,10 +27,7 @@ namespace ESOnline2.Domain.Concrete
         }
 
         public IEnumerable<Cliente> GetAllWithVencimientos()
-        {
-            //This is done to pull any possible changes done in other repositories
-            //context.Dispose();
-            //context = new ESOnlineDBEntities();            
+        {         
             context.ProductosVendidos.Include("Producto").ToList();
 
             IEnumerable<Cliente> clientes = context.Clientes.AsEnumerable();
@@ -43,7 +37,7 @@ namespace ESOnline2.Domain.Concrete
                 CalculateVencimientos(cli);
             }
 
-            return context.Clientes.AsEnumerable();
+            return clientes.Where(c => c.ProductosVencidos.Count >= 1);
         }
 
         public Cliente Get(int id)
@@ -123,7 +117,7 @@ namespace ESOnline2.Domain.Concrete
 
             foreach (ProductoVendido prod in cli.ProductosVendidos)
             {
-                if (prod.FechaVencimiento <= DateTime.Today.AddYears(1))
+                if (prod.FechaVencimiento <= DateTime.Today.AddYears(-4))
                     cli.ProductosVencidos.Add(prod);
                 else
                     cli.ProductosVigentes.Add(prod);

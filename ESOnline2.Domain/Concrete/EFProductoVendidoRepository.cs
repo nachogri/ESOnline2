@@ -19,22 +19,16 @@ namespace ESOnline2.Domain.Concrete
 
         public IEnumerable<ProductoVendido> GetAll()
         {
-            //context.Dispose();
-            //context = new ESOnlineDBEntities();
-            
-            context.ProductosVendidos.Include("Producto").ToList();            
+           context.ProductosVendidos.Include("Producto").ToList();            
 
             return context.ProductosVendidos.AsEnumerable();              
         }
 
         public IEnumerable<ProductoVendido> GetProductosVencidos()
         {
-            //context.Dispose();
-            //context = new ESOnlineDBEntities();
-
             context.ProductosVendidos.Include("Producto").ToList();            
 
-            DateTime expirationDate=DateTime.Today.AddYears(1);
+            DateTime expirationDate=DateTime.Today.AddYears(-4);
             return context.ProductosVendidos.Where(p => p.FechaVencimiento <= expirationDate).AsEnumerable();
         }
     }

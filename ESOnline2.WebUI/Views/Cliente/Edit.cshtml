@@ -6,61 +6,60 @@
     </ul>
     <form name="frmNew" ng-controller='ctlCliente as clienteCtrl' novalidate>
         <div class="form-inline">
-            <div class="well">
-                <div class="alert alert-danger" ng-show="errors.formErrors">
-                    <span ng-repeat="error in errors.formErrors"><strong>o</strong> {{error}}<br /></span>
-                </div>
-                <div ng-show="Tabs[0].selected">
-                    <table>
-                        <tr>
-                            <td>
-                                Nombre: <input type="text" ng-model="cliente.Nombre" class="form-control input-lg" placeholder="Ingrese el nombre" />
-                                @*Apellido: <input type="text" ng-model="cliente.Apellido" class="form-control" placeholder="Ingrese el apellido" />*@
-                            </td>
-                            <td>
-                                <div ng-model="cliente.Favorito" ng-class="{favorite:cliente.Favorito, nonfavorite:!cliente.Favorito}" ng-click="cliente.Favorito=!cliente.Favorito" />
-                            </td>
-                        </tr>
-                    </table>
+        <div class="well">
+            <div class="alert alert-danger" ng-show="errors.formErrors">
+                <span ng-repeat="error in errors.formErrors"><strong>o</strong> {{error}}<br /></span>
+            </div>
+            <div ng-show="Tabs[0].selected">
+                <table>
+                    <tr>
+                        <td>
+                            Nombre: <input type="text" ng-model="cliente.Nombre" class="form-control input-lg direcciones" placeholder="Ingrese el nombre" />
+                        </td>
+                        <td>
+                            <div ng-model="cliente.Favorito" ng-class="{favorite:cliente.Favorito, nonfavorite:!cliente.Favorito}" ng-click="cliente.Favorito=!cliente.Favorito" />
+                        </td>
+                    </tr>
+                </table>
 
-                    <cliente-telefonos></cliente-telefonos>
+                <cliente-telefonos></cliente-telefonos>
 
-                    <cliente-direcciones></cliente-direcciones>
+                <cliente-direcciones></cliente-direcciones>
 
-                    <button type="button" class="btn btn-link" ng-show="!fullDetails" ng-click="fullDetails=!fullDetails">Mas..</button>
-                    <div ng-show="fullDetails">
+                <button type="button" class="btn btn-link" ng-show="!fullDetails" ng-click="fullDetails=!fullDetails">Mas..</button>
+                <div ng-show="fullDetails">
 
-                        <cliente-emails></cliente-emails>
+                    <cliente-emails></cliente-emails>
 
-                        <cliente-webs></cliente-webs>
+                    <cliente-webs></cliente-webs>
 
-                        <div class="list-group">
-                            <table>
-                                <tr>
-                                    <td>
-                                        CUIL: <input type="text" ng-model="cliente.CUIL" class="form-control" placeholder="Ingrese el CUIL" />
-                                        CUIT: <input type="text" ng-model="cliente.CUIT" class="form-control" placeholder="Ingrese el CUIT" />
-                                    </td>
-                                </tr>
-                            </table>
-                            <p>
-                                <div>
-                                    <textarea ng-model="cliente.Notas" class="textarea.form-control" placeholder="Ingrese comentarios"></textarea>
-                                </div>
-                            </p>
-                        </div>
-                        <button type="button" class="btn btn-link" ng-show="fullDetails" ng-click="fullDetails=!fullDetails">Menos..</button>
+                    <div class="list-group">
+                        <table>
+                            <tr>
+                                <td>
+                                    CUIL: <input type="text" ng-model="cliente.CUIL" class="form-control" placeholder="Ingrese el CUIL" />
+                                    CUIT: <input type="text" ng-model="cliente.CUIT" class="form-control" placeholder="Ingrese el CUIT" />
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            <div>
+                                <textarea ng-model="cliente.Notas" class="textarea.form-control" placeholder="Ingrese comentarios"></textarea>
+                            </div>
+                        </p>
                     </div>
-                </div>
-                <div ng-show="Tabs[1].selected">
-                    <cliente-productos></cliente-productos>
+                    <button type="button" class="btn btn-link" ng-show="fullDetails" ng-click="fullDetails=!fullDetails">Menos..</button>
                 </div>
             </div>
-            <div>
-                <a class="btn btn-lg btn-default" href="/Cliente/List">Volver</a>
-                <button class="btn btn-lg btn-primary" ng-click="update()">Guardar</button>
-                <button class="btn btn-lg btn-default" ng-click="delete()">Eliminar</button>
+            <div ng-show="Tabs[1].selected">
+                <cliente-productos></cliente-productos>
             </div>
         </div>
+        <div>
+            <a class="btn btn-lg btn-default" href="/Cliente/List">Volver</a>
+            <button class="btn btn-lg btn-primary" ng-click="update()">Guardar</button>
+            <button class="btn btn-lg btn-default" ng-click="delete()">Eliminar</button>
+        </div>
+    </div>
     </form>
 </div>

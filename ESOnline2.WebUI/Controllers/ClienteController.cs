@@ -43,7 +43,8 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllClientes()
         {
-            return Json(clienteRepo.GetAll(), JsonRequestBehavior.AllowGet);
+            //return Json(clienteRepo.GetAll(), JsonRequestBehavior.AllowGet);
+            return Json(clienteRepo.GetAll().Where(c => c.Nombre.ToLower().StartsWith("A",StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -68,7 +69,7 @@ namespace ESOnline2.WebUI.Controllers
             List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos().ToList();
           
             var filtered = clientes
-                            .Where(c => c.ProductosVencidos.Count>=1)
+                            .Where(c => c.ProductosVencidos.Count>=1)                            
                             .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count>=1});
                         
             return Json(filtered, JsonRequestBehavior.AllowGet);

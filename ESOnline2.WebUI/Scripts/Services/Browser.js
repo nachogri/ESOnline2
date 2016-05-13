@@ -1,7 +1,7 @@
 ﻿angular.module('mdlESOnlineApp')
 	.service('svcBrowser', function () {
 	    return {
-	        setNewLocation: function (newLocation) {
+	        setNewLocation: function (newLocation) {	            
 	            window.location = newLocation;
 	        },
 	        openNewTab: function (url) {

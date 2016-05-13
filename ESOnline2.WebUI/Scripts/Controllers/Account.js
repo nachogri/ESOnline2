@@ -12,16 +12,16 @@ angular.module('mdlControllers')
         $scope.RoleEmpleado = false;
         $scope.RoleVisitante = false;
 
-        $scope.load = function () {
-            switch (svcUtils.getAction()) {
-                case "Edit":
-                    if (svcUtils.getObjectId() != "") {
-                        $scope.getUser();
-                    }
-                case "List":
-                    $scope.getAllUsers();
+        $scope.load = function () {           
+            var action = svcUtils.getAction();
+
+            if (action == "Edit" && svcUtils.getObjectId() != "") {
+                $scope.getUser();
             }
 
+            if (action == "List") {
+                $scope.getAllUsers();
+            }
         };
 
         $scope.getUser = function () {
@@ -45,7 +45,8 @@ angular.module('mdlControllers')
                       
         };
 
-        $scope.getAllUsers = function () {            
+        $scope.getAllUsers = function () {
+            $("#wait").show();
             svcESONlineUI.accounts.getAll()
                 .success(function (data) {
                     $scope.Users = data;                    
@@ -53,6 +54,7 @@ angular.module('mdlControllers')
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
                 });
+            $("#wait").hide();
         };
 
 

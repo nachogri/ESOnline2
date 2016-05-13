@@ -26,10 +26,10 @@ angular.module('mdlESOnlineApp')
 	        var absoluteUrlPath = $window.location.href;
 
 	        var results = String(absoluteUrlPath).split("/");
-	            
+	            	        
 	        if (results != null && results.length > 0) {
 	            var action = "";
-	            
+	           
 	            if (results.length>5) {
 	                action = results[results.length - 2];
 	            }

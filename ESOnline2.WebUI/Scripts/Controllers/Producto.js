@@ -16,24 +16,27 @@ angular.module('mdlControllers')
         $scope.ErrorList = "";
 
         $scope.load = function () {
-            switch (svcUtils.getAction()) {
-                case "Edit":
-                    if (svcUtils.getObjectId() != "") {
-                        $scope.getProducto();
-                    }
-                case "List":
-                    $scope.getAllProductos();
+            var action = svcUtils.getAction();
+
+            if (action == "Edit" && svcUtils.getObjectId() != "") {
+                $scope.getProducto();
             }
 
+            if (action == "List") {
+                $scope.getAllProductos();
+            }            
         };
 
-        $scope.getAllProductos = function () {            
+        $scope.getAllProductos = function () {
+            $("#wait").show();
             svcESONlineUI.productos.getAll()
                 .success(function (data) {
                     $scope.productos = data;
+                    $("#wait").hide();
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
+                    $("#wait").hide();
                 });
         };
 
@@ -48,6 +51,7 @@ angular.module('mdlControllers')
         };
 
         $scope.searchByName = function (event) {
+            $("#wait").show();
             if (event.which == 13) {
                 if (String($scope.nombreBusqueda).length == 0) {
                     $scope.load();
@@ -56,9 +60,11 @@ angular.module('mdlControllers')
                     svcESONlineUI.productos.getByNombre($scope.nombreBusqueda)
                    .success(function (data) {
                        $scope.productos = data;
+                       $("#wait").hide();
                    })
                    .error(function (err) {
                        svcNotifications.alert(err.Message || err.message);
+                       $("#wait").hide();
                    });
                 }
             }

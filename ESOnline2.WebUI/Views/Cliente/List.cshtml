@@ -9,8 +9,8 @@
             </h2>            
         </div>                            
         <div class="list-group" ng-repeat="itemCliente in clientes | orderBy:'Nombre' | paginate:rowsPerPage">
-            <a class="list-group-item" href="/Cliente/Edit/{{itemCliente.ID}}">{{itemCliente.Nombre+ ' ' +(itemCliente.Apellido||'')  }}</a>
-        </div>        
+            <a class="list-group-item" href="/Cliente/Edit/{{itemCliente.ID}}">{{itemCliente.Nombre+ ' ' +(itemCliente.Apellido||'')  }}</a>            
+        </div>
         <pagination-control></pagination-control>                                          
     </div>                              
 </div>

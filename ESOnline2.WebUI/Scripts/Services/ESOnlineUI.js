@@ -2,7 +2,7 @@
 	.service('svcESONlineUI', function ($http) {
 	    return {
 	        clientes: {	            
-	            getAll: function () {
+	            getAll: function () {	                
 	                return $http.get('/Cliente/GetAllClientes');
 	            },            
 	            get: function (id) {

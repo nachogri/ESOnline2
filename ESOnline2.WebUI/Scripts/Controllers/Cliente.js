@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 angular.module('mdlControllers')
-    .controller('ctlCliente', function ($scope,$rootScope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
+    .controller('ctlCliente', function ($scope, svcESONlineUI, svcUtils, svcNotifications, svcBrowser) {
 
         $scope.cliente = {};        
         $scope.cliente.Telefonos = [];
@@ -14,19 +14,19 @@ angular.module('mdlControllers')
         $scope.ErrorList = "";        
 
         $scope.load = function () {
-            switch (svcUtils.getAction()) {
-                case "Edit":
-                    if (svcUtils.getObjectId() != "") {                        
-                        $scope.getCliente();                        
-                    }
-                case "List":
-                    $scope.getAllClientes();                
+            var action= svcUtils.getAction();
+            
+            if (action == "Edit" && svcUtils.getObjectId() != "") {
+                $scope.getCliente();
             }
             
+            if (action == "List") {                
+                $scope.getAllClientes();
+            }                        
         };
 
         $scope.getAllClientes = function () {
-            $("#wait").show();
+            $("#wait").show();            
             svcESONlineUI.clientes.getAll()
                 .success(function (data) {
                     $scope.clientes = data;
@@ -34,6 +34,7 @@ angular.module('mdlControllers')
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
+                    $("#wait").hide();
                 });
         };
 
@@ -42,34 +43,36 @@ angular.module('mdlControllers')
             svcESONlineUI.clientes.get(svcUtils.getObjectId())
                 .success(function (data) {
                     $scope.cliente = data;
-                                        
+                                              
                     svcUtils.deserializeDates($scope.cliente.ProductosVendidos);
                     svcUtils.deserializeDates($scope.cliente.ProductosVigentes);
                     svcUtils.deserializeDates($scope.cliente.ProductosVencidos);
-                   
+                    $("#wait").hide();
             })
                 .error(function (err) {
                     svcNotifications.alert(err.Message || err.message);
                     $("#wait").hide();
-                });
-            $("#wait").hide();
+                });            
         };                   
 
-        $scope.searchByName = function (event) {
+        $scope.searchByName = function (event) {            
             if (event.which == 13) {
+                $("#wait").show();
                 if (String($scope.nombreBusqueda).length == 0) {
-                    $scope.load();
+                    $scope.load();                    
                 }
                 else {
                     svcESONlineUI.clientes.getByNombre($scope.nombreBusqueda)
                    .success(function (data) {
-                        $scope.clientes = data;
+                       $scope.clientes = data;
+                       $("#wait").hide();
                    })
                    .error(function (err) {
-                        svcNotifications.alert(err.Message || err.message);
+                       svcNotifications.alert(err.Message || err.message);
+                       $("#wait").hide();
                     });                   
                 }
-            }
+            }            
         };
 
         $scope.save = function () {            
@@ -105,6 +108,6 @@ angular.module('mdlControllers')
             });
         }               
 
-        $scope.load();
+      $scope.load();
     })
 

@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 angular.module("mdlControllers")
-    .controller("ctlVencimiento", function ($scope, svcESONlineUI, svcUtils) {
+    .controller("ctlVencimiento", function ($scope, svcESONlineUI, svcNotifications, svcUtils) {
         $scope.vencimientos = {};
         $scope.clientes = {};
         $scope.order = 'Cliente.Nombre';
@@ -16,9 +16,7 @@ angular.module("mdlControllers")
         {
             $("#wait").show();
             svcESONlineUI.vencimientos.getClientesWithVencimientos()
-
                 .success(function (data) {
-
                     if (data.length == 0)
                         $scope.NoVencimientos = true;
                     else
@@ -55,7 +53,7 @@ angular.module("mdlControllers")
         }
 
         function loadClientes() {
-            $("#wait").show();
+            $("#wait").show();            
             svcESONlineUI.clientes.getAll()
               .success(function (data) {
                   $scope.clientesAux = data;
@@ -77,7 +75,6 @@ angular.module("mdlControllers")
         $scope.findDireccionInMap = function (direccion) {            
             svcUtils.findDireccionInMap(direccion);
         }
-
-        $scope.load();
-
+        
+        $scope.load();        
     });
