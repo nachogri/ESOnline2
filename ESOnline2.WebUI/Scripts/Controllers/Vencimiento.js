@@ -8,8 +8,8 @@ angular.module("mdlControllers")
         $scope.reverse = 'false';
         $scope.TableView = true;
         $scope.NoVencimientos = false;
-        $scope.showTelefonos = false;
-        $scope.showDirecciones = false;
+        $scope.showTelefonos = true;
+        $scope.showDirecciones = true;
 
 
         $scope.load = function ()
@@ -40,12 +40,13 @@ angular.module("mdlControllers")
                     $scope.vencimientos = data;
 
                     loadClientes();
-                    svcUtils.deserializeDates($scope.vencimientos);                    
+                    svcUtils.deserializeDates($scope.vencimientos);
+                    $("#wait").hide();
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
-                });
-            $("#wait").hide();
+                    $("#wait").hide();
+                });           
         };
 
         $scope.setOrder = function (desiredOrder) {            

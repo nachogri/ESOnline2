@@ -117,8 +117,8 @@ namespace ESOnline2.Domain.Concrete
 
             foreach (ProductoVendido prod in cli.ProductosVendidos)
             {
-                if (prod.FechaVencimiento <= DateTime.Today.AddYears(-4))
-                    cli.ProductosVencidos.Add(prod);
+                if (prod.FechaVencimiento <= DateTime.Today)
+                    cli.ProductosVencidos.Add(prod);                
                 else
                     cli.ProductosVigentes.Add(prod);
             }

@@ -26,10 +26,11 @@ namespace ESOnline2.Domain.Concrete
 
         public IEnumerable<ProductoVendido> GetProductosVencidos()
         {
-            context.ProductosVendidos.Include("Producto").ToList();            
+            context.ProductosVendidos.Include("Producto").ToList();
 
-            DateTime expirationDate=DateTime.Today.AddYears(-4);
-            return context.ProductosVendidos.Where(p => p.FechaVencimiento <= expirationDate).AsEnumerable();
+            DateTime fromDate = DateTime.Today.AddYears(-2);
+            DateTime expirationDate=DateTime.Today;
+            return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= expirationDate).AsEnumerable();
         }
     }
 }
