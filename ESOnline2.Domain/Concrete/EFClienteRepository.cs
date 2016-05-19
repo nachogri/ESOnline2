@@ -27,6 +27,11 @@ namespace ESOnline2.Domain.Concrete
         }
 
         public IEnumerable<Cliente> GetAllWithVencimientos()
+        {
+            return GetAllWithVencimientos(0);
+        }
+
+        public IEnumerable<Cliente> GetAllWithVencimientos(int days)
         {         
             context.ProductosVendidos.Include("Producto").ToList();
 
@@ -34,11 +39,11 @@ namespace ESOnline2.Domain.Concrete
 
             foreach (Cliente cli in clientes)
             {
-                CalculateVencimientos(cli);
+                CalculateVencimientos(cli,days);
             }
 
             return clientes.Where(c => c.ProductosVencidos.Count >= 1);
-        }
+        }        
 
         public Cliente Get(int id)
         {
@@ -53,7 +58,7 @@ namespace ESOnline2.Domain.Concrete
                 cliente = context.Clientes.Find(id);                
             }           
                         
-            CalculateVencimientos(cliente);
+            CalculateVencimientos(cliente,0);
 
             return cliente;
         }
@@ -109,20 +114,38 @@ namespace ESOnline2.Domain.Concrete
             return true;
         }
 
-
-        private static void CalculateVencimientos(Cliente cli)
+        
+        private static void CalculateVencimientos(Cliente cli,int daysFrom)
         {        
             cli.ProductosVigentes = new HashSet<ProductoVendido>();        
             cli.ProductosVencidos = new HashSet<ProductoVendido>();
 
+            DateTime dateFrom = DateTime.Today;
+            if (daysFrom > 0)
+            {
+                dateFrom = dateFrom.AddDays(-daysFrom);
+            }
+
             foreach (ProductoVendido prod in cli.ProductosVendidos)
             {
-                if (prod.FechaVencimiento <= DateTime.Today)
-                    cli.ProductosVencidos.Add(prod);                
+                if (daysFrom > 0)
+                {
+                    if (prod.FechaVencimiento <= DateTime.Today)
+                        {
+                            if (prod.FechaVencimiento >= dateFrom )
+                                cli.ProductosVencidos.Add(prod);
+                        }
+                    else
+                        cli.ProductosVigentes.Add(prod);
+                }
                 else
-                    cli.ProductosVigentes.Add(prod);
+                {
+                    if (prod.FechaVencimiento <= DateTime.Today)
+                        cli.ProductosVencidos.Add(prod);
+                    else
+                        cli.ProductosVigentes.Add(prod);
+                }
             }
-        }
-        
+        }       
     }
 }

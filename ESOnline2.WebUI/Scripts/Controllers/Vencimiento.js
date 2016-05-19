@@ -11,11 +11,83 @@ angular.module("mdlControllers")
         $scope.showTelefonos = true;
         $scope.showDirecciones = true;
 
+        $scope.titulo = "Vencimientos";
+
 
         $scope.load = function ()
         {
+            $("#wait").show();                                           
+            $scope.getAllLastMonth();
+        };
+
+        $scope.setOrder = function (desiredOrder) {            
+            $scope.order = desiredOrder;
+        }
+
+        function loadClientes(data) {
             $("#wait").show();
-            svcESONlineUI.vencimientos.getClientesWithVencimientos()
+
+            if ($scope.clientes.length != undefined) {
+                for (var i = 0; i < $scope.vencimientos.length; i++) {
+                    for (var x = 0; x < data.length; x++) {
+                        if (data[x].Cliente.ID == $scope.vencimientos[i].ClienteID) {
+                            $scope.vencimientos[i].Cliente = data[x].Cliente;
+                            break;
+                        }
+                    }
+                }
+                $("#wait").hide();
+            }
+            else
+            {
+                $scope.load();
+            }             
+        }
+       
+        $scope.findDireccionInMap = function (direccion) {            
+            svcUtils.findDireccionInMap(direccion);
+        }
+        
+        $scope.getAllToday = function () {            
+            $("#wait").show();
+
+            svcESONlineUI.clientes.getWithVencimientosToday()
+               .success(function (data) {
+                   $scope.clientes = data;
+
+                   for (var i = 0; i < $scope.clientes.length; i++) {
+                       svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVendidos);
+                       svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVigentes);
+                       svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVencidos);
+                   }
+
+                   $scope.reverse = false;
+                   $scope.setOrder('Cliente.Nombre');
+
+               })
+               .error(function (err) {
+                   svcNotifications.alert("Ha ocurrido un error:" + err);
+               });
+
+            svcESONlineUI.vencimientos.getAllToday()
+               .success(function (data) {
+                   $scope.vencimientos = data;
+
+                   loadClientes($scope.clientes);
+
+                   svcUtils.deserializeDates($scope.vencimientos);
+                   $("#wait").hide();
+               })
+               .error(function (err) {
+                   svcNotifications.alert("Ha ocurrido un error:" + err);
+                   $("#wait").hide();
+               });
+        }
+
+        $scope.getAllLastMonth = function () {
+            $("#wait").show();
+
+            svcESONlineUI.clientes.getWithVencimientosLastMonth()
                 .success(function (data) {
                     if (data.length == 0)
                         $scope.NoVencimientos = true;
@@ -23,59 +95,74 @@ angular.module("mdlControllers")
                         $scope.NoVencimientos = false;
 
                     $scope.clientes = data;
-                    for (var i = 0; i < $scope.clientes.length; i++) {                        
+
+                    for (var i = 0; i < $scope.clientes.length; i++) {
                         svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVendidos);
                         svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVigentes);
-                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVencidos);                        
-                    }                    
+                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVencidos);
+                    }
+
                     $scope.reverse = false;
                     $scope.setOrder('Cliente.Nombre');
+
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
                 });
 
-            svcESONlineUI.vencimientos.getAll()
-                .success(function (data) {                                      
-                    $scope.vencimientos = data;
+            svcESONlineUI.vencimientos.getAllLastMonth()
+               .success(function (data) {
+                   $scope.vencimientos = data;
+                   
+                   loadClientes($scope.clientes);
 
-                    loadClientes();
-                    svcUtils.deserializeDates($scope.vencimientos);
-                    $("#wait").hide();
+                   svcUtils.deserializeDates($scope.vencimientos);                   
+               })
+               .error(function (err) {
+                   svcNotifications.alert("Ha ocurrido un error:" + err);
+                   $("#wait").hide();
+               });
+        }
+
+        $scope.getAllLastYear = function () {            
+            $("#wait").show();            
+
+            svcESONlineUI.clientes.getWithVencimientosLastYear()
+                .success(function (data) {
+                    if (data.length == 0)
+                        $scope.NoVencimientos = true;
+                    else
+                        $scope.NoVencimientos = false;
+
+                    $scope.clientes = data;
+
+                    for (var i = 0; i < $scope.clientes.length; i++) {
+                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVendidos);
+                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVigentes);
+                        svcUtils.deserializeDates($scope.clientes[i].Cliente.ProductosVencidos);
+                    }
+
+                    $scope.reverse = false;
+                    $scope.setOrder('Cliente.Nombre');
+
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
-                    $("#wait").hide();
-                });           
-        };
+                });
 
-        $scope.setOrder = function (desiredOrder) {            
-            $scope.order = desiredOrder;
+            svcESONlineUI.vencimientos.getAllLastYear()
+               .success(function (data) {
+                   $scope.vencimientos = data;
+
+                   loadClientes($scope.clientes);
+                   svcUtils.deserializeDates($scope.vencimientos);
+                   $("#wait").hide();
+               })
+               .error(function (err) {
+                   svcNotifications.alert("Ha ocurrido un error:" + err);
+                   $("#wait").hide();
+               });
         }
 
-        function loadClientes() {
-            $("#wait").show();            
-            svcESONlineUI.clientes.getAll()
-              .success(function (data) {
-                  $scope.clientesAux = data;
-
-                  for (var i = 0; i < $scope.vencimientos.length; i++) {
-                      for (var x = 0; x < $scope.clientesAux.length; x++) {
-                          if ($scope.clientesAux[x].ID == $scope.vencimientos[i].ClienteID) {
-                              $scope.vencimientos[i].Cliente = $scope.clientesAux[x];
-                          }
-                      }
-                  }
-              })
-              .error(function (err) {
-                  svcNotifications.alert("Ha ocurrido un error:" + err);
-              });
-            $("#wait").hide();
-        }
-       
-        $scope.findDireccionInMap = function (direccion) {            
-            svcUtils.findDireccionInMap(direccion);
-        }
-        
-        $scope.load();        
+        $scope.load();
     });

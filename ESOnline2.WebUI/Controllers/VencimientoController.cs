@@ -37,10 +37,41 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientos()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos();            
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(0);            
                   
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);                                    
         }
 
+        [HttpGet]
+        public JsonResult GetAllVencimientosToday()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(1);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosLastMonth()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(30);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosLastYear()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(365);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosFromDate(DateTime fromDate, DateTime toDate )
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidosByTimeRange(fromDate,toDate);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
     }
 }

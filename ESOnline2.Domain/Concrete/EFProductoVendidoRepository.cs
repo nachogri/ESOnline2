@@ -24,13 +24,30 @@ namespace ESOnline2.Domain.Concrete
             return context.ProductosVendidos.AsEnumerable();              
         }
 
-        public IEnumerable<ProductoVendido> GetProductosVencidos()
+        public IEnumerable<ProductoVendido> GetProductosVencidos(int days)
+        {
+            //context.ProductosVendidos.Include("Producto").ToList();
+
+            DateTime fromDate;
+            DateTime expirationDate = DateTime.Today;
+
+            if (days > 0)
+            {
+                fromDate = DateTime.Today.AddDays(-days);
+                return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= expirationDate).AsEnumerable();
+            }
+            else
+            {                
+                return context.ProductosVendidos.Where(p => p.FechaVencimiento <= expirationDate).AsEnumerable();
+            }
+                        
+        }
+
+        public IEnumerable<ProductoVendido> GetProductosVencidosByTimeRange(DateTime fromDate, DateTime toDate)
         {
             context.ProductosVendidos.Include("Producto").ToList();
 
-            DateTime fromDate = DateTime.Today.AddYears(-2);
-            DateTime expirationDate=DateTime.Today;
-            return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= expirationDate).AsEnumerable();
+            return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= toDate).AsEnumerable();            
         }
     }
 }

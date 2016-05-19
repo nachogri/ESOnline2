@@ -11,6 +11,18 @@
 	            getByNombre: function (id) {
 	                return $http.get('/Cliente/GetClientesByNombre/' + id);
 	            },
+	            getWithVencimientos: function () {
+	                return $http.get('/Cliente/GetClientesWithVencimientos');
+	            },
+	            getWithVencimientosToday: function () {
+	                return $http.get('/Cliente/GetClientesWithVencimientosToday');
+	            },
+	            getWithVencimientosLastMonth: function () {
+	                return $http.get('/Cliente/GetClientesWithVencimientosLastMonth');
+	            },
+	            getWithVencimientosLastYear: function () {
+	                return $http.get('/Cliente/GetClientesWithVencimientosLastYear');
+	            },
 	            create:
                     function (data) {
                         return $http.post('/Cliente/CreateCliente', data);
@@ -75,9 +87,18 @@
                 getAll: function () {
                     return $http.get('/Vencimiento/GetAllVencimientos');
                 },
-                getClientesWithVencimientos: function () {
-                    return $http.get('/Cliente/GetClientesWithVencimientos');
+                getAllToday: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosToday');
                 },
+                getAllLastMonth: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosLastMonth');
+                },
+                getAllLastYear: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosLastYear');
+                },
+                getAllByTimeRange: function (from, to) {
+                    return $http.get('/Vencimiento/GetAllByTimeRange/'+from+'/'+to);
+                },               
                 getAllProductosVendidos: function () {
                     return $http.get('/Vencimiento/GetAllProductosVendidos');
                 }

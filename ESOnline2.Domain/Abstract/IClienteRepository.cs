@@ -10,6 +10,7 @@ namespace ESOnline2.Domain.Abstract
     {
         IEnumerable<Cliente> GetAll();
         IEnumerable<Cliente> GetAllWithVencimientos();
+        IEnumerable<Cliente> GetAllWithVencimientos(int days);        
         Cliente Get(int id);
         Cliente Add(Cliente cliente);
         void Remove(int id);

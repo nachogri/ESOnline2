@@ -75,6 +75,42 @@ namespace ESOnline2.WebUI.Controllers
             return Json(filtered, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetClientesWithVencimientosToday()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(1).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetClientesWithVencimientosLastMonth()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(30).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetClientesWithVencimientosLastYear()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(365).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult CreateCliente(Cliente cliente)
         {
