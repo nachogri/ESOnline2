@@ -11,7 +11,8 @@
                 <span ng-repeat="error in errors.formErrors"><strong>o</strong> {{error}}<br /></span>
             </div>
             <div ng-show="Tabs[0].selected">
-                <table>
+                <p><div>Nombre: <input type="text" ng-model="cliente.Nombre" class="form-control input-lg direcciones" placeholder="Ingrese el nombre" /></div></p>
+                @*<table>
                     <tr>
                         <td>
                             Nombre: <input type="text" ng-model="cliente.Nombre" class="form-control input-lg direcciones" placeholder="Ingrese el nombre" />
@@ -20,7 +21,7 @@
                             <div ng-model="cliente.Favorito" ng-class="{favorite:cliente.Favorito, nonfavorite:!cliente.Favorito}" ng-click="cliente.Favorito=!cliente.Favorito" />
                         </td>
                     </tr>
-                </table>
+                </table>*@
 
                 <cliente-telefonos></cliente-telefonos>
 

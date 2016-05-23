@@ -757,8 +757,14 @@ tr.pager td {
     transition:all ease-in 150ms;	
 }
 
-.direcciones{
-    width:350px !important;
+.nombreCliente{        
+    width:450px !important;
+    max-width:100% !important;    
+}
+
+.direcciones{    
+    width:450px !important;
+    max-width:100% !important;
 }
 
 
