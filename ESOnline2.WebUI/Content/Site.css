@@ -758,7 +758,7 @@ tr.pager td {
 }
 
 .direcciones{
-    width:400px !important;
+    width:350px !important;
 }
 
 
@@ -767,7 +767,7 @@ padding-right: 15px;
 padding-left: 15px;
 margin-right: auto;
 margin-left: auto;
-width: 1000px;
+width: auto;
 }
 
 .navbar {
