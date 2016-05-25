@@ -404,12 +404,13 @@ input, textarea {
     font-size: 1.2em;
     margin: 5px 0 6px 0;
     padding: 5px;
-    width: 300px;
+    width: 300px;    
 }
 
 textarea {
     font-family: inherit;
-    width: 500px;
+    width: 500px;    
+    max-width:80%;
 }
 
     input:focus, textarea:focus {
@@ -757,8 +758,14 @@ tr.pager td {
     transition:all ease-in 150ms;	
 }
 
-.direcciones{
-    width:400px !important;
+.nombreCliente{        
+    width:450px !important;
+    max-width:100% !important;    
+}
+
+.direcciones{    
+    width:450px !important;
+    max-width:100% !important;
 }
 
 
@@ -767,7 +774,7 @@ padding-right: 15px;
 padding-left: 15px;
 margin-right: auto;
 margin-left: auto;
-width: 1000px;
+width: auto;
 }
 
 .navbar {
