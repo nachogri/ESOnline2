@@ -3,7 +3,7 @@
 angular.module('mdlESOPagination').directive('paginationControl', function () {
     return {
         restrict: 'E',
-        templateUrl: '/Pagination/Control',
+        templateUrl: "/Pagination/Control",
         controller: function ($scope, Paginator) {
             $scope.paginator = Paginator;                
             }       
@@ -13,7 +13,7 @@ angular.module('mdlESOPagination').directive('paginationControl', function () {
 angular.module('mdlESOPagination').directive('paginationControlsm', function () {
     return {
         restrict: 'E',
-        templateUrl: '/Pagination/Controlsm',
+        templateUrl: "/Pagination/Controlsm",
         controller: function ($scope, Paginator) {
             $scope.paginator = Paginator;
         }

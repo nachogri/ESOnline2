@@ -50,9 +50,9 @@ angular.module('mdlControllers')
                 });
         };
 
-        $scope.searchByName = function (event) {
-            $("#wait").show();
+        $scope.searchByName = function (event) {            
             if (event.which == 13) {
+                $("#wait").show();
                 if (String($scope.nombreBusqueda).length == 0) {
                     $scope.load();
                 }
