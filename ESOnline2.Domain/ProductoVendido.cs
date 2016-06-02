@@ -22,6 +22,7 @@ namespace ESOnline2.Domain
         public byte[] CodigoBarra { get; set; }
         public int Fabricacion { get; set; }
         public System.DateTime FechaVencimiento { get; set; }
+        public Nullable<System.DateTime> FechaAviso { get; set; }
     
         public virtual Cliente Cliente { internal get; set; }
         public virtual Producto Producto { get; internal set; }

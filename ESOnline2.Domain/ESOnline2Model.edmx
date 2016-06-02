@@ -133,6 +133,7 @@
     <Property Name="CodigoBarra" Type="varbinary(max)" Nullable="true" />
     <Property Name="Fabricacion" Type="int" Nullable="false" />
     <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+    <Property Name="FechaAviso" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
@@ -476,6 +477,7 @@
           <Property Name="CodigoBarra" Type="Binary" Nullable="true" MaxLength="Max" FixedLength="false" />
           <Property Name="Fabricacion" Type="Int32" Nullable="false" />
           <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaAviso" Type="DateTime" Nullable="true" />
         </EntityType>
         <Association Name="ProductoVendidoCliente">
           <End Type="ESOnlineDBModel.Cliente" Role="Cliente" Multiplicity="1" >
@@ -657,6 +659,7 @@
           <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
           <ScalarProperty Name="Fabricacion" ColumnName="Fabricacion" />
           <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="FechaAviso" ColumnName="FechaAviso" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

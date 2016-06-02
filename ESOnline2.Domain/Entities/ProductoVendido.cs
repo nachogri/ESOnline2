@@ -27,6 +27,10 @@ namespace ESOnline2.Domain.Entities
         [Display(Name = "Fecha de vencimiento")]
         public DateTime FechaVencimiento { get; set; }
 
+
+        [Display(Name = "Fecha de aviso")]
+        public DateTime FechaAviso { get; set; }
+
         [Display(Name = "Cliente")]        
         public Cliente Cliente { get; set; }
 
@@ -41,5 +45,6 @@ namespace ESOnline2.Domain.Entities
 
         [Display(Name = "Año de fabricacion")]        
         public int Fabricacion { get; set; }
+
     }
 }

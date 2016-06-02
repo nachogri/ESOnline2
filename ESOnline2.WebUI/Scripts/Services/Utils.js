@@ -77,8 +77,15 @@ angular.module('mdlESOnlineApp')
 	                    var FechaVenta = new Date(parseInt(dates[i].FechaVenta.replace("/Date(", "").replace(")/", ""), 10));
 	                    var FechaVencimiento = new Date(parseInt(dates[i].FechaVencimiento.replace("/Date(", "").replace(")/", ""), 10));
 
+	                    if (dates[i].FechaAviso != undefined)
+	                    {
+	                        var FechaAviso = new Date(parseInt(dates[i].FechaAviso.replace("/Date(", "").replace(")/", ""), 10));
+	                        dates[i].FechaAviso = FechaAviso;
+	                    }
+
 	                    dates[i].FechaVenta = FechaVenta;
 	                    dates[i].FechaVencimiento = FechaVencimiento;
+	                    
                     }
                 }
 	        },

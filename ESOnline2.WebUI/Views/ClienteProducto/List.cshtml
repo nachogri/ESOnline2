@@ -6,23 +6,30 @@
                     <h3 class="panel-title">Vigentes</h3>
                 </div>
                 <div class="panel-body">
-                    <div ng-repeat="itemProductoVigente in cliente.ProductosVigentes | orderBy:'Nombre'">
-                        <div class="list-group-item">
+                    <div class="row-border-bottom" ng-repeat="itemProductoVigente in cliente.ProductosVigentes | orderBy:'Nombre'">
+
                             <div class="row">
-                                <h4 class="list-group-item-heading col-sm-3">{{itemProductoVigente.Producto.Nombre}}</h4>
-                                <div class="list-group-item-text text-success col-sm-5">Vence: {{itemProductoVigente.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                <div class="list-group-item-text text-success col-sm-5">Serie: {{itemProductoVigente.NumeroSerie}}</div>
-                                <button class="btn btn-sm btn-success col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="recargarProductoVendido(cliente,itemProductoVigente,false)">
-                                    <span class="glyphicon glyphicon-refresh" ng-disabled="editMode"></span>
-                                </button>
-                                <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVigente)">
-                                    <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
-                                </button>
-                                <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVigente)">
-                                    <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
-                                </button>
+                                <h5 class="list-group-item-heading col-sm-3">{{itemProductoVigente.Producto.Nombre}}</h5>
+                                <div class="list-group-item-text col-sm-4">
+                                    <div class="list-group-item-text text-success">Vence: {{itemProductoVigente.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
+                                    <div class="list-group-item-text text-warning">Aviso: {{itemProductoVigente.FechaAviso | date:'dd/MM/yyyy'}}</div>
+                                    <div class="list-group-item-text text-success">Serie: {{itemProductoVigente.NumeroSerie}}</div>
+                                </div>                                
+                                <div class="list-group-item-text col-sm-5">
+                                        <button class="btn btn-sm btn-success" type="button" ng-disabled="editMode" ng-click="recargarProductoVendido(cliente,itemProductoVigente,false)">
+                                            <span class="glyphicon glyphicon-refresh" ng-disabled="editMode"></span>
+                                        </button>
+                                        <button class="btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVigente)">
+                                            <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
+                                        </button>
+                                        <button class="btn btn-sm btn-warning" type="button" ng-disabled="editMode" ng-click="alertProductoVendido(cliente,itemProductoVigente)">
+                                            <span class="glyphicon glyphicon-warning-sign" ng-disabled="editMode"></span>
+                                        </button>
+                                        <button class="btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVigente)">
+                                            <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+                                        </button>
+                                </div>                     
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -33,22 +40,30 @@
                     <h3 class="panel-title">Vencidos</h3>
                 </div>
                 <div class="panel-body">
-                    <div ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
-                        <div class="list-group-item">
+                    <div class="row-border-bottom" ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
+                        <div>
                             <div class="row">
-                                <h4 class="list-group-item-heading col-sm-3">{{itemProductoVencido.Producto.Nombre}}</h4>
-                                <div class="list-group-item-text col-sm-5 text-danger">Vencio: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
-                                <div class="list-group-item-text col-sm-5 text-danger">Serie: {{itemProductoVencido.NumeroSerie}}</div>
-                                <button class="btn btn-sm btn-success col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="recargarProductoVendido(cliente,itemProductoVencido,true)">
-                                    <span class="glyphicon glyphicon-refresh" ng-disabled="editMode"></span>
-                                </button>
-                                <button class="btn btn-sm btn-default col-sm-pull-1" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVencido)">
-                                    <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
-                                </button>
-                                <button class="btn btn-sm btn-default col-sm-pull-1 " type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVencido)">
-                                    <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
-                                </button>
-                            </div>
+                                <h5 class="list-group-item-heading col-sm-3">{{itemProductoVencido.Producto.Nombre}}</h5>
+                                <div class="list-group-item-text col-sm-4">
+                                    <div class="list-group-item-text text-danger">Vence: {{itemProductoVencido.FechaVencimiento | date:'dd/MM/yyyy'}}</div>
+                                    <div class="list-group-item-text text-warning">Aviso: {{itemProductoVencido.FechaAviso | date:'dd/MM/yyyy'}}</div>
+                                    <div class="list-group-item-text text-danger">Serie: {{itemProductoVencido.NumeroSerie}}</div>
+                                </div>
+                                <div class="list-group-item-text col-sm-5">
+                                    <button class="btn btn-sm btn-success" type="button" ng-disabled="editMode" ng-click="recargarProductoVendido(cliente,itemProductoVencido,true)">
+                                        <span class="glyphicon glyphicon-refresh" ng-disabled="editMode"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="editProductoVendido(cliente,itemProductoVencido)">
+                                        <span class="glyphicon glyphicon-pencil" ng-disabled="editMode"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning" type="button" ng-disabled="editMode" ng-click="alertProductoVendido(cliente,itemProductoVencido)">
+                                        <span class="glyphicon glyphicon-warning-sign" ng-disabled="editMode"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-default" type="button" ng-disabled="editMode" ng-click="removeProductoVendido(cliente,itemProductoVencido)">
+                                        <span class="glyphicon glyphicon-remove" ng-disabled="editMode"></span>
+                                    </button>                                   
+                                </div>
+                             </div>
                         </div>
                     </div>
                 </div>

@@ -149,7 +149,7 @@ angular.module('mdlControllers')
                 newProductoVendido.ProductoID = producto.Producto.ID;
                 newProductoVendido.Producto = producto.Producto;
                 newProductoVendido.FechaVenta = svcUtils.getCurrentDate();
-                newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);
+                newProductoVendido.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);                
                 newProductoVendido.Fabricacion = $scope.nuevoProductoVendido.Fabricacion;
                 newProductoVendido.NumeroSerie = $scope.nuevoProductoVendido.NumeroSerie;
 
@@ -211,7 +211,8 @@ angular.module('mdlControllers')
         };
 
         $scope.recargarProductoVendido = function (cliente, producto, vencido) {
-            producto.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento );
+            producto.FechaVencimiento = svcUtils.calcularVencimiento(svcUtils.getCurrentDate(), producto.Producto.Vencimiento);
+            producto.FechaAviso = null;
             for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {
                 if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0) {                    
                     cliente.ProductosVendidos[i] = producto;
@@ -227,6 +228,16 @@ angular.module('mdlControllers')
                 cliente.ProductosVigentes.push(producto);
             }            
         }
+
+        $scope.alertProductoVendido = function (cliente, producto, vencido) {
+            producto.FechaAviso = svcUtils.getCurrentDate();
+            for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {
+                if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0) {
+                    cliente.ProductosVendidos[i] = producto;
+                }
+            }                        
+        }
+        
         
         $scope.load();                             
     })
