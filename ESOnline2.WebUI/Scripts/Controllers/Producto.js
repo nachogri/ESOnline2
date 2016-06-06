@@ -181,8 +181,8 @@ angular.module('mdlControllers')
             $scope.clsConfirmar = "glyphicon glyphicon-plus";            
         };
 
-        $scope.editProductoVendido = function (cliente, producto) {
-            $scope.nuevoProductoVendido = producto;                        
+        $scope.editProductoVendido = function (cliente, producto) {            
+            $scope.nuevoProductoVendido = producto;
             $scope.editMode = true;
             $scope.lblVenta = "Editar";
             $scope.clsConfirmar = "glyphicon glyphicon-ok";
@@ -229,7 +229,7 @@ angular.module('mdlControllers')
             }            
         }
 
-        $scope.alertProductoVendido = function (cliente, producto, vencido) {
+        $scope.alertProductoVendido = function (cliente, producto) {
             producto.FechaAviso = svcUtils.getCurrentDate();
             for (var i = 0; i < cliente.ProductosVendidos.length ; i++) {
                 if (cliente.ProductosVendidos[i].ID == producto.ID && producto.ID != 0) {

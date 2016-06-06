@@ -40,8 +40,8 @@
                     <h3 class="panel-title">Vencidos</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row-border-bottom" ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
-                        <div>
+                    <div  ng-repeat="itemProductoVencido in cliente.ProductosVencidos | orderBy:'Nombre' ">
+                        <div ng-class="{'row-border-bottom-warning':itemProductoVencido.FechaAviso, 'row-border-bottom':!itemProductoVencido.FechaAviso}">
                             <div class="row">
                                 <h5 class="list-group-item-heading col-sm-3">{{itemProductoVencido.Producto.Nombre}}</h5>
                                 <div class="list-group-item-text col-sm-4">
@@ -72,13 +72,16 @@
     </div>
     <hr noshade size=3>
     <div class="form-horizontal">
-        <h4>{{lblVenta}}</h4>        
-        Producto: <select ng-show="!editMode" ng-disabled="editMode" ng-model="nuevoProductoVendido.Producto" class="form-control" ng-options="tipoProducto as tipoProducto.Nombre for tipoProducto in productos"></select>
-        <input type="text" class="form-control" ng-disabled="!editmode" ng-show="editMode" ng-model="nuevoProductoVendido.Producto.Nombre" />
-        &nbsp; Número de serie:  <input type="text" class="form-control" ng-model="nuevoProductoVendido.NumeroSerie" />
-        &nbsp; Año de Fabricación: <select ng-model="nuevoProductoVendido.Fabricacion" class="form-control" ng-options="anio for anio in anios" ></select>        
-        &nbsp; <button class="form-control btn btn-success" ng-disabled="nuevoProductoVendido.NumeroSerie=='' || nuevoProductoVendido.NumeroSerie==undefined || nuevoProductoVendido.NumeroSerie==undefined" type="button" ng-click="addProductoVendido(cliente,nuevoProductoVendido)">
-                   <span class={{clsConfirmar}} ng-disabled="editMode"></span>
-        </button>        
+        <div><h4>{{lblVenta}}</h4></div>
+        <div class="list-group-item-text">
+            Producto: <select class="form-control" ng-show="!editMode"  ng-disabled="editMode" ng-model="nuevoProductoVendido.Producto" ng-options="tipoProducto as tipoProducto.Nombre for tipoProducto in productos"></select>
+            <input class="form-control" ng-show="editMode" type="text" ng-disabled="!editmode"  ng-model="nuevoProductoVendido.Producto.Nombre" />
+            Número de serie:  <input type="text" class="form-control" ng-model="nuevoProductoVendido.NumeroSerie" />
+            @*Fabricación: <select ng-model="nuevoProductoVendido.Fabricacion" class="form-control" ng-options="anio for anio in anios"></select>*@
+            <span ng-show="editMode">Fecha de aviso:  </span><input type="date" ng-show="editMode" class="form-control" ng-model="nuevoProductoVendido.FechaAviso" />        
+            <button class="form-control btn btn-success" ng-disabled="nuevoProductoVendido.NumeroSerie=='' || nuevoProductoVendido.NumeroSerie==undefined || nuevoProductoVendido.NumeroSerie==undefined" type="button" ng-click="addProductoVendido(cliente,nuevoProductoVendido)">
+                <span class={{clsConfirmar}} ng-disabled="editMode"></span>
+            </button>
+        </div>
     </div>
 </div>

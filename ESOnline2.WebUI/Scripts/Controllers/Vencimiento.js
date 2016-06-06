@@ -10,6 +10,7 @@ angular.module("mdlControllers")
         $scope.NoVencimientos = false;
         $scope.showTelefonos = true;
         $scope.showDirecciones = true;
+        $scope.showAlerts = true;
 
         $scope.titulo = "Vencimientos";
 

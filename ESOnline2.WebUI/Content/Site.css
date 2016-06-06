@@ -809,6 +809,18 @@ width: auto;
 .row-border-bottom {
     border-bottom-width:0.1px;
     border-bottom-color:lightgray;
-    border-bottom-style:solid;    
+    border-bottom-style:dotted;    
     padding: 8px;
+}
+
+.row-border-bottom-warning{
+    background-color: #fcf8e3;
+    border-bottom-width:0.1px;
+    border-bottom-color:lightgray;
+    border-bottom-style:dotted;    
+    padding: 8px;
+}
+
+.padding-right{
+    padding-right:10px;
 }

@@ -1,17 +1,35 @@
 ﻿<div ng-controller="ctlVencimiento">                
-        <div class="panel panel-danger" ng-show="!NoVencimientos">
-            <div class=" panel-heading">
-                <h2 class="list-group-item-heading  col-xs-8 col-sm-7 col-md-10">{{titulo}}</h2>                
-                <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
-                    <div class="btn btn-danger" ng-click="TableView=!TableView" ng-disabled="TableView"><span class="glyphicon glyphicon-align-justify"></span></div>
-                    <div class="btn btn-danger" ng-click="TableView=!TableView" ng-disabled="!TableView"><span class="glyphicon glyphicon-th-large"></span></div>
-                </div>
+    <div class="panel panel-danger" ng-show="!NoVencimientos">
+        <div class=" panel-heading">
+            <h2 class="list-group-item-heading  col-xs-8 col-sm-7 col-md-10">{{titulo}}</h2>
+            <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+                <div class="btn btn-danger" ng-click="TableView=!TableView" ng-disabled="TableView"><span class="glyphicon glyphicon-align-justify"></span></div>
+                <div class="btn btn-danger" ng-click="TableView=!TableView" ng-disabled="!TableView"><span class="glyphicon glyphicon-th-large"></span></div>
             </div>
-            <div>
-                <span class="btn btn-link" ng-click="getAllToday();">Hoy</span>                
-                <span class="btn btn-link" ng-click="getAllLastMonth();">Último mes</span>
-                <span class="btn btn-link" ng-click="getAllLastYear();">Último año</span>
-            </div>       
+        </div>
+        <nav class="navbar">
+            <ul class="nav navbar-nav">
+                <li class="btn btn-link" ng-click="getAllToday();">Hoy</li>
+                <li class="btn btn-link" ng-click="getAllLastMonth();">Último mes</li>
+                <li class="btn btn-link" ng-click="getAllLastYear();">Último año</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right padding-right">
+                <li class="btn btn-link" ng-click="showAlerts=!showAlerts">
+                    <span ng-show="!showAlerts">Mostrar Avisos</span>
+                    <span ng-show="showAlerts">Ocultar Avisos</span>
+                </li>
+                <li class="btn btn-link" ng-show="!TableView" ng-click="mostrarVigentes=!mostrarVigentes">
+                    <span ng-show="!mostrarVigentes">Mostrar Vigentes</span>
+                    <span ng-show="mostrarVigentes">Ocultar Vigentes</span>
+                </li>
+                <li class="btn btn-link" ng-show="!TableView" ng-click="showTelefonos=!showTelefonos">
+                    <span class="glyphicon glyphicon-phone"></span>
+                </li>
+                <li class="btn btn-link" ng-show="!TableView" ng-click="showDirecciones=!showDirecciones">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                </li>    
+            </ul>            
+        </nav>                                                                     
             <div class="panel" ng-show="!TableView">
                 <div class="panel-heading">
                     <div class="col-header-link" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
@@ -20,6 +38,7 @@
                             <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
                         </h4>
                     </div>
+                </div>
                     <div class="panel-body">
                         <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6" ng-repeat="itemCliente in clientes | orderBy:order:reverse">
                             <div class="panel panel-default">
@@ -28,12 +47,12 @@
                                         <a class="col-header-link-noDeco" href="/Cliente/Edit/{{itemCliente.Cliente.ID}}">{{itemCliente.Cliente.Nombre}}</a>                                        
                                     </h4>                                    
                                     <div class="list-group-item-heading col-xs-offset-2 col-sm-offset-1 col-md-offset-1 row">
-                                        <span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Telefonos" ng-click="showTelefonos=!showTelefonos">
+                                        @*<span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Telefonos" ng-click="showTelefonos=!showTelefonos">
                                             <span class="glyphicon glyphicon-phone"></span>
                                         </span>                                        
                                         <span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Direcciones" ng-click="showDirecciones=!showDirecciones">
                                             <span class="glyphicon glyphicon-map-marker"></span>
-                                        </span>                                        
+                                        </span>*@                                        
                                     </div>
                                 </div>
                                 <div class="panel-heading" ng-show="showTelefonos" ng-repeat="telefono in itemCliente.Cliente.Telefonos">
@@ -72,52 +91,47 @@
                             </div>
                         </div>
                     </div>                    
-                    <div class="panel-footer">
-                        <div class="btn btn-link" ng-click="mostrarVigentes=!mostrarVigentes">
-                            <span ng-show="!mostrarVigentes">Mostrar Vigentes</span>
-                            <span ng-show="mostrarVigentes">Ocultar Vigentes</span>                            
-                        </div>
-                        <div class="btn btn-link" ng-click="showTelefonos=!showTelefonos">
-                            <span class="glyphicon glyphicon-phone"></span>
-                        </div>
-                        <div class="btn btn-link" ng-click="showDirecciones=!showDirecciones">
-                            <span class="glyphicon glyphicon-map-marker"></span>
-                        </div>                        
-                    </div>
-                </div>
             </div>               
             <table class="table table-hover" ng-show="TableView">
                 <thead>
-                <th class="col-header-link col-md-5" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
+                <th class="col-header-link col-md-4" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
                     <span>Cliente</span>
                     <span ng-show="order=='Cliente.Nombre'">
                         <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
                     </span>
                 </th>
-                <th class="col-header-link col-md-5" ng-click="reverse=!reverse;setOrder('Producto.Nombre')">
+                <th class="col-header-link col-md-4" ng-click="reverse=!reverse;setOrder('Producto.Nombre')">
                     <span>Producto</span>
                     <span ng-show="order=='Producto.Nombre'">
                         <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
                     </span>
                 </th>
-                <th class="col-header-link col-md-2" ng-click="reverse=!reverse;setOrder('FechaVencimiento')">
+                <th class="col-header-link col-md-1" ng-click="reverse=!reverse;setOrder('FechaVencimiento')">
                     <span>Vencimiento</span>
                     <span ng-show="order=='FechaVencimiento'">
                         <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
                     </span>
                 </th>
+                <th class="col-header-link col-md-1" ng-click="reverse=!reverse;setOrder('FechaAviso')">
+                    <span>Aviso</span>
+                    <span ng-show="order=='FechaAviso'">
+                        <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
+                    </span>
+                </th>
                 </thead>
-                <tr ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse | paginate:rowsPerPage">
+                <tr ng-class="{warning:itemVencimiento.FechaAviso}" ng-repeat="itemVencimiento in vencimientos | orderBy:order:reverse | paginate:rowsPerPage">
                     <td class="list-group-item col-sm-4">
                         <a class="col-header-link-noDeco" href="/Cliente/Edit/{{itemVencimiento.Cliente.ID}}" >{{itemVencimiento.Cliente.Nombre}}</a>                        
                     </td>
                     <td class="list-group-item col-sm-4">
                         {{itemVencimiento.Producto.Nombre}} - N. Serie: {{itemVencimiento.NumeroSerie}}
                     </td>
-                    <td class="list-group-item col-sm-2 text-danger">Vencio: {{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</td>
+                    <td class="list-group-item col-sm-1 text-danger">{{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</td>
+                    <td class="list-group-item col-sm-1">{{itemVencimiento.FechaAviso | date:'dd/MM/yyyy'}}</td>
                 </tr>
             </table>            
             <div ng-show="TableView && !NoVencimientos">

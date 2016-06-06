@@ -42,21 +42,25 @@ angular.module('mdlESOnlineApp')
 	        },
 
 	        /*Dates*/
+	        formatDate: function (date) {                
+	            return formatDateInt(date);
+	        },	        	        
+
 	        getCurrentDate: function () {
 	            var today = new Date();
-	            var dd = today.getDate();
-	            var mm = today.getMonth()+1;
-	            var yyyy = today.getFullYear();
+	            //var dd = today.getDate();
+	            //var mm = today.getMonth()+1;
+	            //var yyyy = today.getFullYear();
 
-	            if(dd<10) {
-	                dd='0'+dd
-	            } 
+	            //if(dd<10) {
+	            //    dd='0'+dd
+	            //} 
 
-	            if(mm<10) {
-	                mm='0'+mm
-	            } 
+	            //if(mm<10) {
+	            //    mm='0'+mm
+	            //} 
 
-	            today = mm+'/'+dd+'/'+yyyy;
+	            //today = dd+'/'+mm+'/'+yyyy;
 	            return today;
 	        },
 
@@ -125,3 +129,22 @@ angular.module('mdlESOnlineApp')
 	        }
 	    };	    	    
 	});
+
+    function formatDateInt(date) {    
+        if (date != null) {
+            date = new Date(date);
+            var dd = date.getDate();
+            var mm = date.getMonth() + 1;
+            var yyyy = date.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            date = dd + '/' + mm + '/' + yyyy;
+        } 
+        return date;
+    };
