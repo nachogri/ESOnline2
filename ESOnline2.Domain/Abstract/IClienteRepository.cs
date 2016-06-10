@@ -9,8 +9,8 @@ namespace ESOnline2.Domain.Abstract
     public interface IClienteRepository
     {
         IEnumerable<Cliente> GetAll();
-        IEnumerable<Cliente> GetAllWithVencimientos();
-        IEnumerable<Cliente> GetAllWithVencimientos(int days);        
+        IEnumerable<Cliente> GetAllWithVencimientos(bool includeAvisos);
+        IEnumerable<Cliente> GetAllWithVencimientos(int days,bool includeAvisos);        
         Cliente Get(int id);
         Cliente Add(Cliente cliente);
         void Remove(int id);

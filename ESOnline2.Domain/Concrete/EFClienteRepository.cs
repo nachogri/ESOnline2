@@ -26,12 +26,12 @@ namespace ESOnline2.Domain.Concrete
             return context.Clientes.AsEnumerable();
         }
 
-        public IEnumerable<Cliente> GetAllWithVencimientos()
+        public IEnumerable<Cliente> GetAllWithVencimientos(bool includeAvisos)
         {
-            return GetAllWithVencimientos(0);
+            return GetAllWithVencimientos(0, includeAvisos);
         }
 
-        public IEnumerable<Cliente> GetAllWithVencimientos(int days)
+        public IEnumerable<Cliente> GetAllWithVencimientos(int days, bool includeAvisos)
         {         
             context.ProductosVendidos.Include("Producto").ToList();
 
@@ -42,7 +42,10 @@ namespace ESOnline2.Domain.Concrete
                 CalculateVencimientos(cli,days);
             }
 
-            return clientes.Where(c => c.ProductosVencidos.Count >= 1);
+            if (includeAvisos)
+                return clientes.Where(c => c.ProductosVencidos.Count >= 1);
+            else
+                return clientes.Where(c => c.ProductosVencidos.Count >= 1).Where(p => p.ProductosVendidos.Where(pv=>pv.FechaAviso!=null).Count()==0);
         }        
 
         public Cliente Get(int id)

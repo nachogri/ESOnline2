@@ -17,11 +17,23 @@
 	            getWithVencimientosToday: function () {
 	                return $http.get('/Cliente/GetClientesWithVencimientosToday');
 	            },
-	            getWithVencimientosLastMonth: function () {
-	                return $http.get('/Cliente/GetClientesWithVencimientosLastMonth');
+	            getWithVencimientosLastMonth: function (avisos) {
+	                return $http.get('/Cliente/GetClientesWithVencimientosLastMonth' );
 	            },
 	            getWithVencimientosLastYear: function () {
 	                return $http.get('/Cliente/GetClientesWithVencimientosLastYear');
+	            },
+	            getWithAvisos: function () {
+	                return $http.get('/Cliente/GetWithAvisos');
+	            },
+	            getWithAvisosToday: function () {
+	                return $http.get('/Cliente/GetWithAvisosToday');
+	            },
+	            getWithAvisosLastMonth: function () {
+	                return $http.get('/Cliente/GetWithAvisosLastMonth');
+	            },
+	            getWithAvisosLastYear: function () {
+	                return $http.get('/Cliente/GetWithAvisosLastYear');
 	            },
 	            create:
                     function (data) {
@@ -90,15 +102,30 @@
                 getAllToday: function () {
                     return $http.get('/Vencimiento/GetAllVencimientosToday');
                 },
-                getAllLastMonth: function () {
-                    return $http.get('/Vencimiento/GetAllVencimientosLastMonth');
+                getAllLastMonth: function (avisos) {
+                    return $http.get('/Vencimiento/GetAllVencimientosLastMonth' );
                 },
                 getAllLastYear: function () {
                     return $http.get('/Vencimiento/GetAllVencimientosLastYear');
                 },
                 getAllByTimeRange: function (from, to) {
                     return $http.get('/Vencimiento/GetAllByTimeRange/'+from+'/'+to);
-                },               
+                },
+                getAllWithAvisos: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosWithAvisos');
+                },
+                getAllWithAvisosToday: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosWithAvisosToday');
+                },
+                getAllWithAvisosLastMonth: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosWithAvisosLastMonth');
+                },
+                getAllWithAvisosLastYear: function () {
+                    return $http.get('/Vencimiento/GetAllVencimientosWithAvisosLastYear');
+                },
+                getAllWithAvisosByTimeRange: function (from, to) {
+                    return $http.get('/Vencimiento/GetAllVencimientosWithAvisosByTimeRange/' + from + '/' + to);
+                },
                 getAllProductosVendidos: function () {
                     return $http.get('/Vencimiento/GetAllProductosVendidos');
                 }

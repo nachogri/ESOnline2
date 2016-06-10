@@ -1,22 +1,23 @@
 ﻿<div ng-controller="ctlVencimiento">                
     <div class="panel panel-danger" ng-show="!NoVencimientos">
-        <div class=" panel-heading">
-            <h2 class="list-group-item-heading  col-xs-8 col-sm-7 col-md-10">{{titulo}}</h2>
-            <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+        <div class="panel-heading">
+            <h2 class="list-group-item-heading  col-xs-9 col-sm-9 col-md-10">{{titulo}}</h2>
+            <div class="col-xs-push-1 col-sm-push-5 col-md-push-5">
                 <div class="btn btn-danger" ng-click="TableView=!TableView" ng-disabled="TableView"><span class="glyphicon glyphicon-align-justify"></span></div>
                 <div class="btn btn-danger" ng-click="TableView=!TableView" ng-disabled="!TableView"><span class="glyphicon glyphicon-th-large"></span></div>
             </div>
         </div>
+            
         <nav class="navbar">
             <ul class="nav navbar-nav">
                 <li class="btn btn-link" ng-click="getAllToday();">Hoy</li>
                 <li class="btn btn-link" ng-click="getAllLastMonth();">Último mes</li>
-                <li class="btn btn-link" ng-click="getAllLastYear();">Último año</li>
-            </ul>
+                <li class="btn btn-link" ng-click="getAllLastYear();">Último año</li>                
+            </ul>            
             <ul class="nav navbar-nav navbar-right padding-right">
-                <li class="btn btn-link" ng-click="showAlerts=!showAlerts">
-                    <span ng-show="!showAlerts">Mostrar Avisos</span>
-                    <span ng-show="showAlerts">Ocultar Avisos</span>
+                <li class="btn btn-link" ng-click="switchAvisosView();">
+                    <span ng-show="!showAvisos">Mostrar Avisos</span>
+                    <span ng-show="showAvisos">Ocultar Avisos</span>
                 </li>
                 <li class="btn btn-link" ng-show="!TableView" ng-click="mostrarVigentes=!mostrarVigentes">
                     <span ng-show="!mostrarVigentes">Mostrar Vigentes</span>
@@ -27,32 +28,24 @@
                 </li>
                 <li class="btn btn-link" ng-show="!TableView" ng-click="showDirecciones=!showDirecciones">
                     <span class="glyphicon glyphicon-map-marker"></span>
-                </li>    
+                </li>                    
             </ul>            
-        </nav>                                                                     
-            <div class="panel" ng-show="!TableView">
-                <div class="panel-heading">
-                    <div class="col-header-link" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
-                        <h4 ng-show="order=='Cliente.Nombre'">
-                            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
-                            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
-                        </h4>
-                    </div>
-                </div>
+        </nav>                                                                          
+        <div class="panel" ng-show="!TableView">             
                     <div class="panel-body">
-                        <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6" ng-repeat="itemCliente in clientes | orderBy:order:reverse">
+                        <div class="col-header-link" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
+                            <h4 ng-show="order=='Cliente.Nombre'">
+                                <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="reverse"></span>
+                                <span class="glyphicon glyphicon-sort-by-attributes" ng-show="!reverse"></span>
+                            </h4>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6" ng-repeat="itemCliente in clientes | orderBy:order:reverse ">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="list-group-item-heading col-xs-9 col-sm-10 col-md-10">
                                         <a class="col-header-link-noDeco" href="/Cliente/Edit/{{itemCliente.Cliente.ID}}">{{itemCliente.Cliente.Nombre}}</a>                                        
                                     </h4>                                    
-                                    <div class="list-group-item-heading col-xs-offset-2 col-sm-offset-1 col-md-offset-1 row">
-                                        @*<span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Telefonos" ng-click="showTelefonos=!showTelefonos">
-                                            <span class="glyphicon glyphicon-phone"></span>
-                                        </span>                                        
-                                        <span class="col-header-link-noDeco" ng-show="itemCliente.Cliente.Direcciones" ng-click="showDirecciones=!showDirecciones">
-                                            <span class="glyphicon glyphicon-map-marker"></span>
-                                        </span>*@                                        
+                                    <div class="list-group-item-heading col-xs-offset-2 col-sm-offset-1 col-md-offset-1 row">                                                                        
                                     </div>
                                 </div>
                                 <div class="panel-heading" ng-show="showTelefonos" ng-repeat="telefono in itemCliente.Cliente.Telefonos">
@@ -70,14 +63,15 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="panel-body">                                    
-                                    <div ng-repeat="itemVencimiento in itemCliente.Cliente.ProductosVencidos | orderBy:order:reverse">
+                                <div class="panel-body">                                                        
+                                    <div ng-repeat="itemVencimiento in itemCliente.Cliente.ProductosVencidos | orderBy:order:reverse" >
                                         <div>
                                             <p class="list-group-item-text">
                                                 {{itemVencimiento.Producto.Nombre}} - N. Serie: {{itemVencimiento.NumeroSerie}}
                                                 <span class="list-group-item-danger text-right">Vencio: {{itemVencimiento.FechaVencimiento | date:'dd/MM/yyyy'}}</span>
+                                                <span class="list-group-item-warning text-right"  ng-show="itemVencimiento.FechaAviso">Aviso: {{itemVencimiento.FechaAviso | date:'dd/MM/yyyy'}}</span>
                                             </p>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     <div ng-repeat="itemVencimiento in itemCliente.Cliente.ProductosVigentes | orderBy:order:reverse" ng-show="mostrarVigentes">
                                         <div>
@@ -92,7 +86,7 @@
                         </div>
                     </div>                    
             </div>               
-            <table class="table table-hover" ng-show="TableView">
+        <table class="table table-hover" ng-show="TableView">
                 <thead>
                 <th class="col-header-link col-md-4" ng-click="reverse=!reverse;setOrder('Cliente.Nombre')">
                     <span>Cliente</span>
@@ -134,9 +128,9 @@
                     <td class="list-group-item col-sm-1">{{itemVencimiento.FechaAviso | date:'dd/MM/yyyy'}}</td>
                 </tr>
             </table>            
-            <div ng-show="TableView && !NoVencimientos">
-                <pagination-control></pagination-control>
-            </div>            
+        <div ng-show="TableView && !NoVencimientos">
+            <pagination-control></pagination-control>
+        </div>            
         </div>
     <div class="text-center h4" ng-show="NoVencimientos">No hay vencimientos a la fecha</div>
 </div>

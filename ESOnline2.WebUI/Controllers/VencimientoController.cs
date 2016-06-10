@@ -37,7 +37,7 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientos()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(0);            
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(0,false);            
                   
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);                                    
         }
@@ -45,7 +45,7 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientosToday()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(1);
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(1, false);
 
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);
         }
@@ -53,7 +53,7 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientosLastMonth()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(30);
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(30, false);
 
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);
         }
@@ -61,17 +61,59 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetAllVencimientosLastYear()
         {
-            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(365);
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(365, false);
 
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public JsonResult GetAllVencimientosFromDate(DateTime fromDate, DateTime toDate )
+        public JsonResult GetAllVencimientosByTimeRange(DateTime fromDate, DateTime toDate )
         {
             IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidosByTimeRange(fromDate,toDate);
 
             return Json(productosVendidos, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosWithAvisos()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(0, true);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosWithAvisosToday()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(1, true);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosWithAvisosLastMonth()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(30, true);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosWithAvisosLastYear()
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidos(365, true);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllVencimientosWithAvisosByTimeRange(DateTime fromDate, DateTime toDate)
+        {
+            IEnumerable<ProductoVendido> productosVendidos = productosVendidosRepo.GetProductosVencidosByTimeRange(fromDate, toDate);
+
+            return Json(productosVendidos, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

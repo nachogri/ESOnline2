@@ -10,7 +10,7 @@ namespace ESOnline2.Domain.Abstract
     {
         IEnumerable<ProductoVendido> GetAll();
 
-        IEnumerable<ProductoVendido> GetProductosVencidos(int days);
+        IEnumerable<ProductoVendido> GetProductosVencidos(int days,bool includeAvisos);
 
         IEnumerable<ProductoVendido> GetProductosVencidosByTimeRange(DateTime fromDate, DateTime toDate);
     }

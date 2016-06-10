@@ -778,7 +778,8 @@ width: auto;
 }
 
 .navbar {
- margin-bottom: 0px!important; 
+ margin-bottom: 0px!important;
+ min-height:unset!important;
 }
 
 .logo {
@@ -823,4 +824,13 @@ width: auto;
 
 .padding-right{
     padding-right:10px;
+ }
+
+.padding-left{
+    padding-left:10px;
+}
+
+.padding-sides{
+    padding-right:10px;
+    padding-left:10px;
 }

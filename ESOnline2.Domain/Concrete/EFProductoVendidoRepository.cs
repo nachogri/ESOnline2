@@ -24,7 +24,7 @@ namespace ESOnline2.Domain.Concrete
             return context.ProductosVendidos.AsEnumerable();              
         }
 
-        public IEnumerable<ProductoVendido> GetProductosVencidos(int days)
+        public IEnumerable<ProductoVendido> GetProductosVencidos(int days,bool includeAvisos)
         {
             //context.ProductosVendidos.Include("Producto").ToList();
 
@@ -34,7 +34,10 @@ namespace ESOnline2.Domain.Concrete
             if (days > 0)
             {
                 fromDate = DateTime.Today.AddDays(-days);
-                return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= expirationDate).AsEnumerable();
+                if(includeAvisos)
+                    return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= expirationDate).AsEnumerable();
+                else
+                    return context.ProductosVendidos.Where(p => p.FechaVencimiento > fromDate && p.FechaVencimiento <= expirationDate && p.FechaAviso==null).AsEnumerable();
             }
             else
             {                

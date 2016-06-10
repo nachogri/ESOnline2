@@ -126,7 +126,18 @@ angular.module('mdlESOnlineApp')
 	        /*Misc*/
             findDireccionInMap : function (direccion) {
 	            svcBrowser.openNewTab('https://www.google.com/maps/place/' + direccion);
-	        }
+            },
+
+            wait: function (miliseconds) {
+                var r = $.Deferred();
+
+                alert();
+	            setTimeout(function () {
+	                r.resolve();
+	            }, miliseconds);
+       
+	            return $.Deferred().resolve();;
+	        }            
 	    };	    	    
 	});
 
@@ -148,3 +159,5 @@ angular.module('mdlESOnlineApp')
         } 
         return date;
     };
+
+    

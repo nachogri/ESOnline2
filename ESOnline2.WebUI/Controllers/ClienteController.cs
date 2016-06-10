@@ -42,8 +42,7 @@ namespace ESOnline2.WebUI.Controllers
 
         [HttpGet]
         public JsonResult GetAllClientes()
-        {
-            //return Json(clienteRepo.GetAll(), JsonRequestBehavior.AllowGet);
+        {            
             return Json(clienteRepo.GetAll().Where(c => c.Nombre.ToLower().StartsWith("A",StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
         }
 
@@ -60,13 +59,14 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetClientesByNombre(string id)
         {
+            id.Replace("*", "").Replace(".","");
             return Json(clienteRepo.GetAll().Where(c => c.Nombre.ToLower().Contains(id.ToLower()) || (c.Apellido!=null && c.Apellido.ToLower().Contains(id.ToLower()))), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetClientesWithVencimientos()
         {
-            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos().ToList();
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(false).ToList();
           
             var filtered = clientes
                             .Where(c => c.ProductosVencidos.Count>=1)                            
@@ -78,7 +78,7 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetClientesWithVencimientosToday()
         {
-            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(1).ToList();
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(1, false).ToList();
 
             var filtered = clientes
                             .Where(c => c.ProductosVencidos.Count >= 1)
@@ -90,7 +90,7 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetClientesWithVencimientosLastMonth()
         {
-            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(30).ToList();
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(30, false).ToList();
 
             var filtered = clientes
                             .Where(c => c.ProductosVencidos.Count >= 1)
@@ -102,7 +102,55 @@ namespace ESOnline2.WebUI.Controllers
         [HttpGet]
         public JsonResult GetClientesWithVencimientosLastYear()
         {
-            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(365).ToList();
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(365, false).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetWithAvisos()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(true).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetWithAvisosToday()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(1, true).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetWithAvisosLastMonth()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(30, true).ToList();
+
+            var filtered = clientes
+                            .Where(c => c.ProductosVencidos.Count >= 1)
+                            .Select(c => new { Cliente = c, ProductosVendidos = c.ProductosVencidos.Count >= 1 });
+
+            return Json(filtered, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetWithAvisosLastYear()
+        {
+            List<Cliente> clientes = (List<Cliente>)clienteRepo.GetAllWithVencimientos(365, true).ToList();
 
             var filtered = clientes
                             .Where(c => c.ProductosVencidos.Count >= 1)
