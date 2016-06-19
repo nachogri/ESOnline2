@@ -178,17 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ESOnline2Model.edmx.sql" />
-    <Content Include="MigrationScripts\dbo.All.data.sql" />
-    <Content Include="MigrationScripts\dbo.Clientes.data.sql" />
-    <Content Include="MigrationScripts\dbo.Clientes.sql" />
-    <Content Include="MigrationScripts\dbo.Direcciones.data.sql" />
-    <Content Include="MigrationScripts\dbo.ProductosVendidos.data.sql" />
-    <Content Include="MigrationScripts\dbo.ProductosVendidos.Query.sql" />
-    <Content Include="MigrationScripts\dbo.ProductosVendidos.sql" />
-    <Content Include="MigrationScripts\dbo.Telefonos.data.sql" />
-    <Content Include="MigrationScripts\dbo.Telefonos.sql" />
-    <Content Include="MigrationScripts\Direcciones.sql" />
-    <Content Include="MigrationScripts\Notas.sql" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
