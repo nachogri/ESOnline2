@@ -116,7 +116,7 @@ angular.module("mdlControllers")
                     loadClientes($scope.clientes);
 
                     svcUtils.deserializeDates($scope.vencimientos);
-                    $("#wait").hide();
+                    //$("#wait").hide();
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -164,6 +164,7 @@ angular.module("mdlControllers")
                       loadClientes($scope.clientes);
 
                       svcUtils.deserializeDates($scope.vencimientos);
+                      //$("#wait").hide();
                   })
                   .error(function (err) {
                       svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -203,13 +204,14 @@ angular.module("mdlControllers")
                       loadClientes($scope.clientes);
 
                       svcUtils.deserializeDates($scope.vencimientos);
+                      $("#wait").hide();
                   })
                   .error(function (err) {
                       svcNotifications.alert("Ha ocurrido un error:" + err);
                       $("#wait").hide();
                   });
-            }           
-               
+
+            }                           
         }
 
         $scope.getAllLastYear = function () {            
@@ -287,7 +289,7 @@ angular.module("mdlControllers")
 
                     loadClientes($scope.clientes);
                     svcUtils.deserializeDates($scope.vencimientos);
-                    $("#wait").hide();
+                    //$("#wait").hide();
                 })
                 .error(function (err) {
                     svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -297,7 +299,8 @@ angular.module("mdlControllers")
             
         }
 
-        $scope.switchAvisosView=function(){        
+        $scope.switchAvisosView = function () {
+            $("#wait").show();
             $scope.showAvisos = !$scope.showAvisos;
 
             if ($scope.timeRange == "Daily")
