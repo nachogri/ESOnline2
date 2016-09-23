@@ -83,7 +83,7 @@ angular.module("mdlControllers")
 
                        loadClientes($scope.clientes);
                        svcUtils.deserializeDates($scope.vencimientos);
-                       $("#wait").hide();
+                       //$("#wait").hide();
                    })
                    .error(function (err) {
                        svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -204,7 +204,7 @@ angular.module("mdlControllers")
                       loadClientes($scope.clientes);
 
                       svcUtils.deserializeDates($scope.vencimientos);
-                      $("#wait").hide();
+                      //$("#wait").hide();
                   })
                   .error(function (err) {
                       svcNotifications.alert("Ha ocurrido un error:" + err);
@@ -250,7 +250,7 @@ angular.module("mdlControllers")
 
                        loadClientes($scope.clientes);
                        svcUtils.deserializeDates($scope.vencimientos);
-                       $("#wait").hide();
+                       //$("#wait").hide();
                    })
                    .error(function (err) {
                        svcNotifications.alert("Ha ocurrido un error:" + err);
