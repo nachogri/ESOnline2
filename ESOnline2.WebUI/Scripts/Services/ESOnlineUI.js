@@ -136,7 +136,7 @@
                     return $http.get('/Account/GetAllUsers');
                 },                
                 getByNombre: function (id) {
-                    return $http.get('/Account/GetAllGetAllUsersByName/' + id);
+                    return $http.get('/Account/GetAllUsersByName/' + id);
                 },
                 get: function (id) {
                     return $http.get('/Account/GetUser/' + id);
