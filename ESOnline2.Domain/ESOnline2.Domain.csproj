@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ESOnline2.Domain</RootNamespace>
     <AssemblyName>ESOnline2.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFramework>net8.0</TargetFramework>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -118,13 +118,11 @@
     </Compile>
     <Compile Include="ESOnline2Model.cs">
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ESOnline2Model.tt</DependentUpon>
+      <DesignTime>True</DependentUpon>
     </Compile>
     <Compile Include="ESOnline2Model.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ESOnline2Model.edmx</DependentUpon>
+      <DesignTime>True</DependentUpon>
     </Compile>
     <Compile Include="Producto.cs">
       <DependentUpon>ESOnline2Model.tt</DependentUpon>
