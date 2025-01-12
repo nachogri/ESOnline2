@@ -9,3 +9,4 @@
 - Moq 4.1.1308.2321
 - Ninject 3.0.1.10
 - .NET Framework 4.5
+- .NET 8.0
